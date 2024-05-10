@@ -23,6 +23,9 @@ export const load = async ({ fetch, data, depends }) => {
             return cookie[key]
           },
         },
+        auth: {
+          flowType: "pkce",
+        },
       })
     : createServerClient(PUBLIC_SUPABASE_URL, PUBLIC_SUPABASE_ANON_KEY, {
         global: {
@@ -32,6 +35,9 @@ export const load = async ({ fetch, data, depends }) => {
           get() {
             return JSON.stringify(data.session)
           },
+        },
+        auth: {
+          flowType: "pkce",
         },
       })
 

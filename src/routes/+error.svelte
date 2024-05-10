@@ -1,6 +1,6 @@
 <script>
-  import "../app.css"
   import { page } from "$app/stores"
+  import "../app.css"
 </script>
 
 <div class="hero min-h-[100vh]">

@@ -8,18 +8,14 @@
   adminSection.set("settings")
 
   export let data
-  let { user, supabase } = data
+  let { user, supabase, amr } = data
 
   // True if definitely has a password, but can be false if they
   // logged in with oAuth or email link
 
-  // @ts-expect-error: we ignore because Supabase does not maintain an AMR typedef
-  let hasPassword = user?.amr?.find((x) => x.method === "password")
-    ? true
-    : false
+  let hasPassword = amr?.find((x) => x.method === "password") ? true : false
 
-  // @ts-expect-error: we ignore because Supabase does not maintain an AMR typedef
-  let usingOAuth = user?.amr?.find((x) => x.method === "oauth") ? true : false
+  let usingOAuth = amr?.find((x) => x.method === "oauth") ? true : false
 
   let sendBtn: HTMLButtonElement
   let sentEmail = false
