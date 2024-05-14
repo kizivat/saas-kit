@@ -44,9 +44,9 @@ export const handle: Handle = async ({ event, resolve }) => {
    */
   event.locals.safeGetSession = async () => {
     const {
-      data: { session },
+      data: { session: originalSession },
     } = await event.locals.supabase.auth.getSession()
-    if (!session) {
+    if (!originalSession) {
       return { session: null, user: null, amr: null }
     }
 
@@ -59,8 +59,15 @@ export const handle: Handle = async ({ event, resolve }) => {
       return { session: null, user: null, amr: null }
     }
 
+    // TODO: Remove this once the issue is fixed
+    // Hack to overcome annoying Supabase auth warnings
+    // https://github.com/supabase/auth-js/issues/873#issuecomment-2081467385
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    delete originalSession.user
+    const session = Object.assign({}, originalSession, { user })
     const { data: aal, error: amrError } =
-      await event.locals.supabase.auth.mfa.getAuthenticatorAssuranceLevel()
+      await await event.locals.supabase.auth.mfa.getAuthenticatorAssuranceLevel()
     if (amrError) {
       return { session, user, amr: null }
     }
