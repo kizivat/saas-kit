@@ -2,6 +2,6 @@
 
 ## Reporting a Vulnerability
 
-Please report any vulnerabilities via GitHub: https://github.com/CriticalMoments/CMSaasStarter/security
+Please report any vulnerabilities via GitHub: https://github.com/kizivat/sveltekit-bilerplate
 
 This allows us to privately fix and publish the fix before public disclosure.
