@@ -130,7 +130,7 @@ git pull [Your Fork]
 cd CMSaasStarter ## or your fork name if different
 npm install
 ## Create an env file. You'll replace the values in this in later steps.
-cp local_env_template .env.local
+cp .env.example .env.local
 ## Run the project locally in dev mode, and launch the browser
 npm run dev -- --open
 ```
