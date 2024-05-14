@@ -1,6 +1,6 @@
 name: Format Check
 
-on: [push,pull_request]
+on: [push, pull_request]
 
 env:
   PUBLIC_SUPABASE_URL: 'https://fake_test_url.supabase.co'
@@ -20,4 +20,4 @@ jobs:
         run: npm install
 
       - name: Check Code Format
-        run: npm run format_check
+        run: npm run format:check

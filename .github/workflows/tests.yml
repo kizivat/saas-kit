@@ -1,6 +1,6 @@
 name: Tests
 
-on: [push,pull_request]
+on: [push, pull_request]
 
 env:
   PUBLIC_SUPABASE_URL: 'https://fake_test_url.supabase.co'
@@ -20,5 +20,4 @@ jobs:
         run: npm install
 
       - name: Tests
-        run: npm run test_run
- 
+        run: npm run test
