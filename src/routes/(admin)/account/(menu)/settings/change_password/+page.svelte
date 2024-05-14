@@ -12,7 +12,6 @@
 
   // True if definitely has a password, but can be false if they
   // logged in with oAuth or email link
-
   let hasPassword = amr?.find((x) => x.method === "password") ? true : false
 
   let usingOAuth = amr?.find((x) => x.method === "oauth") ? true : false
@@ -71,9 +70,7 @@
     ]}
   />
 {:else}
-  <div
-    class="card p-6 pb-7 mt-8 max-w-xl flex flex-col md:flex-row shadow max-w-md"
-  >
+  <div class="card p-6 pb-7 mt-8 flex flex-col md:flex-row shadow max-w-md">
     <div class="flex flex-col gap-y-4">
       {#if usingOAuth}
         <div class="font-bold">Set Password By Email</div>
@@ -92,7 +89,8 @@
         class="btn btn-outline btn-wide {sentEmail ? 'hidden' : ''}"
         bind:this={sendBtn}
         on:click={sendForgotPassword}
-        >Send Set Password Email
+      >
+        Send Set Password Email
       </button>
       <div class="success alert alert-success {sentEmail ? '' : 'hidden'}">
         Sent email! Please check your inbox and use the link to set your
