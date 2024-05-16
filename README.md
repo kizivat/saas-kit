@@ -7,7 +7,7 @@
 
 ### SaaS Starter is an open source, fast, and free to host SaaS template / boilerplate
 
-- [Feature Rich](#features): user auth, user dashboard, marketing site, blog engine, billing/subscriptions, pricing page, and more.
+- [Feature Rich](#features): user auth, user dashboard, marketing site, billing/subscriptions, pricing page, and more.
 - [Lightning Performance](#performance--best-practices): fast pre-rendered pages which score 100/100 on Google PageSpeed.
 - [Delighful Developer Experience](#tech-stack): tools you'll love working with, including SvelteKit, Tailwind, DaisyUI, Postgres, and Supabase.
 - Extensible: all the tools you need to make additional marketing pages, UI components, user dashboards, admin portals, database backends, API endpoints, and more.
@@ -27,7 +27,6 @@ Everything you need to get started for a SaaS company:
 
 - User Authentication: Sign up, sign out, forgot password, email verification, and oAuth. Powered by Supabase Auth.
 - Marketing Page with SEO optimization
-- Blog engine with rich formatting, RSS and SEO optimization.
 - User Dashboard with user profile, user settings, update email/password, billing, and more.
 - Subscriptions powered by Stripe Checkout
 - Pricing page
@@ -82,7 +81,7 @@ Everything you need to get started for a SaaS company:
 
 The selected tech stack creates lightning fast websites.
 
-- Pre-rendering (static generation) for marketing pages, pricing and blog
+- Pre-rendering (static generation) for marketing pages and pricing
 - Instant navigation: the best of CSR + SSR in one. SSR your first page for fastest possible initial load times. For subsequent pages, the content is pre-loaded and rendered with CSR, for instant rendering.
 - CDN optimized, for high edge-cache hit ratios
 - Edge-functions for dynamic APIs/pages
@@ -243,14 +242,10 @@ After the steps above, you’ll have a working version like the demo page. Howev
 - Set a name for your site in `src/config.ts:WebsiteName`
 - Content
   - Add actual content for marketing homepage
-  - Add actual content for your blog (or delete the blog)
-    - Update all fields in `src/routes/(marketing)/blog/posts.ts`, and replace the post pages under `src/routes/(marketing)/blog/posts` to align to the urls from `posts.ts`.
-    - Alternatively remove the blog by removing the src/routes/(marketing)/blog directory, and remove any links to the blog in the header and footer. You can always bring it back later.
   - Add any pages you want on top of our boiler plate (about, terms of service, etc). Be sure to add links to them in the header, mobile menu header, and footer as appropriate (`src/routes/(marketing)/+layout.svelte`).
-  - Note: if you add any dynamic content to the main marketing page, pricing page or blog, be sure to set `prerender = false` in the appropriate `+page.ts` file. These are currently pre-rendered and served as static assets for performance reasons, but that will break if you add server side rendering requirements.
+  - Note: if you add any dynamic content to the main marketing page or pricing page, be sure to set `prerender = false` in the appropriate `+page.ts` file. These are currently pre-rendered and served as static assets for performance reasons, but that will break if you add server side rendering requirements.
 - Update SEO content
   - Update title and meta description tags for every public page. We include generic ones using your site name (`src/config.ts:WebsiteName`), but the more specific these are the better.
-  - This done automatically for blog posts from `posts.ts` metadata
 - Style
   - Create a new DaisyUI Theme matching your brand or use one of the built in themes from DaisyUI (see `tailwind.config.js`)
   - Update the marketing page layout `src/routes/(marketing)/+layout.svelte`: customize design, delete unwanted pages from header and footer

@@ -1,4 +1,4 @@
-import { sortedBlogPosts, blogInfo } from '../posts';
+import { blogInfo, sortedBlogPosts } from '../blog';
 
 const encodeXML = (str: string) =>
 	str
@@ -27,7 +27,7 @@ export function GET({ url }) {
       <title>${encodeXML(post.title)}</title>
       <description>${encodeXML(post.description)}</description>
       <link>${url.origin + post.link}/</link>
-      <pubDate>${post.parsedDate?.toUTCString()}</pubDate>
+      <pubDate>${post.date.toUTCString()}</pubDate>
     </item>\n`;
 	}
 	body += `  </channel>\n</rss>\n`;
