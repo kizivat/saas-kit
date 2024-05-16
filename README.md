@@ -13,34 +13,13 @@
 - Extensible: all the tools you need to make additional marketing pages, UI components, user dashboards, admin portals, database backends, API endpoints, and more.
 - [Hosting](#suggested-hosting-stack): Our suggested hosting stack is free to host, cheap to scale, easy to manage, and includes automatic deployments.
 - [MIT Open Source](https://github.com/kizivat/sveltekit-boilerplate/blob/main/LICENSE)
-- [Fully Functional Demo](https://saasstarter.work)
 - [Quick Start](#quick-start): Full docs from `git clone` to deployment.
 
-Created by the folks at [Critical Moments](https://criticalmoments.io)! Check out our website site for an example depolyment of SaaS Starter.
-
-**Make mobile apps?** Improve conversion rates and ratings with [Critical Moments](https://criticalmoments.io).
-
-## Demo
-
-You can explore all the features using our fully functional demo [saasstarter.work](https://saasstarter.work).
-
-[![Try it Now](https://img.shields.io/badge/Try_it_Now-37a779?style=for-the-badge 'Try it Now')](https://saasstarter.work)
-
-See [criticalmoments.io](https://criticalmoments.io) for an example of what’s possible after this template has design, content, and functionality added.
-
-<a href="https://saasstarter.work">
-<kbd>
-<img width="500" alt="homepage" src="https://github.com/kizivat/sveltekit-boilerplate/assets/848343/34944c09-df72-4ac2-9099-01d25d99911b">
-</kbd>
-<br>
-<kbd>
-<img width="200" alt="pricing page" src="https://github.com/kizivat/sveltekit-boilerplate/assets/848343/c3cb2ab7-3739-473e-a1fe-f82a4a31e844">
-</kbd><kbd>
-<img width="200" alt="settings page" src="https://github.com/kizivat/sveltekit-boilerplate/assets/848343/2d947c97-3cc7-4ff5-a5b1-7c8478b6f31a">
-</kbd><kbd>
-<img width="200" alt="payments portal" src="https://github.com/kizivat/sveltekit-boilerplate/assets/848343/0c4749c3-0d29-4edc-ae87-d8a4eefea3c9">
-</kbd>
-</a>
+> Based on [CriticalMoments/CMSaasStarter](https://github.com/CriticalMoments/CMSaasStarter) by the folks at [Critical Moments](https://criticalmoments.io)!
+>
+> **Make mobile apps?** Improve conversion rates and ratings with [Critical Moments](https://criticalmoments.io).
+>
+> (I'm not affiliated with Critical Moments, but I love their work and wanted to make it easier for others to use their template.)
 
 ## Features
 
@@ -58,10 +37,6 @@ Everything you need to get started for a SaaS company:
 - Style toolkit: theming and UI components
 - Responsive: designed for mobile and desktop.
 - Extensible: all the tools you need to make additional marketing pages, UI components, admin portals, database backends, API endpoints, and more.
-
-## Introduction Blog Post
-
-What to learn why we picked the technologies we did, and how to keep your fork lightning fast as you add content? Check out [our blog post](https://criticalmoments.io/blog/how_we_built_our_marketing_page) on the process. Yes, it's hosted on a SaaS Starter fork!
 
 ## Tech Stack
 
@@ -122,12 +97,12 @@ The result is a perfect Google PageSpeed Insights score in all categories!
 
 ### Get Started (Local Development)
 
-To get started, fork and run this project!
+This repo is a template, so you can click the green "Use this template" button on Github to create your own repo with this code. Then clone your repo locally and follow these steps:
 
-```
+```sh
 ## First fork the project on Github
-git pull [Your Fork]
-cd CMSaasStarter ## or your fork name if different
+git clone <your-repo-from-this-template>
+cd <your-repo-dir> ## or your fork name if different
 npm install
 ## Create an env file. You'll replace the values in this in later steps.
 cp .env.example .env.local
@@ -137,11 +112,11 @@ npm run dev -- --open
 
 ### Developer Environment
 
-The repo includes [CI scripts](https://aws.amazon.com/devops/continuous-integration/) designed for [GitHub Actions](https://github.com/features/actions). These confirm you don’t break your [build](https://github.com/kizivat/sveltekit-boilerplate/blob/main/.github/workflows/build.yml), you use [proper code formatting](https://github.com/kizivat/sveltekit-boilerplate/blob/main/.github/workflows/format.yml), and [code linting and typechecking passes](https://github.com/kizivat/sveltekit-boilerplate/blob/main/.github/workflows/linting.yml). Github disables CI on forks by default, so if you fork this repo, be sure to go into the Github Actions page for your repo and enable workflows.
+The repo includes [CI scripts](https://aws.amazon.com/devops/continuous-integration/) designed for [GitHub Actions](https://github.com/features/actions). These confirm you don’t break your [build](https://github.com/kizivat/sveltekit-boilerplate/blob/main/.github/workflows/build.yml), you use [proper code formatting](https://github.com/kizivat/sveltekit-boilerplate/blob/main/.github/workflows/format.yml), and [code linting and typechecking passes](https://github.com/kizivat/sveltekit-boilerplate/blob/main/.github/workflows/linting.yml).
 
-You can manually run these scripts yourself; `npm run build` for the build, `npm run format_check` to check formatting, `npm run lint` for the linting, `npm run check` for typechecking, and `npm run test` for testing (if you add tests).
+You can manually run these scripts yourself; `npm run build` for the build, `npm run format:check` to check formatting, `npm run lint` for the linting, `npm run check` for typechecking, and `npm run test` for testing (if you add tests).
 
-Installing extensions in your editor can automatically format-on-save, show linting/type issues inline, and run your test cases:
+If you're using VSCode, go to the extensions tab and install the recommended extensions. Those should be:
 
 - Svelte for Svelte and accessibility issues: [VSCode](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode) or [other editors](https://sveltesociety.dev/tools#editor-support)
 - ESLint for type checking and linting: [VSCode](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) and [other editors](https://eslint.org/docs/latest/use/integrations)
@@ -152,46 +127,77 @@ To catch build, formatting, linting and test issues before you commit changes, w
 ```
 #!/bin/sh
 set -e
-npm run format_check
+npm run format:check
 npm run lint
 npm run build
 npm run check
-npm run test_run
+npm run test
 ```
 
 Finally: if you find build, formatting or linting rules too tedious, you can disable enforcement by deleting the CI files (`.github/workflows/*`) and remove the git hook (`.git/hooks/pre-commit`).
 
 ### Setup Supabase
 
-- Create a Supabase account
-- Create a new Supabase project in the console
-- Wait for the database to launch
-- Create your user management tables in the database
-  - Go to the [SQL Editor](https://supabase.com/dashboard/project/_/sql) page in the Dashboard.
-  - Paste the SQL from `database_migration.sql` in this repo to create your user/profiles table and click run.
-- Enable user signups in the [Supabase console](https://app.supabase.com/project/_/settings/auth): sometimes new signups are disabled by default in Supabase projects
-- Go to the [API Settings](https://supabase.com/dashboard/project/_/settings/api) page in the Dashboard. Find your Project-URL (PUBLIC_SUPABASE_URL), anon (PUBLIC_SUPABASE_ANON_KEY) and service_role (PRIVATE_SUPABASE_SERVICE_ROLE).
-  - For local development: create a `.env.local` file:
-    ```
-    PUBLIC_SUPABASE_URL=https://your-project.supabase.co
-    PUBLIC_SUPABASE_ANON_KEY=your-anon-key
-    PRIVATE_SUPABASE_SERVICE_ROLE=your service_role secret
-    ```
-  - For production, add these two keys to your Cloudflare environment (see below). We suggest you encrypt your service role.
-- Auth Callback
-  - Set your default callback URL for auth in the Supabase Auth console. For example, for the demo page we added: `https://saasstarter.work/auth/callback` . Also add that same URL to the the “allowed redirect URL” list in the Supabase auth console further down the page.
-  - Add a link to the redirect URL allow list which allows parameters to your auth callback. For example we added the following for the demo page: `https://saasstarter.work/auth/callback?*`
-  - Also add any local development URLs you want to use in testing to the list for your dev environment. For example, we added the following for local development: `http://localhost:5173/auth/callback` and `http://localhost:5173/auth/callback?*`.
-  - Test that the "sign up" and "forgot password" emails link back to your domain correctly by checking the have a redirect_to parameter to your `yourdomain.com/auth/callback`. If they link to the base URL or another page, double check you have the config above set correctly.
-- OAuth Logins
-  - Decide which oauth logins you want to support, and set them up in the Supabase Auth console under “Auth Providers”. Be sure to provide them the Supabase callback URL. Also be sure to set any platform specific permissions/settings to retrieve their email as part of the login (for example, for Github it's under `Account Permissions > Email Address > Read Only Access`
-  - Edit `oauthProviders` list in `/src/routes/(marketing)/login/login_conf.ts` with the list of providers you chose. If you don’t want any OAuth options, make this an empty array.
-  - Test each provider to ensure you setup the client ID, client secret and callback correctly for each
-- Auth Email SMTP
-  - Supabase has a limit of 4 emails per hour on their development server. You should [Configure a Custom SMTP](https://supabase.com/docs/guides/auth/auth-smtp) sending emails from your own domain.
-  - Customize the email templates in the Supabase Auth console to include your product name and branding
-- Test authentication
-  - Open the `/login` page in your browser, and ensure you can sign up, confirm email, log in, and edit your account.
+#### Local Development
+
+This repo is ready to run locally with [Supabase CLI](https://supabase.com/docs/guides/cli). Supabase CLI is installed locally after running `npm install` above.
+
+Having [Docker Desktop](https://www.docker.com/products/docker-desktop) installed is the only prerequisite for using Supabase CLI. Make sure Docker Desktop is running before running the commands below.
+
+To start Supabase locally run:
+
+```sh
+npx supabase start
+```
+
+> "This takes time on your first run because the CLI needs to download the Docker images to your local machine. The CLI includes the entire Supabase toolset, and a few additional images that are useful for local development (like a local SMTP server and a database diff tool)." [1]
+>
+> [1] https://supabase.com/docs/guides/cli/getting-started?queryGroups=platform&platform=npm#running-supabase-locally
+
+Now you can access your local Supabase Studio dashboard at [http://localhost:54323](http://localhost:54323).
+
+At the end of the starting process, Supabase CLI will output values you'll need to set in your `.env.local` file for local development. You can also print this information at any time by running `npx supabase status`.
+
+```sh
+npx supabase status -o env --override-name api.url="PUBLIC_SUPABASE_URL" --override-name auth.anon_key="PUBLIC_SUPABASE_ANON_KEY" --override-name auth.service_role_key="PRIVATE_SUPABASE_SERVICE_ROLE"
+```
+
+See [/supabase/config.toml](/supabase/config.toml) for the local Supabase configuration. Here is a list of settings you'll probably want to change in the default configuration:
+
+- [ ] `project_id`
+- [ ] `auth.external.<providers_you_want_to_support>`
+
+As a next step, you'll apply the initial database migration to your local Supabase instance:
+
+```sh
+npx supabase db reset
+```
+
+#### Going to Production
+
+To start you'll need at least a free [Supabase account](https://app.supabase.io/) and a Supabase project created for your app.
+
+After you have your account, you can login with the CLI:
+
+```sh
+npx supabase login
+```
+
+Follow the instructions from the CLI to authenticate with your Supabase account.
+
+Next, you can proceed to link your local Supabase project to your hosted Supabase project. This will allow you to deploy your local database schema to your hosted project.
+
+```sh
+npx supabase link
+```
+
+Follow the instructions from the CLI to link your local project to your hosted project.
+
+Finally, you can deploy your local database schema to your hosted project.
+
+```sh
+npx supabase db push
+```
 
 ### Setup Stripe Billing
 
@@ -250,20 +256,10 @@ After the steps above, you’ll have a working version like the demo page. Howev
   - Update the marketing page layout `src/routes/(marketing)/+layout.svelte`: customize design, delete unwanted pages from header and footer
   - Style: make it your own look and feel.
   - Update the favicon in the `/static/` directory
-  - The Authentication UI should automatically update based on your DaisyUI style, but check out the login in pages, and further design tweaks can be made in `src/routes/(marketing)/login/login_config.ts` (see [Auth UI](https://supabase.com/docs/guides/auth/auth-helpers/auth-ui#customization) for options).
 - Functionality
   - Add actual SaaS functionality!
   - Replace the admin dashboard with real content (`/src/routes/(admin)/account/+page.svelte`).
   - Add API endpoints and database tables as needed to deliver your SaaS product.
-
-### Extensions
-
-The open source community is extending and improving SaasStarter!
-
-These extensions are reference implementations of commonly needed features. We don't integrate them into the main branch to keep our dependencies minimal and simplify maintenance. However, if you need them you can cherry pick into your fork:
-
-- Internationalization: [branch](https://github.com/CriticalMoments/CMSaasStarter/tree/extension/internationalization), and [instructions](https://github.com/CriticalMoments/CMSaasStarter/pull/49)
-- Dark mode theme: [branch](https://github.com/CriticalMoments/CMSaasStarter/tree/extension/dark_mode), and [instructions](https://github.com/CriticalMoments/CMSaasStarter/pull/47)
 
 ## Icons
 
