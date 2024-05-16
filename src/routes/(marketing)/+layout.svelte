@@ -68,7 +68,7 @@
 			<span class="footer-title opacity-80">Explore</span>
 			<a class="link link-hover mb-1" href="/">Overview</a>
 			<a class="link link-hover my-1" href="/pricing">Pricing</a>
-			<a class="link link-hover my-1" href="/contact_us">Contact Us</a>
+			<a class="link link-hover my-1" href="/contact">Contact Us</a>
 			<a
 				class="link link-hover my-1"
 				href="https://github.com/CriticalMoments/CMSaasStarter">Github</a

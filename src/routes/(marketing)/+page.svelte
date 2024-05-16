@@ -76,7 +76,7 @@
 		},
 		{
 			name: 'Contact Us',
-			link: '/contact_us',
+			link: '/contact',
 			description:
 				'Contact form for customers to reach out for demos, quotes, and questions.',
 			svgContent: `<path d="M10.5 22V20M14.5 22V20" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"/>
