@@ -1,9 +1,9 @@
 # SaaS Starter
 
-[![Build](https://github.com/kizivat/sveltekit-boilerplate/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/kizivat/sveltekit-boilerplate/actions/workflows/build.yml)
-[![Format Check](https://github.com/kizivat/sveltekit-boilerplate/actions/workflows/format.yml/badge.svg?branch=main)](https://github.com/kizivat/sveltekit-boilerplate/actions/workflows/format.yml)
-[![Linting](https://github.com/kizivat/sveltekit-boilerplate/actions/workflows/linting.yml/badge.svg?branch=main)](https://github.com/kizivat/sveltekit-boilerplate/actions/workflows/linting.yml)
-[![License](https://img.shields.io/badge/License-MIT-brightgreen?labelColor=32383f)](https://github.com/kizivat/sveltekit-boilerplate/blob/main/LICENSE)
+[![Build](https://github.com/kizivat/saas-kit/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/kizivat/saas-kit/actions/workflows/build.yml)
+[![Format Check](https://github.com/kizivat/saas-kit/actions/workflows/format.yml/badge.svg?branch=main)](https://github.com/kizivat/saas-kit/actions/workflows/format.yml)
+[![Linting](https://github.com/kizivat/saas-kit/actions/workflows/linting.yml/badge.svg?branch=main)](https://github.com/kizivat/saas-kit/actions/workflows/linting.yml)
+[![License](https://img.shields.io/badge/License-MIT-brightgreen?labelColor=32383f)](https://github.com/kizivat/saas-kit/blob/main/LICENSE)
 
 ### SaaS Starter is an open source, fast, and free to host SaaS template / boilerplate
 
@@ -12,7 +12,7 @@
 - [Delighful Developer Experience](#tech-stack): tools you'll love working with, including SvelteKit, Tailwind, DaisyUI, Postgres, and Supabase.
 - Extensible: all the tools you need to make additional marketing pages, UI components, user dashboards, admin portals, database backends, API endpoints, and more.
 - [Hosting](#suggested-hosting-stack): Our suggested hosting stack is free to host, cheap to scale, easy to manage, and includes automatic deployments.
-- [MIT Open Source](https://github.com/kizivat/sveltekit-boilerplate/blob/main/LICENSE)
+- [MIT Open Source](https://github.com/kizivat/saas-kit/blob/main/LICENSE)
 - [Quick Start](#quick-start): Full docs from `git clone` to deployment.
 
 > Based on [CriticalMoments/CMSaasStarter](https://github.com/CriticalMoments/CMSaasStarter) by the folks at [Critical Moments](https://criticalmoments.io)!
@@ -90,7 +90,7 @@ The selected tech stack creates lightning fast websites.
 
 The result is a perfect Google PageSpeed Insights score in all categories!
 
-<img width="420" alt="Screenshot 2024-01-18 at 11 31 32 AM" src="https://github.com/kizivat/sveltekit-boilerplate/assets/848343/46b5e960-2aa0-4fb5-acd7-4f84b380e1d0">
+<img width="420" alt="Screenshot 2024-01-18 at 11 31 32 AM" src="https://github.com/kizivat/saas-kit/assets/848343/46b5e960-2aa0-4fb5-acd7-4f84b380e1d0">
 
 # Quick Start
 
@@ -111,7 +111,7 @@ npm run dev -- --open
 
 ### Developer Environment
 
-The repo includes [CI scripts](https://aws.amazon.com/devops/continuous-integration/) designed for [GitHub Actions](https://github.com/features/actions). These confirm you don’t break your [build](https://github.com/kizivat/sveltekit-boilerplate/blob/main/.github/workflows/build.yml), you use [proper code formatting](https://github.com/kizivat/sveltekit-boilerplate/blob/main/.github/workflows/format.yml), and [code linting and typechecking passes](https://github.com/kizivat/sveltekit-boilerplate/blob/main/.github/workflows/linting.yml).
+The repo includes [CI scripts](https://aws.amazon.com/devops/continuous-integration/) designed for [GitHub Actions](https://github.com/features/actions). These confirm you don’t break your [build](https://github.com/kizivat/saas-kit/blob/main/.github/workflows/build.yml), you use [proper code formatting](https://github.com/kizivat/saas-kit/blob/main/.github/workflows/format.yml), and [code linting and typechecking passes](https://github.com/kizivat/saas-kit/blob/main/.github/workflows/linting.yml).
 
 You can manually run these scripts yourself; `npm run build` for the build, `npm run format:check` to check formatting, `npm run lint` for the linting, `npm run check` for typechecking, and `npm run test` for testing (if you add tests).
 
