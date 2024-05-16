@@ -1,9 +1,9 @@
 # SaaS Starter
 
-[![Build](https://github.com/CriticalMoments/CMSaasStarter/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/CriticalMoments/CMSaasStarter/actions/workflows/build.yml)
-[![Format Check](https://github.com/CriticalMoments/CMSaasStarter/actions/workflows/format.yml/badge.svg?branch=main)](https://github.com/CriticalMoments/CMSaasStarter/actions/workflows/format.yml)
-[![Linting](https://github.com/CriticalMoments/CMSaasStarter/actions/workflows/linting.yml/badge.svg?branch=main)](https://github.com/CriticalMoments/CMSaasStarter/actions/workflows/linting.yml)
-[![License](https://img.shields.io/badge/License-MIT-brightgreen?labelColor=32383f)](https://github.com/CriticalMoments/CMSaasStarter/blob/main/LICENSE)
+[![Build](https://github.com/kizivat/sveltekit-boilerplate/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/kizivat/sveltekit-boilerplate/actions/workflows/build.yml)
+[![Format Check](https://github.com/kizivat/sveltekit-boilerplate/actions/workflows/format.yml/badge.svg?branch=main)](https://github.com/kizivat/sveltekit-boilerplate/actions/workflows/format.yml)
+[![Linting](https://github.com/kizivat/sveltekit-boilerplate/actions/workflows/linting.yml/badge.svg?branch=main)](https://github.com/kizivat/sveltekit-boilerplate/actions/workflows/linting.yml)
+[![License](https://img.shields.io/badge/License-MIT-brightgreen?labelColor=32383f)](https://github.com/kizivat/sveltekit-boilerplate/blob/main/LICENSE)
 
 ### SaaS Starter is an open source, fast, and free to host SaaS template / boilerplate
 
@@ -12,7 +12,7 @@
 - [Delighful Developer Experience](#tech-stack): tools you'll love working with, including SvelteKit, Tailwind, DaisyUI, Postgres, and Supabase.
 - Extensible: all the tools you need to make additional marketing pages, UI components, user dashboards, admin portals, database backends, API endpoints, and more.
 - [Hosting](#suggested-hosting-stack): Our suggested hosting stack is free to host, cheap to scale, easy to manage, and includes automatic deployments.
-- [MIT Open Source](https://github.com/CriticalMoments/CMSaasStarter/blob/main/LICENSE)
+- [MIT Open Source](https://github.com/kizivat/sveltekit-boilerplate/blob/main/LICENSE)
 - [Fully Functional Demo](https://saasstarter.work)
 - [Quick Start](#quick-start): Full docs from `git clone` to deployment.
 
@@ -30,15 +30,15 @@ See [criticalmoments.io](https://criticalmoments.io) for an example of what’s 
 
 <a href="https://saasstarter.work">
 <kbd>
-<img width="500" alt="homepage" src="https://github.com/CriticalMoments/CMSaasStarter/assets/848343/34944c09-df72-4ac2-9099-01d25d99911b">
+<img width="500" alt="homepage" src="https://github.com/kizivat/sveltekit-boilerplate/assets/848343/34944c09-df72-4ac2-9099-01d25d99911b">
 </kbd>
 <br>
 <kbd>
-<img width="200" alt="pricing page" src="https://github.com/CriticalMoments/CMSaasStarter/assets/848343/c3cb2ab7-3739-473e-a1fe-f82a4a31e844">
+<img width="200" alt="pricing page" src="https://github.com/kizivat/sveltekit-boilerplate/assets/848343/c3cb2ab7-3739-473e-a1fe-f82a4a31e844">
 </kbd><kbd>
-<img width="200" alt="settings page" src="https://github.com/CriticalMoments/CMSaasStarter/assets/848343/2d947c97-3cc7-4ff5-a5b1-7c8478b6f31a">
+<img width="200" alt="settings page" src="https://github.com/kizivat/sveltekit-boilerplate/assets/848343/2d947c97-3cc7-4ff5-a5b1-7c8478b6f31a">
 </kbd><kbd>
-<img width="200" alt="payments portal" src="https://github.com/CriticalMoments/CMSaasStarter/assets/848343/0c4749c3-0d29-4edc-ae87-d8a4eefea3c9">
+<img width="200" alt="payments portal" src="https://github.com/kizivat/sveltekit-boilerplate/assets/848343/0c4749c3-0d29-4edc-ae87-d8a4eefea3c9">
 </kbd>
 </a>
 
@@ -116,7 +116,7 @@ The selected tech stack creates lightning fast websites.
 
 The result is a perfect Google PageSpeed Insights score in all categories!
 
-<img width="420" alt="Screenshot 2024-01-18 at 11 31 32 AM" src="https://github.com/CriticalMoments/CMSaasStarter/assets/848343/46b5e960-2aa0-4fb5-acd7-4f84b380e1d0">
+<img width="420" alt="Screenshot 2024-01-18 at 11 31 32 AM" src="https://github.com/kizivat/sveltekit-boilerplate/assets/848343/46b5e960-2aa0-4fb5-acd7-4f84b380e1d0">
 
 # Quick Start
 
@@ -137,7 +137,7 @@ npm run dev -- --open
 
 ### Developer Environment
 
-The repo includes [CI scripts](https://aws.amazon.com/devops/continuous-integration/) designed for [GitHub Actions](https://github.com/features/actions). These confirm you don’t break your [build](https://github.com/CriticalMoments/CMSaasStarter/blob/main/.github/workflows/build.yml), you use [proper code formatting](https://github.com/CriticalMoments/CMSaasStarter/blob/main/.github/workflows/format.yml), and [code linting and typechecking passes](https://github.com/CriticalMoments/CMSaasStarter/blob/main/.github/workflows/linting.yml). Github disables CI on forks by default, so if you fork this repo, be sure to go into the Github Actions page for your repo and enable workflows.
+The repo includes [CI scripts](https://aws.amazon.com/devops/continuous-integration/) designed for [GitHub Actions](https://github.com/features/actions). These confirm you don’t break your [build](https://github.com/kizivat/sveltekit-boilerplate/blob/main/.github/workflows/build.yml), you use [proper code formatting](https://github.com/kizivat/sveltekit-boilerplate/blob/main/.github/workflows/format.yml), and [code linting and typechecking passes](https://github.com/kizivat/sveltekit-boilerplate/blob/main/.github/workflows/linting.yml). Github disables CI on forks by default, so if you fork this repo, be sure to go into the Github Actions page for your repo and enable workflows.
 
 You can manually run these scripts yourself; `npm run build` for the build, `npm run format_check` to check formatting, `npm run lint` for the linting, `npm run check` for typechecking, and `npm run test` for testing (if you add tests).
 
