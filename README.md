@@ -1,11 +1,11 @@
-# SaaS Starter
+# SaaS Kit
 
 [![Build](https://github.com/kizivat/saas-kit/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/kizivat/saas-kit/actions/workflows/build.yml)
 [![Format Check](https://github.com/kizivat/saas-kit/actions/workflows/format.yml/badge.svg?branch=main)](https://github.com/kizivat/saas-kit/actions/workflows/format.yml)
 [![Linting](https://github.com/kizivat/saas-kit/actions/workflows/linting.yml/badge.svg?branch=main)](https://github.com/kizivat/saas-kit/actions/workflows/linting.yml)
 [![License](https://img.shields.io/badge/License-MIT-brightgreen?labelColor=32383f)](https://github.com/kizivat/saas-kit/blob/main/LICENSE)
 
-### SaaS Starter is an open source, fast, and free to host SaaS template / boilerplate
+### SaaS Kit is an open source, fast, and free to host SaaS template / boilerplate
 
 - [Feature Rich](#features): user auth, user dashboard, marketing site, billing/subscriptions, pricing page, and more.
 - [Lightning Performance](#performance--best-practices): fast pre-rendered pages which score 100/100 on Google PageSpeed.

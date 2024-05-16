@@ -2,6 +2,7 @@
 	import { enhance } from '$app/forms';
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
+	import type { AuthChangeEvent } from '@supabase/supabase-js';
 	import { onMount } from 'svelte';
 
 	export let data;
@@ -10,7 +11,7 @@
 	let { supabase } = data;
 
 	onMount(() => {
-		supabase.auth.onAuthStateChange(event => {
+		supabase.auth.onAuthStateChange((event: AuthChangeEvent) => {
 			// Redirect to account after sucessful login
 			if (event == 'SIGNED_IN') {
 				// Delay needed because order of callback not guaranteed.
@@ -93,8 +94,8 @@
 	<button class="btn btn-primary w-full" type="submit">Sign in</button>
 </form>
 <div class="text-l text-slate-800 mt-4">
-	<a class="underline" href="/login/forgot_password">Forgot password?</a>
+	<a class="underline" href="/forgot-password">Forgot password?</a>
 </div>
 <div class="text-l text-slate-800 mt-3">
-	Don't have an account? <a class="underline" href="/login/sign_up">Sign up</a>.
+	Don't have an account? <a class="underline" href="/register">Sign up</a>.
 </div>

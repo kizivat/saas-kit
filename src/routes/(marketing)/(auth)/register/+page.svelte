@@ -57,5 +57,5 @@
 	<button class="btn btn-primary w-full" type="submit">Sign up</button>
 </form>
 <div class="text-l text-slate-800 mt-4 mb-2">
-	Have an account? <a class="underline" href="/login/sign_in">Sign in</a>.
+	Have an account? <a class="underline" href="/login">Sign in</a>.
 </div>

@@ -10,11 +10,15 @@ export const load: LayoutServerLoad = async ({
 		throw redirect(303, '/login');
 	}
 
-	const { data: profile } = await supabase
+	const { data: profile, error } = await supabase
 		.from('profiles')
 		.select(`*`)
 		.eq('id', user?.id)
 		.single();
+
+	if (error) {
+		console.error('Error getting profile:', error.message);
+	}
 
 	return { session, profile };
 };

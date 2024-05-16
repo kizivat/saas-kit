@@ -123,7 +123,7 @@ export const actions = {
 			});
 			if (error) {
 				// The user was logged out because of bad password. Redirect to error page explaining.
-				throw redirect(303, '/login/current_password_error');
+				throw redirect(303, '/change-password-error');
 			}
 		}
 
@@ -173,7 +173,7 @@ export const actions = {
 		});
 		if (pwError) {
 			// The user was logged out because of bad password. Redirect to error page explaining.
-			throw redirect(303, '/login/current_password_error');
+			throw redirect(303, '/change-password-error');
 		}
 
 		const { error } = await supabaseServiceRole.auth.admin.deleteUser(
@@ -246,6 +246,7 @@ export const actions = {
 		});
 
 		if (error) {
+			console.error('Error updating profile:', error.message);
 			return fail(500, {
 				errorMessage: 'Unknown error. If this persists please contact us.',
 				fullName,
