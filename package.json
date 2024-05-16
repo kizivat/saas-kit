@@ -1,5 +1,5 @@
 {
-	"name": "@kizivat/sveltekit-boilerplate",
+	"name": "@kizivat/saas-kit",
 	"version": "0.0.1",
 	"private": true,
 	"scripts": {
