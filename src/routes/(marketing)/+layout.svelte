@@ -8,6 +8,7 @@
 	import XIcon from 'virtual:icons/lucide/x';
 	import '../../app.css';
 	import HomeButton from './components/HomeButton.svelte';
+	import PersonalDropdown from './components/PersonalDropdown.svelte';
 
 	const menuItems = {
 		'/': 'Home',
@@ -39,7 +40,8 @@
 			</ul>
 		</nav>
 		<div class="hidden sm:block justify-self-end">
-			<Button variant="secondary" href="/account">Get started</Button>
+			<!-- <Button variant="secondary" href="/account">Get started</Button> -->
+			<PersonalDropdown />
 		</div>
 
 		<div class="sm:hidden justify-self-end">
