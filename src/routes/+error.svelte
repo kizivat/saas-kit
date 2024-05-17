@@ -1,5 +1,6 @@
 <script>
 	import { page } from '$app/stores';
+	import { Button } from '$lib/components/ui/button';
 	import '../app.css';
 </script>
 
@@ -9,7 +10,7 @@
 			<h1 class="text-5xl font-bold">This is embarassing...</h1>
 			<p class="py-6 text-2xl">There was an error: {$page?.error?.message}</p>
 			<div>
-				<a href="/" class="btn btn-primary btn-wide">Return Home</a>
+				<Button href="/" class="btn btn-primary btn-wide">Return Home</Button>
 			</div>
 		</div>
 	</div>

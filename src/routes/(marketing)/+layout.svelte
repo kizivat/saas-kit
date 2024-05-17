@@ -1,72 +1,198 @@
 <script>
+	import { onNavigate } from '$app/navigation';
+	import Button from '$lib/components/ui/button/button.svelte';
+	import * as Drawer from '$lib/components/ui/drawer';
+	import { Separator } from '$lib/components/ui/separator';
+	import { MenuIcon, XIcon } from 'lucide-svelte';
+	import { twMerge } from 'tailwind-merge';
 	import '../../app.css';
+
+	const menuItems = {
+		'/': 'Home',
+		'/features': 'Features',
+		'/pricing': 'Pricing',
+		'/contact': 'Contact',
+	};
+
+	let menuOpen = false;
+	onNavigate(_ => {
+		menuOpen = false;
+	});
 </script>
 
-<div class="navbar bg-base-100 container mx-auto">
-	<div class="flex-1">
-		<a class="btn btn-ghost normal-case text-xl" href="/">SaaS Starter</a>
-	</div>
-	<div class="flex-none">
-		<ul class="menu menu-horizontal px-1 hidden sm:flex font-bold text-lg">
-			<li class="md:mx-2"><a href="/pricing">Pricing</a></li>
-			<li class="md:mx-2"><a href="/account">Log in</a></li>
-		</ul>
-		<div class="dropdown dropdown-end sm:hidden">
-			<!-- svelte-ignore a11y-label-has-associated-control -->
-			<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
-			<label tabindex="0" class="btn btn-ghost btn-circle">
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					class="h-5 w-5"
-					fill="none"
-					viewBox="0 0 24 24"
-					stroke="currentColor"
-					><path
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						stroke-width="2"
-						d="M4 6h16M4 12h16M4 18h7"
-					/></svg
+<header class="sticky top-0 z-10 border-b border-border bg-card py-4">
+	<div
+		class="grid grid-cols-2 sm:grid-cols-3 flex-nowrap justify-between items-center container"
+	>
+		<div>
+			<a class="text-xl flex flex-nowrap gap-2 items-center" href="/">
+				<span
+					class="overflow-hidden bg-primary aspect-square size-6 text-primary-foreground flex items-center flex-wrap justify-center [&_*]:leading-none rounded font-bold"
 				>
-			</label>
-			<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
-			<ul
-				tabindex="0"
-				class="menu menu-lg dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 font-bold"
-			>
-				<li><a href="/pricing">Pricing</a></li>
-				<li><a href="/account">Log in</a></li>
+					<span class="text-xs mb-[-5px] mt-[-2px]">sa</span>
+					<span class="text-xs mt-[-5px]">as</span>
+				</span>
+				SaaS Kit
+			</a>
+		</div>
+		<nav class="hidden sm:block mx-auto">
+			<ul class="px-1 hidden sm:flex font-bold text-lg">
+				{#each Object.entries(menuItems) as [href, text]}
+					<li class="md:mx-2">
+						<Button variant="link" {href} class="text-base text-foreground"
+							>{text}</Button
+						>
+					</li>
+				{/each}
 			</ul>
+		</nav>
+		<div class="hidden sm:block justify-self-end">
+			<a href="/account">Log in</a>
+		</div>
+
+		<div class="sm:hidden justify-self-end">
+			<Drawer.Root bind:open={menuOpen}>
+				<Drawer.Trigger asChild let:builder>
+					<Button variant="ghost" size="icon" builders={[builder]}>
+						<span class="sr-only">Menu</span>
+						<MenuIcon />
+					</Button>
+				</Drawer.Trigger>
+				<Drawer.Content>
+					<Drawer.Header class="py-0 flex justify-end">
+						<Drawer.Close asChild let:builder>
+							<Button variant="ghost" size="icon" builders={[builder]}>
+								<span class="sr-only">Close</span>
+								<XIcon />
+							</Button>
+						</Drawer.Close>
+					</Drawer.Header>
+					<nav class="[&_ul]:p-2 [&_ul]:flex [&_ul]:flex-col">
+						<ul>
+							{#each Object.entries(menuItems) as [href, text]}
+								<li>
+									<Button {href} variant="ghost" class="py-6 w-full text-base">
+										{text}
+									</Button>
+								</li>
+							{/each}
+						</ul>
+						<Separator />
+						<ul class="">
+							<li>
+								<Button
+									href="/account"
+									variant="ghost"
+									class="py-6 w-full text-base"
+								>
+									Log in
+								</Button>
+							</li>
+						</ul>
+					</nav>
+				</Drawer.Content>
+			</Drawer.Root>
 		</div>
 	</div>
-</div>
+</header>
 
-<div class="">
+<div class="container">
 	<slot />
 </div>
 
 <!-- Spacer grows so the footer can be at bottom on short pages -->
 <div class="flex-grow"></div>
-<div class="container max-w-screen-lg mx-auto">
-	<div class="border-t max-w-[1000px] mx-auto"></div>
-	<footer class="max-w-screen-lg footer p-10 text-base">
-		<nav>
-			<span class="footer-title opacity-80">Explore</span>
-			<a class="link link-hover mb-1" href="/">Overview</a>
-			<a class="link link-hover my-1" href="/pricing">Pricing</a>
-			<a class="link link-hover my-1" href="/contact">Contact Us</a>
-			<a class="link link-hover my-1" href="https://github.com/kizivat/saas-kit"
-				>Github</a
+<footer class="border-t border-border bg-card py-6">
+	<div class="container flex flex-col gap-12">
+		<div class="flex flex-col sm:flex-row flex-wrap gap-12">
+			<div class="flex-[0.3]">
+				<a class="text-xl flex flex-nowrap gap-2 items-center" href="/">
+					<span
+						class="overflow-hidden bg-primary aspect-square size-6 text-primary-foreground flex items-center flex-wrap justify-center [&_*]:leading-none rounded font-bold"
+					>
+						<span class="text-xs mb-[-5px] mt-[-2px]">sa</span>
+						<span class="text-xs mt-[-5px]">as</span>
+					</span>
+					SaaS Kit
+				</a>
+			</div>
+			<div
+				class={twMerge(
+					'flex-1 grid grid-cols-2 sm:grid-cols-4 gap-8',
+					'[&_.col]:flex [&_.col]:flex-col [&_.col]:gap-3',
+					'[&_.footer-title]:text-lg [&_.footer-title]:text-primary [&_.footer-title]:font-semibold',
+					'[&_nav]:flex [&_nav]:flex-col [&_nav]:gap-3 [&_nav]:text-muted-foreground',
+				)}
 			>
-		</nav>
-		<div class="place-self-end">
+				<div class="col">
+					<span class="footer-title">Menu</span>
+					<nav>
+						{#each Object.entries(menuItems) as [href, text]}
+							<Button
+								{href}
+								variant="link"
+								class="text-start text-base text-muted-foreground p-0 h-auto block font-normal"
+								>{text}</Button
+							>
+						{/each}
+					</nav>
+				</div>
+				<div class="col">
+					<span class="footer-title">Links</span>
+					<nav>
+						<Button
+							variant="link"
+							class="text-start text-base text-muted-foreground p-0 h-auto block font-normal"
+							href="https://kizivat.eu"
+							target="_blank"
+						>
+							David Kizivat
+						</Button>
+						<Button
+							variant="link"
+							class="text-start text-base text-muted-foreground p-0 h-auto block font-normal"
+							href="https://twitter.com/kizivat"
+							target="_blank"
+						>
+							@kizivat at 𝕏
+						</Button>
+						<Button
+							variant="link"
+							class="text-start text-base text-muted-foreground p-0 h-auto block font-normal"
+							href="https://github.com/kizivat"
+							target="_blank"
+						>
+							GitHub
+						</Button>
+						<Button
+							variant="link"
+							class="text-start text-base text-muted-foreground p-0 h-auto block font-normal"
+							href="https://www.linkedin.com/in/david-kizivat/"
+							target="_blank"
+						>
+							LinkedIn
+						</Button>
+					</nav>
+				</div>
+			</div>
+		</div>
+		<div class="text-center text-sm flex flex-col gap-1">
 			<p>
-				Based on <a
-					class="underline"
-					href="https://github.com/CriricalMoments/CMSaasStarter"
-					>CriticalMoments/CMSaasStarter</a
+				&copy; {new Date().getFullYear()}
+				<span class="font-mono">saas-starter</span>
+				created by <Button
+					variant="link"
+					href="https://kizivat.eu"
+					target="_blank"
+					class="p-0 h-auto text-primary underline hover:no-underline"
+					>David Kizivat</Button
+				>. Based on <Button
+					variant="link"
+					class="p-0 h-auto text-primary underline hover:no-underline"
+					href="https://github.com/CriticalMoments/CMSaasStarter"
+					target="_blank">CriticalMoments/CMSaasStarter</Button
 				>.
 			</p>
 		</div>
-	</footer>
-</div>
+	</div>
+</footer>

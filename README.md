@@ -9,7 +9,7 @@
 
 - [Feature Rich](#features): user auth, user dashboard, marketing site, billing/subscriptions, pricing page, and more.
 - [Lightning Performance](#performance--best-practices): fast pre-rendered pages which score 100/100 on Google PageSpeed.
-- [Delighful Developer Experience](#tech-stack): tools you'll love working with, including SvelteKit, Tailwind, DaisyUI, Postgres, and Supabase.
+- [Delighful Developer Experience](#tech-stack): tools you'll love working with, including SvelteKit, Tailwind, shadcn-svelte, Postgres, and Supabase.
 - Extensible: all the tools you need to make additional marketing pages, UI components, user dashboards, admin portals, database backends, API endpoints, and more.
 - [Hosting](#suggested-hosting-stack): Our suggested hosting stack is free to host, cheap to scale, easy to manage, and includes automatic deployments.
 - [MIT Open Source](https://github.com/kizivat/saas-kit/blob/main/LICENSE)
@@ -42,7 +42,7 @@ Everything you need to get started for a SaaS company:
 - Web Framework: SvelteKit
 - CSS / Styling
   - Framework: TailwindCSS
-  - Component library: DaisyUI
+  - Component library: shadcn-svelte
 - Suggested Hosting Stack
   - Host + CDN: Cloudflare Pages
   - Serverless compute: Cloudflare Workers
@@ -247,7 +247,7 @@ After the steps above, you’ll have a working version like the demo page. Howev
 - Update SEO content
   - Update title and meta description tags for every public page. We include generic ones using your site name (`src/config.ts:WebsiteName`), but the more specific these are the better.
 - Style
-  - Create a new DaisyUI Theme matching your brand or use one of the built in themes from DaisyUI (see `tailwind.config.js`)
+  - Create a new shadcn-svelte theme matching your brand (see `src/app.css`)
   - Update the marketing page layout `src/routes/(marketing)/+layout.svelte`: customize design, delete unwanted pages from header and footer
   - Style: make it your own look and feel.
   - Update the favicon in the `/static/` directory

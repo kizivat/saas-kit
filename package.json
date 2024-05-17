@@ -21,7 +21,6 @@
 		"@typescript-eslint/eslint-plugin": "^6.20.0",
 		"@typescript-eslint/parser": "^6.19.0",
 		"autoprefixer": "^10.4.15",
-		"daisyui": "^4.7.3",
 		"eslint": "^8.28.0",
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-svelte": "^2.30.0",
@@ -39,9 +38,12 @@
 	"dependencies": {
 		"@supabase/ssr": "^0.3.0",
 		"@supabase/supabase-js": "^2.43.1",
+		"bits-ui": "^0.21.7",
 		"clsx": "^2.1.1",
+		"lucide-svelte": "^0.378.0",
 		"stripe": "^13.3.0",
 		"tailwind-merge": "^2.3.0",
-		"tailwind-variants": "^0.2.1"
+		"tailwind-variants": "^0.2.1",
+		"vaul-svelte": "^0.3.0"
 	}
 }
