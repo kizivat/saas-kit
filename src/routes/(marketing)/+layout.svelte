@@ -189,6 +189,11 @@
 					class="p-0 h-auto text-primary underline hover:no-underline"
 					href="https://github.com/CriticalMoments/CMSaasStarter"
 					target="_blank">CriticalMoments/CMSaasStarter</Button
+				>. Landing page design inspired by Leo Miranda's <Button
+					variant="link"
+					class="p-0 h-auto text-primary underline hover:no-underline"
+					href="https://shadcn-landing-page.vercel.app/"
+					target="_blank">Shadcn Landing Page</Button
 				>.
 			</p>
 		</div>
