@@ -1,15 +1,17 @@
 <script>
 	import { onNavigate } from '$app/navigation';
+	import Logo from '$lib/components/Logo.svelte';
 	import Button from '$lib/components/ui/button/button.svelte';
 	import * as Drawer from '$lib/components/ui/drawer';
 	import { Separator } from '$lib/components/ui/separator';
-	import { MenuIcon, XIcon } from 'lucide-svelte';
 	import { twMerge } from 'tailwind-merge';
+	import MenuIcon from 'virtual:icons/lucide/menu';
+	import XIcon from 'virtual:icons/lucide/x';
 	import '../../app.css';
 
 	const menuItems = {
 		'/': 'Home',
-		'/features': 'Features',
+		// '/#features': 'Features',
 		'/pricing': 'Pricing',
 		'/contact': 'Contact',
 	};
@@ -25,29 +27,29 @@
 		class="grid grid-cols-2 sm:grid-cols-3 flex-nowrap justify-between items-center container"
 	>
 		<div>
-			<a class="text-xl flex flex-nowrap gap-2 items-center" href="/">
-				<span
-					class="overflow-hidden bg-primary aspect-square size-6 text-primary-foreground flex items-center flex-wrap justify-center [&_*]:leading-none rounded font-bold"
-				>
-					<span class="text-xs mb-[-5px] mt-[-2px]">sa</span>
-					<span class="text-xs mt-[-5px]">as</span>
-				</span>
+			<Button
+				variant="ghost"
+				class="text-xl w-fit flex flex-nowrap gap-2 items-center"
+				href="/"
+			>
+				<Logo />
+
 				SaaS Kit
-			</a>
+			</Button>
 		</div>
 		<nav class="hidden sm:block mx-auto">
 			<ul class="px-1 hidden sm:flex font-bold text-lg">
 				{#each Object.entries(menuItems) as [href, text]}
 					<li class="md:mx-2">
-						<Button variant="link" {href} class="text-base text-foreground"
-							>{text}</Button
-						>
+						<Button variant="ghost" {href} class="text-base text-foreground">
+							{text}
+						</Button>
 					</li>
 				{/each}
 			</ul>
 		</nav>
 		<div class="hidden sm:block justify-self-end">
-			<a href="/account">Log in</a>
+			<Button variant="secondary" href="/account">Get started</Button>
 		</div>
 
 		<div class="sm:hidden justify-self-end">
@@ -107,12 +109,7 @@
 		<div class="flex flex-col sm:flex-row flex-wrap gap-12">
 			<div class="flex-[0.3]">
 				<a class="text-xl flex flex-nowrap gap-2 items-center" href="/">
-					<span
-						class="overflow-hidden bg-primary aspect-square size-6 text-primary-foreground flex items-center flex-wrap justify-center [&_*]:leading-none rounded font-bold"
-					>
-						<span class="text-xs mb-[-5px] mt-[-2px]">sa</span>
-						<span class="text-xs mt-[-5px]">as</span>
-					</span>
+					<Logo />
 					SaaS Kit
 				</a>
 			</div>
@@ -132,8 +129,9 @@
 								{href}
 								variant="link"
 								class="text-start text-base text-muted-foreground p-0 h-auto block font-normal"
-								>{text}</Button
 							>
+								{text}
+							</Button>
 						{/each}
 					</nav>
 				</div>
