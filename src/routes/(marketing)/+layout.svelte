@@ -1,6 +1,5 @@
 <script>
 	import { onNavigate } from '$app/navigation';
-	import Logo from '$lib/components/Logo.svelte';
 	import Button from '$lib/components/ui/button/button.svelte';
 	import * as Drawer from '$lib/components/ui/drawer';
 	import { Separator } from '$lib/components/ui/separator';
@@ -8,6 +7,7 @@
 	import MenuIcon from 'virtual:icons/lucide/menu';
 	import XIcon from 'virtual:icons/lucide/x';
 	import '../../app.css';
+	import HomeButton from './components/HomeButton.svelte';
 
 	const menuItems = {
 		'/': 'Home',
@@ -26,17 +26,7 @@
 	<div
 		class="grid grid-cols-2 sm:grid-cols-3 flex-nowrap justify-between items-center container"
 	>
-		<div>
-			<Button
-				variant="ghost"
-				class="text-xl w-fit flex flex-nowrap gap-2 items-center"
-				href="/"
-			>
-				<Logo />
-
-				SaaS Kit
-			</Button>
-		</div>
+		<HomeButton />
 		<nav class="hidden sm:block mx-auto">
 			<ul class="px-1 hidden sm:flex font-bold text-lg">
 				{#each Object.entries(menuItems) as [href, text]}
@@ -108,10 +98,7 @@
 	<div class="container flex flex-col gap-12">
 		<div class="flex flex-col sm:flex-row flex-wrap gap-12">
 			<div class="flex-[0.3]">
-				<a class="text-xl flex flex-nowrap gap-2 items-center" href="/">
-					<Logo />
-					SaaS Kit
-				</a>
+				<HomeButton />
 			</div>
 			<div
 				class={twMerge(
@@ -174,28 +161,25 @@
 				</div>
 			</div>
 		</div>
-		<div class="text-center text-sm flex flex-col gap-1">
-			<p>
-				&copy; {new Date().getFullYear()}
-				<span class="font-mono">saas-starter</span>
-				created by <Button
-					variant="link"
-					href="https://kizivat.eu"
-					target="_blank"
-					class="p-0 h-auto text-primary underline hover:no-underline"
-					>David Kizivat</Button
-				>. Based on <Button
-					variant="link"
-					class="p-0 h-auto text-primary underline hover:no-underline"
-					href="https://github.com/CriticalMoments/CMSaasStarter"
-					target="_blank">CriticalMoments/CMSaasStarter</Button
-				>. Landing page design inspired by Leo Miranda's <Button
-					variant="link"
-					class="p-0 h-auto text-primary underline hover:no-underline"
-					href="https://shadcn-landing-page.vercel.app/"
-					target="_blank">Shadcn Landing Page</Button
-				>.
-			</p>
-		</div>
+		<p class="max-w-prose text-center leading-6 place-self-center text-sm">
+			&copy; {new Date().getFullYear()}
+			SaaS Kit created by <Button
+				variant="link"
+				href="https://kizivat.eu"
+				target="_blank"
+				class="p-0 h-auto text-primary underline hover:no-underline"
+				>David Kizivat</Button
+			>. Based on <Button
+				variant="link"
+				class="p-0 h-auto text-primary underline hover:no-underline"
+				href="https://github.com/CriticalMoments/CMSaasStarter"
+				target="_blank">CriticalMoments/CMSaasStarter</Button
+			>. Landing page design inspired by Leo Miranda's <Button
+				variant="link"
+				class="p-0 h-auto text-primary underline hover:no-underline"
+				href="https://shadcn-landing-page.vercel.app/"
+				target="_blank">Shadcn Landing Page</Button
+			>.
+		</p>
 	</div>
 </footer>
