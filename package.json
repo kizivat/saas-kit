@@ -39,6 +39,9 @@
 	"dependencies": {
 		"@supabase/ssr": "^0.3.0",
 		"@supabase/supabase-js": "^2.43.1",
-		"stripe": "^13.3.0"
+		"clsx": "^2.1.1",
+		"stripe": "^13.3.0",
+		"tailwind-merge": "^2.3.0",
+		"tailwind-variants": "^0.2.1"
 	}
 }
