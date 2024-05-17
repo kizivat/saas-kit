@@ -7,9 +7,9 @@
 	<meta name="description" content="{WebsiteName} Home Page" />
 </svelte:head>
 
-<div class="hero min-h-[60vh]">
-	<div class="hero-content text-center py-12">
-		<div class="max-w-xl">
+<div class="hero min-h-[60vh] mx-auto">
+	<div class="hero-content text-center py-12 mx-auto">
+		<div class="max-w-xl mx-auto">
 			<div
 				class="text-xl md:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent mb-4 md:mb-8"
 			>
@@ -47,8 +47,10 @@
 				<a href="https://tailwindcss.com" class="link font-bold" target="_blank"
 					>Tailwind</a
 				>,
-				<a href="https://daisyui.com" class="link font-bold" target="_blank"
-					>DaisyUI</a
+				<a
+					href="https://shadcn-svelte.com/"
+					class="link font-bold"
+					target="_blank">shadcn-svelte</a
 				>, and
 				<a
 					href="https://www.postgresql.org"
