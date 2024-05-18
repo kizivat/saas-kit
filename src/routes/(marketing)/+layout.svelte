@@ -1,14 +1,17 @@
 <script>
 	import { onNavigate } from '$app/navigation';
 	import Button from '$lib/components/ui/button/button.svelte';
+	import * as Collapsible from '$lib/components/ui/collapsible';
 	import * as Drawer from '$lib/components/ui/drawer';
 	import { Separator } from '$lib/components/ui/separator';
-	import { twMerge } from 'tailwind-merge';
+	import { cn } from '$lib/utils';
+	import ChevronsUpDown from 'virtual:icons/lucide/chevrons-up-down';
 	import MenuIcon from 'virtual:icons/lucide/menu';
 	import XIcon from 'virtual:icons/lucide/x';
 	import '../../app.css';
 	import HomeButton from './components/HomeButton.svelte';
 	import PersonalDropdown from './components/PersonalDropdown.svelte';
+	import ThemeSwitchButton from './components/ThemeSwitchButton.svelte';
 
 	const menuItems = {
 		'/': 'Home',
@@ -61,6 +64,45 @@
 							</Button>
 						</Drawer.Close>
 					</Drawer.Header>
+					<Collapsible.Root>
+						<Collapsible.Trigger asChild let:builder>
+							<div class="p-2">
+								<Button
+									variant="ghost"
+									class="w-full text-base flex gap-2 flex-nowrap"
+									builders={[builder]}
+								>
+									Switch theme
+									<ChevronsUpDown class="size-4" />
+								</Button>
+							</div>
+						</Collapsible.Trigger>
+						<Collapsible.Content>
+							<ul
+								class="grid grid-cols-[auto,auto] items-center p-2 pt-0 gap-x-2"
+							>
+								<li class="col-span-2 grid grid-cols-subgrid">
+									<ThemeSwitchButton
+										mode="system"
+										class="col-span-2 grid grid-cols-subgrid"
+									/>
+								</li>
+								<li class="col-span-2 grid grid-cols-subgrid">
+									<ThemeSwitchButton
+										mode="light"
+										class="col-span-2 grid grid-cols-subgrid"
+									/>
+								</li>
+								<li class="col-span-2 grid grid-cols-subgrid">
+									<ThemeSwitchButton
+										mode="dark"
+										class="col-span-2 grid grid-cols-subgrid"
+									/>
+								</li>
+							</ul>
+						</Collapsible.Content>
+					</Collapsible.Root>
+					<Separator />
 					<nav class="[&_ul]:p-2 [&_ul]:flex [&_ul]:flex-col">
 						<ul>
 							{#each Object.entries(menuItems) as [href, text]}
@@ -73,6 +115,15 @@
 						</ul>
 						<Separator />
 						<ul class="">
+							<li>
+								<Button
+									href="/account"
+									variant="ghost"
+									class="py-6 w-full text-base"
+								>
+									Register
+								</Button>
+							</li>
 							<li>
 								<Button
 									href="/account"
@@ -103,7 +154,7 @@
 				<HomeButton />
 			</div>
 			<div
-				class={twMerge(
+				class={cn(
 					'flex-1 grid grid-cols-2 sm:grid-cols-4 gap-8',
 					'[&_.col]:flex [&_.col]:flex-col [&_.col]:gap-3',
 					'[&_.footer-title]:text-lg [&_.footer-title]:text-primary [&_.footer-title]:font-semibold',
@@ -122,6 +173,25 @@
 								{text}
 							</Button>
 						{/each}
+					</nav>
+				</div>
+				<div class="col">
+					<span class="footer-title">App</span>
+					<nav>
+						<Button
+							href="/login"
+							variant="link"
+							class="text-start text-base text-muted-foreground p-0 h-auto block font-normal"
+						>
+							Login
+						</Button>
+						<Button
+							href="/register"
+							variant="link"
+							class="text-start text-base text-muted-foreground p-0 h-auto block font-normal"
+						>
+							Register
+						</Button>
 					</nav>
 				</div>
 				<div class="col">
