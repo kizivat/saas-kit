@@ -155,7 +155,7 @@
 			</div>
 			<div
 				class={cn(
-					'flex-1 grid grid-cols-2 sm:grid-cols-4 gap-8',
+					'flex-1 grid grid-cols-2 sm:grid-cols-4 gap-8 p-4',
 					'[&_.col]:flex [&_.col]:flex-col [&_.col]:gap-3',
 					'[&_.footer-title]:text-lg [&_.footer-title]:text-primary [&_.footer-title]:font-semibold',
 					'[&_nav]:flex [&_nav]:flex-col [&_nav]:gap-3 [&_nav]:text-muted-foreground',

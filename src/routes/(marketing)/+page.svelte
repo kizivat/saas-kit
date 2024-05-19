@@ -11,7 +11,7 @@
 	<meta name="description" content="{WebsiteName} Home Page" />
 </svelte:head>
 
-<div class="grid md:grid-cols-2 items-center overflow-visible gap-6">
+<div class="grid md:grid-cols-2 items-center overflow-visible">
 	<div class="flex flex-col sm:gap-6 items-center md:items-start">
 		<h1
 			class={cn(
@@ -32,7 +32,7 @@
 		>
 			The <em>open source</em>, <em>fast</em>, and <em>free to host</em> SaaS template
 		</p>
-		<p class="text-sm md:text-lg">
+		<p class="md:text-lg text-center md:text-left">
 			Built with <a
 				href="https://kit.svelte.dev"
 				class="link font-bold"
@@ -56,7 +56,7 @@
 				href="https://www.postgresql.org"
 				class="link font-bold"
 				target="_blank">Postgres</a
-			>
+			>.
 		</p>
 		<div class="mt-6 md:mt-2 flex gap-3">
 			<Button href="/login">Try it out</Button>
