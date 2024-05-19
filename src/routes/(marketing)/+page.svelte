@@ -1,5 +1,9 @@
 <script lang="ts">
+	import { Button } from '$lib/components/ui/button';
+	import { cn } from '$lib/utils';
+	import GitHubIcon from 'virtual:icons/lucide/github';
 	import { WebsiteName } from './../../config';
+	import HeroAnimation from './components/HeroAnimation.svelte';
 </script>
 
 <svelte:head>
@@ -7,64 +11,66 @@
 	<meta name="description" content="{WebsiteName} Home Page" />
 </svelte:head>
 
-<div class="hero min-h-[60vh] mx-auto">
-	<div class="hero-content text-center py-12 mx-auto">
-		<div class="max-w-xl mx-auto">
-			<div
-				class="text-xl md:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent mb-4 md:mb-8"
-			>
-				SaaS Starter Demo
-			</div>
+<div class="grid md:grid-cols-2 items-center overflow-visible gap-6">
+	<div class="flex flex-col sm:gap-6 items-center md:items-start">
+		<h1
+			class={cn(
+				'inline',
+				'text-xl md:text-3xl font-bold',
+				'bg-clip-text text-transparent bg-gradient-to-r from-secondary via-primary to-secondary',
+			)}
+		>
+			SaaS Kit Demo
+		</h1>
 
-			<p class="text-4xl md:text-6xl font-bold px-2" style="line-height: 1.2;">
-				The
-				<span
-					class="underline decoration-secondary decoration-4 md:decoration-[6px]"
-					>open source</span
-				>,
-				<span
-					class="underline decoration-secondary decoration-4 md:decoration-[6px]"
-					>fast</span
-				>, and
-				<span
-					class="underline decoration-secondary decoration-4 md:decoration-[6px]"
-					>free to host</span
-				>
-				<span> SaaS template</span>
-			</p>
-			<p class="mt-6 md:mt-10 text-sm md:text-lg">
-				Built with <a
-					href="https://kit.svelte.dev"
-					class="link font-bold"
-					target="_blank">SvelteKit</a
-				>,
-				<a href="https://supabase.com" class="link font-bold" target="_blank"
-					>Supabase</a
-				>,
-				<a href="https://stripe.com" class="link font-bold" target="_blank"
-					>Stripe</a
-				>,
-				<a href="https://tailwindcss.com" class="link font-bold" target="_blank"
-					>Tailwind</a
-				>,
-				<a
-					href="https://shadcn-svelte.com/"
-					class="link font-bold"
-					target="_blank">shadcn-svelte</a
-				>, and
-				<a
-					href="https://www.postgresql.org"
-					class="link font-bold"
-					target="_blank">Postgres</a
-				>
-			</p>
-			<div class="mt-6 md:mt-2">
-				<a href="https://github.com/kizivat/saas-kit/tree/main#saas-kit">
-					<button class="btn btn-outline btn-sm px-6 mt-3 mx-2">
-						Read the Docs
-					</button>
-				</a>
-			</div>
+		<p
+			class={cn(
+				'text-center md:text-left',
+				'text-4xl md:text-6xl font-bold px-2 leading-[1.2]',
+				'[&_em]:underline [&_em]:decoration-primary [&_em]:decoration-4 [&_em]:md:decoration-[6px] [&_em]:not-italic',
+			)}
+		>
+			The <em>open source</em>, <em>fast</em>, and <em>free to host</em> SaaS template
+		</p>
+		<p class="text-sm md:text-lg">
+			Built with <a
+				href="https://kit.svelte.dev"
+				class="link font-bold"
+				target="_blank">SvelteKit</a
+			>,
+			<a href="https://supabase.com" class="link font-bold" target="_blank"
+				>Supabase</a
+			>,
+			<a href="https://stripe.com" class="link font-bold" target="_blank"
+				>Stripe</a
+			>,
+			<a href="https://tailwindcss.com" class="link font-bold" target="_blank"
+				>Tailwind</a
+			>,
+			<a
+				href="https://shadcn-svelte.com/"
+				class="link font-bold"
+				target="_blank">shadcn-svelte</a
+			>, and
+			<a
+				href="https://www.postgresql.org"
+				class="link font-bold"
+				target="_blank">Postgres</a
+			>
+		</p>
+		<div class="mt-6 md:mt-2 flex gap-3">
+			<Button href="/login">Try it out</Button>
+			<Button
+				variant="secondary"
+				href="https://github.com/kizivat/saas-kit"
+				target="_blank"
+				class="flex flex-nowrap gap-2"
+			>
+				<GitHubIcon class="h-4 w-4" />
+				View on GitHub
+			</Button>
 		</div>
 	</div>
+
+	<HeroAnimation />
 </div>

@@ -141,9 +141,9 @@
 	</div>
 </header>
 
-<div class="container">
+<main class="container py-8">
 	<slot />
-</div>
+</main>
 
 <!-- Spacer grows so the footer can be at bottom on short pages -->
 <div class="flex-grow"></div>
