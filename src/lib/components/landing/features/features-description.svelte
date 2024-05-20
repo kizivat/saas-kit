@@ -2,6 +2,6 @@
 	import { cn } from '$lib/utils';
 </script>
 
-<dd class={cn($$props.class)}>
-	<slot />
+<dd class={cn('text-muted-foreground', $$props.class)}>
+	<p class="max-w-prose"><slot /></p>
 </dd>

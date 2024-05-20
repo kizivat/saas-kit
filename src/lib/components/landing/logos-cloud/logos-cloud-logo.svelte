@@ -18,7 +18,7 @@
 
 <li
 	class={cn(
-		'[&_svg]:size-16 [&_svg_*]:fill-muted-foreground [&:hover_svg_*]:fill-primary [&_svg_*]:transition-colors',
+		'[&_svg]:size-16 [&_svg_*]:fill-muted-foreground [&:hover_svg_*]:fill-foreground [&_svg_*]:transition-colors',
 		$$props.class,
 	)}
 >

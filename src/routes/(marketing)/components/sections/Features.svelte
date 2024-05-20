@@ -1,7 +1,8 @@
 <script lang="ts">
 	import * as Features from '$lib/components/landing/features';
-	import * as Section from '$lib/components/landing/section';
-	import * as Card from '$lib/components/ui/card';
+	import { Button } from '$lib/components/ui/button';
+	import * as Collapsible from '$lib/components/ui/collapsible';
+	import LucideChevronDown from 'virtual:icons/lucide/chevron-down';
 	import LineMdMoonLoop from '~icons/line-md/moon-loop';
 	import LucideCreditCard from '~icons/lucide/credit-card';
 	import LucideLayoutPanelTop from '~icons/lucide/layout-panel-top';
@@ -9,6 +10,7 @@
 	import PaletteIcon from '~icons/lucide/palette';
 	import LucideSearchCheck from '~icons/lucide/search-check';
 	import TabletSmartphoneIcon from '~icons/lucide/tablet-smartphone';
+	import Themes from './features-showcases/Themes.svelte';
 	const features = [
 		{
 			title: 'Responsive Design',
@@ -21,6 +23,7 @@
 			title: 'Themeable + Mode Switcher',
 			description:
 				"You can copy-paste any of the shadcn's premade themes, or create your own tweaking a few CSS variables. Any theme can be toggled between light and dark mode.",
+			showcase: Themes,
 		},
 		{
 			icon: LucideLayoutPanelTop,
@@ -53,30 +56,69 @@
 				'The payments are handled by Stripe. You can create products, subscriptions, and coupons. The user can manage their payment methods and subscriptions.',
 		},
 	];
+
+	const SHOW_BASE = 2;
 </script>
 
-<Section.Root>
-	<Section.Title anchor="features">Features</Section.Title>
+<Collapsible.Root class="max-w-screen-lg mx-auto">
 	<Features.Root>
-		{#each features as { title, icon, description }}
-			<div>
-				<Card.Root class="flex flex-col gap-2">
-					<Card.Header>
-						<Card.Title class="flex flex-nowrap gap-3">
-							<svelte:component
-								this={icon}
-								class="h-8 w-8 fill-primary self-start flex-shrink-0"
-							/>
-							<Features.Term>{title}</Features.Term>
-						</Card.Title>
-					</Card.Header>
-					<Card.Content>
-						<Features.Description class="text-justify hyphens-auto">
-							{description}
-						</Features.Description>
-					</Card.Content>
-				</Card.Root>
-			</div>
+		{#each features.toSpliced(SHOW_BASE) as { title, icon, description, showcase }}
+			<Features.FeatureItem>
+				<div class="flex flex-nowrap gap-4 items-start mb-4">
+					<svelte:component
+						this={icon}
+						class="h-8 w-8 fill-primary flex-shrink-0"
+					/>
+					<Features.Term>{title}</Features.Term>
+				</div>
+				<Features.Description class="text-justify hyphens-auto">
+					{description}
+				</Features.Description>
+			</Features.FeatureItem>
+			<Features.FeatureShowcase>
+				{#if showcase}
+					<svelte:component this={showcase} />
+				{:else}
+					<div
+						class="bg-white opacity-5 w-full h-full min-h-80 rounded-lg"
+					></div>
+				{/if}
+			</Features.FeatureShowcase>
 		{/each}
 	</Features.Root>
-</Section.Root>
+	<div class="flex items-center p-10">
+		<Collapsible.Trigger asChild let:builder>
+			<Button
+				class="text-center mx-auto place-self-center"
+				variant="link"
+				builders={[builder]}
+			>
+				Show more features
+				<LucideChevronDown class="size-4 ms-2" />
+			</Button>
+		</Collapsible.Trigger>
+	</div>
+	<Collapsible.Content>
+		<Features.Root>
+			{#each features.toSpliced(0, SHOW_BASE) as { title, icon, description }}
+				<Features.FeatureItem>
+					<div class="flex flex-nowrap gap-4 items-start mb-4">
+						<svelte:component
+							this={icon}
+							class="h-8 w-8 fill-primary flex-shrink-0"
+						/>
+						<Features.Term>{title}</Features.Term>
+					</div>
+					<Features.Description class="text-justify hyphens-auto">
+						{description}
+					</Features.Description>
+				</Features.FeatureItem>
+				<Features.FeatureShowcase>
+					<div
+						class="bg-white opacity-5 w-full h-full min-h-80 rounded-lg"
+					></div>
+				</Features.FeatureShowcase>
+			{/each}
+		</Features.Root>
+	</Collapsible.Content>
+</Collapsible.Root>

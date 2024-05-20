@@ -25,6 +25,7 @@
 		<LogosCloud />
 	</Section.Root>
 	<Section.Root>
+		<Section.Title anchor="features">Features</Section.Title>
 		<Features />
 	</Section.Root>
 	<Section.Root>

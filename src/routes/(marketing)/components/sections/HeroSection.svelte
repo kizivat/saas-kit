@@ -11,7 +11,7 @@
 			class={cn(
 				'inline',
 				'text-xl md:text-3xl font-bold',
-				'bg-clip-text text-transparent bg-gradient-to-r from-secondary via-primary to-secondary',
+				'bg-clip-text text-transparent bg-gradient-to-r from-primary/20 via-primary to-primary/20',
 			)}
 		>
 			SaaS Kit Demo

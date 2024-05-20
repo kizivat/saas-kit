@@ -4,7 +4,7 @@
 
 <dl
 	class={cn(
-		'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4',
+		'grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-20 grid-flow-dense',
 		$$props.class,
 	)}
 >
