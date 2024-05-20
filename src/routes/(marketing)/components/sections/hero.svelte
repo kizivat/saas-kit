@@ -24,7 +24,8 @@
 				'[&_em]:underline [&_em]:decoration-primary [&_em]:decoration-4 [&_em]:md:decoration-[6px] [&_em]:not-italic',
 			)}
 		>
-			The <em>open source</em>, <em>fast</em>, and <em>free to host</em> SaaS template
+			The <em>MIT</em> licensed, <em>optimized</em>, and <em>free to run</em> SaaS
+			template
 		</p>
 		<p class="md:text-lg text-center md:text-left">
 			Built with <a

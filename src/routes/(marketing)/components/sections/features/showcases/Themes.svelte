@@ -21,7 +21,10 @@
 	}
 </script>
 
-<div class={cn(' flex gap-4 [&_button]:rounded-full [&_button]:p-5')}>
+<p class="my-3 text-muted-foreground italic">
+	Try it yourself. Select a theme below to change it live.
+</p>
+<div class={cn(' flex gap-2 [&_button]:rounded-full [&_button]:size-6')}>
 	<button
 		class={cn(
 			'bg-neutral-500',
@@ -102,3 +105,11 @@
 		<span class="sr-only">orange</span>
 	</button>
 </div>
+
+<style>
+	button.ring-2 {
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'%3E%3Cpath style='color:white' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M20 6L9 17l-5-5'/%3E%3C/svg%3E");
+		background-repeat: no-repeat;
+		background-position: 50% 50%;
+	}
+</style>

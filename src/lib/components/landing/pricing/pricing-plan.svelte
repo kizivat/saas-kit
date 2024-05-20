@@ -8,8 +8,8 @@
 	class={cn(
 		'[&>*]:h-full',
 		emphasized &&
-			'row-[1] md:row-[unset] scale-105 rounded-lg ring-1 ring-primary ring-offset-4 ring-offset-background',
-		emphasized && '[&>*]:border-none',
+			'row-[1] md:row-[unset] scale-110 rounded-lg border border-primary',
+		emphasized && '[&>*]:border-none [&>*]:shadow-none',
 	)}
 >
 	<slot />

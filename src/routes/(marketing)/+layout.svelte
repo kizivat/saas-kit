@@ -141,7 +141,7 @@
 	</div>
 </header>
 
-<main class="container py-8">
+<main class="container">
 	<slot />
 </main>
 
@@ -255,3 +255,9 @@
 		</p>
 	</div>
 </footer>
+
+<style>
+	:root {
+		scroll-behavior: smooth;
+	}
+</style>

@@ -13,8 +13,8 @@
 					This kit is free of charge forever. You don't have to pay me anything.
 				</Card.Description>
 			</Card.Header>
-			<Card.Content>
-				$0
+			<Card.Content class="flex flex-col gap-3">
+				<span class="text-5xl font-black tracking-tight">$0</span>
 				<Button>Get Started</Button>
 			</Card.Content>
 			<Card.Footer>
@@ -32,21 +32,31 @@
 			<Card.Header>
 				<Card.Title>Say thanks</Card.Title>
 				<Card.Description class="[&>span]:ms-1">
-					You can use this for free. But if you wish so you can buy me an
-					overpriced coffee to say thanks. Or you can just use Stripe's test
-					card number <span>4242</span><span>4242</span><span>4242</span><span
-						>4242</span
-					>.
+					<!--
+						The card number is visually 
+						formatted via `spans.ms-1` to be easier to read, but still
+						selectable by double-clicking.
+					 -->
+					You can use this for free. But if you wish so you can buy me an overpriced
+					coffee to say thanks. Or you can just use Stripe's test card number
+					<span>4242</span><span>4242</span><span>4242</span><span>4242</span>.
 				</Card.Description>
 			</Card.Header>
-			<Card.Content>
-				$5
+			<Card.Content class="flex flex-col gap-3">
+				<div>
+					<span class="text-5xl font-black tracking-tight">$5</span>
+					<span class="text-base text-muted-foreground tracking-wide">
+						/ lifetime
+					</span>
+				</div>
 				<Button>Get Started</Button>
 			</Card.Content>
 			<Card.Footer>
 				<Pricing.PlanFeatures>
 					<Pricing.FeatureItem>Everything from free</Pricing.FeatureItem>
-					<Pricing.FeatureItem>Warm fuzzy feeling</Pricing.FeatureItem>
+					<Pricing.FeatureItem>
+						Warm fuzzy feeling for both of us
+					</Pricing.FeatureItem>
 				</Pricing.PlanFeatures>
 			</Card.Footer>
 		</Card.Root>
@@ -57,18 +67,24 @@
 				<Card.Title>Sponsor</Card.Title>
 				<Card.Description>
 					If you want to sponsor this kit and earn a spot in the logo cloud
-					section this the way.
+					section, this way.
 				</Card.Description>
 			</Card.Header>
-			<Card.Content>
-				$100
+			<Card.Content class="flex flex-col gap-3">
+				<div>
+					<span class="text-5xl font-black tracking-tight">$100</span>
+					<span class="text-base text-muted-foreground tracking-wide">
+						/ lifetime
+					</span>
+				</div>
+
 				<Button>Get Started</Button>
 			</Card.Content>
 			<Card.Footer>
 				<Pricing.PlanFeatures>
-					<Pricing.FeatureItem
-						>Everything from free and thanks</Pricing.FeatureItem
-					>
+					<Pricing.FeatureItem>
+						Everything from free and "Say thanks"
+					</Pricing.FeatureItem>
 					<Pricing.FeatureItem>Logo cloud spot</Pricing.FeatureItem>
 					<Pricing.FeatureItem>Your logo in the README</Pricing.FeatureItem>
 				</Pricing.PlanFeatures>

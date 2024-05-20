@@ -2,6 +2,7 @@
 	import * as Features from '$lib/components/landing/features';
 	import { Button } from '$lib/components/ui/button';
 	import * as Collapsible from '$lib/components/ui/collapsible';
+	import { cn } from '$lib/utils';
 	import LucideChevronDown from 'virtual:icons/lucide/chevron-down';
 	import LineMdMoonLoop from '~icons/line-md/moon-loop';
 	import LucideCreditCard from '~icons/lucide/credit-card';
@@ -10,7 +11,7 @@
 	import PaletteIcon from '~icons/lucide/palette';
 	import LucideSearchCheck from '~icons/lucide/search-check';
 	import TabletSmartphoneIcon from '~icons/lucide/tablet-smartphone';
-	import Themes from './features-showcases/Themes.svelte';
+	import Themes from './showcases/Themes.svelte';
 	const features = [
 		{
 			title: 'Responsive Design',
@@ -35,7 +36,7 @@
 			icon: LineMdMoonLoop,
 			title: 'Unplugin Icons',
 			description:
-				'Icons are handled by the `unplugin-icons` Vite plugin. You can use any of the 1000+ icons from the 100+ icon sets available, and even add your own custom icons.',
+				'Icons are handled by the `unplugin-icons` Vite plugin. You can use any of the 1000+ icons from the 100+ icon sets available, and even add your own custom icons. There are also animated ones!',
 		},
 		{
 			icon: LucideSearchCheck,
@@ -58,29 +59,35 @@
 	];
 
 	const SHOW_BASE = 2;
+
+	let expanded: boolean = false;
 </script>
 
-<Collapsible.Root class="max-w-screen-lg mx-auto">
+<Collapsible.Root class="max-w-screen-lg mx-auto" bind:open={expanded}>
 	<Features.Root>
 		{#each features.toSpliced(SHOW_BASE) as { title, icon, description, showcase }}
-			<Features.FeatureItem>
-				<div class="flex flex-nowrap gap-4 items-start mb-4">
-					<svelte:component
-						this={icon}
-						class="h-8 w-8 fill-primary flex-shrink-0"
-					/>
-					<Features.Term>{title}</Features.Term>
+			<Features.FeatureItem class="flex flex-nowrap gap-4 items-start mb-4">
+				<svelte:component
+					this={icon}
+					class="size-10 fill-primary flex-shrink-0"
+				/>
+				<div>
+					<Features.Term class="leading-none mb-3">
+						<span>{title}</span>
+					</Features.Term>
+					<Features.Description class="text-justify hyphens-auto">
+						{description}
+					</Features.Description>
 				</div>
-				<Features.Description class="text-justify hyphens-auto">
-					{description}
-				</Features.Description>
 			</Features.FeatureItem>
-			<Features.FeatureShowcase>
+			<Features.FeatureShowcase
+				class="flex flex-col items-center justify-center"
+			>
 				{#if showcase}
 					<svelte:component this={showcase} />
 				{:else}
 					<div
-						class="bg-white opacity-5 w-full h-full min-h-80 rounded-lg"
+						class="bg-black dark:bg-white opacity-5 w-full h-full min-h-80 rounded-lg"
 					></div>
 				{/if}
 			</Features.FeatureShowcase>
@@ -93,8 +100,13 @@
 				variant="link"
 				builders={[builder]}
 			>
-				Show more features
-				<LucideChevronDown class="size-4 ms-2" />
+				Show {#if expanded}less{:else}more{/if} features
+				<LucideChevronDown
+					class={cn(
+						'size-4 ms-2 transition-transform',
+						expanded && '-rotate-180',
+					)}
+				/>
 			</Button>
 		</Collapsible.Trigger>
 	</div>
