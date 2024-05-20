@@ -5,18 +5,35 @@
 		| {
 				src: string;
 				alt: string;
+				href?: string;
 		  }
-		| Record<string, never>;
+		| {
+				href?: string;
+		  };
 
+	export let href: string | undefined = undefined;
 	export let src: string | undefined = undefined;
 	export let alt: string | undefined = undefined;
 </script>
 
 <li
-	class={cn('[&_svg]:size-16 [&_svg_*]:fill-muted-foreground', $$props.class)}
+	class={cn(
+		'[&_svg]:size-16 [&_svg_*]:fill-muted-foreground [&:hover_svg_*]:fill-primary [&_svg_*]:transition-colors',
+		$$props.class,
+	)}
 >
 	{#if $$slots.default}
-		<slot />
+		{#if href}
+			<a {href} target="_blank">
+				<slot />
+			</a>
+		{:else}
+			<slot />
+		{/if}
+	{:else if href}
+		<a {href} target="_blank">
+			<img {src} {alt} />
+		</a>
 	{:else}
 		<img {src} {alt} />
 	{/if}

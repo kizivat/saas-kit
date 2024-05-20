@@ -26,7 +26,7 @@
 			icon: LucideLayoutPanelTop,
 			title: 'Customizable Landing Page',
 			description:
-				"The landing page is fully customizable. You'll have access to many pre components inspired by the `shadcn-svelte` system to mix and match to your liking.",
+				"The landing page is fully customizable. You'll have access to many premade components inspired by the `shadcn-svelte` system to mix and match to your liking.",
 		},
 		{
 			icon: LineMdMoonLoop,

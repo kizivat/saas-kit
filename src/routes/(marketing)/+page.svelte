@@ -1,19 +1,14 @@
 <script lang="ts">
-	import * as LogosCloud from '$lib/components/landing/logos-cloud';
 	import * as Section from '$lib/components/landing/section';
 	import * as Testimonials from '$lib/components/landing/testimonials';
 	import * as Avatar from '$lib/components/ui/avatar';
 	import * as Card from '$lib/components/ui/card';
-	import PostgresLogo from '~icons/devicon-plain/postgresql';
 	import UserIcon from '~icons/lucide/user';
-	import ShadcnLogo from '~icons/simple-icons/shadcnui';
-	import StripeLogo from '~icons/simple-icons/stripe';
-	import SupabaseLogo from '~icons/simple-icons/supabase';
-	import SvelteLogo from '~icons/simple-icons/svelte';
-	import TailwindLogo from '~icons/simple-icons/tailwindcss';
 	import { WebsiteName } from './../../config';
 	import Features from './components/sections/Features.svelte';
 	import HeroSection from './components/sections/HeroSection.svelte';
+	import LogosCloud from './components/sections/LogosCloud.svelte';
+	import Pricing from './components/sections/Pricing.svelte';
 </script>
 
 <svelte:head>
@@ -24,6 +19,10 @@
 <div class="flex flex-col gap-20">
 	<Section.Root>
 		<HeroSection />
+	</Section.Root>
+	<Section.Root>
+		<Section.Title>Logos Cloud</Section.Title>
+		<LogosCloud />
 	</Section.Root>
 	<Section.Root>
 		<Features />
@@ -149,26 +148,7 @@
 		</Testimonials.Root>
 	</Section.Root>
 	<Section.Root>
-		<Section.Title>Logos Cloud</Section.Title>
-		<LogosCloud.Root class="justify-around">
-			<LogosCloud.Logo>
-				<SvelteLogo />
-			</LogosCloud.Logo>
-			<LogosCloud.Logo>
-				<SupabaseLogo />
-			</LogosCloud.Logo>
-			<LogosCloud.Logo>
-				<ShadcnLogo />
-			</LogosCloud.Logo>
-			<LogosCloud.Logo>
-				<TailwindLogo />
-			</LogosCloud.Logo>
-			<LogosCloud.Logo>
-				<StripeLogo />
-			</LogosCloud.Logo>
-			<LogosCloud.Logo>
-				<PostgresLogo />
-			</LogosCloud.Logo>
-		</LogosCloud.Root>
+		<Section.Title anchor="pricing">Pricing</Section.Title>
+		<Pricing />
 	</Section.Root>
 </div>

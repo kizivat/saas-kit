@@ -16,7 +16,7 @@
 	const menuItems = {
 		'/': 'Home',
 		'/#features': 'Features',
-		'/pricing': 'Pricing',
+		'/#pricing': 'Pricing',
 		'/contact': 'Contact',
 	};
 
