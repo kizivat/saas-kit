@@ -141,7 +141,7 @@
 	</div>
 </header>
 
-<main class="container">
+<main class="container p-8">
 	<slot />
 </main>
 
