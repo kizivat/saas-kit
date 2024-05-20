@@ -4,7 +4,7 @@
 	onMount(() => {});
 </script>
 
-<div class="size-full bg-foreground/5 rounded-lg"></div>
+<div class="size-full bg-foreground/5 rounded-lg hidden sm:block"></div>
 
 <style>
 </style>

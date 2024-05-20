@@ -1,9 +1,19 @@
 <script lang="ts">
-	import { Button } from '$lib/components/ui/button';
-	import { cn } from '$lib/utils';
-	import GitHubIcon from 'virtual:icons/lucide/github';
+	import * as LogosCloud from '$lib/components/landing/logos-cloud';
+	import * as Section from '$lib/components/landing/section';
+	import * as Testimonials from '$lib/components/landing/testimonials';
+	import * as Avatar from '$lib/components/ui/avatar';
+	import * as Card from '$lib/components/ui/card';
+	import PostgresLogo from '~icons/devicon-plain/postgresql';
+	import UserIcon from '~icons/lucide/user';
+	import ShadcnLogo from '~icons/simple-icons/shadcnui';
+	import StripeLogo from '~icons/simple-icons/stripe';
+	import SupabaseLogo from '~icons/simple-icons/supabase';
+	import SvelteLogo from '~icons/simple-icons/svelte';
+	import TailwindLogo from '~icons/simple-icons/tailwindcss';
 	import { WebsiteName } from './../../config';
-	import HeroAnimation from './components/HeroAnimation.svelte';
+	import Features from './components/sections/Features.svelte';
+	import HeroSection from './components/sections/HeroSection.svelte';
 </script>
 
 <svelte:head>
@@ -11,66 +21,154 @@
 	<meta name="description" content="{WebsiteName} Home Page" />
 </svelte:head>
 
-<div class="grid md:grid-cols-2 items-center overflow-visible">
-	<div class="flex flex-col sm:gap-6 items-center md:items-start">
-		<h1
-			class={cn(
-				'inline',
-				'text-xl md:text-3xl font-bold',
-				'bg-clip-text text-transparent bg-gradient-to-r from-secondary via-primary to-secondary',
-			)}
-		>
-			SaaS Kit Demo
-		</h1>
-
-		<p
-			class={cn(
-				'text-center md:text-left',
-				'text-4xl md:text-6xl font-bold px-2 leading-[1.2]',
-				'[&_em]:underline [&_em]:decoration-primary [&_em]:decoration-4 [&_em]:md:decoration-[6px] [&_em]:not-italic',
-			)}
-		>
-			The <em>open source</em>, <em>fast</em>, and <em>free to host</em> SaaS template
-		</p>
-		<p class="md:text-lg text-center md:text-left">
-			Built with <a
-				href="https://kit.svelte.dev"
-				class="link font-bold"
-				target="_blank">SvelteKit</a
-			>,
-			<a href="https://supabase.com" class="link font-bold" target="_blank"
-				>Supabase</a
-			>,
-			<a href="https://stripe.com" class="link font-bold" target="_blank"
-				>Stripe</a
-			>,
-			<a href="https://tailwindcss.com" class="link font-bold" target="_blank"
-				>Tailwind</a
-			>,
-			<a
-				href="https://shadcn-svelte.com/"
-				class="link font-bold"
-				target="_blank">shadcn-svelte</a
-			>, and
-			<a
-				href="https://www.postgresql.org"
-				class="link font-bold"
-				target="_blank">Postgres</a
-			>.
-		</p>
-		<div class="mt-6 md:mt-2 flex gap-3">
-			<Button href="/login">Try it out</Button>
-			<Button
-				variant="secondary"
-				href="https://github.com/kizivat/saas-kit"
-				target="_blank"
-				class="flex flex-nowrap gap-2"
-			>
-				<GitHubIcon class="h-4 w-4" />
-				View on GitHub
-			</Button>
-		</div>
-	</div>
-
-	<HeroAnimation />
+<div class="flex flex-col gap-20">
+	<Section.Root>
+		<HeroSection />
+	</Section.Root>
+	<Section.Root>
+		<Features />
+	</Section.Root>
+	<Section.Root>
+		<Section.Title>Testimonials</Section.Title>
+		<Testimonials.Root>
+			<Testimonials.Figure>
+				<Card.Root>
+					<Testimonials.Author>
+						<Card.Header class="flex flex-row items-center gap-4">
+							<Avatar.Root>
+								<Avatar.Fallback>
+									<UserIcon />
+								</Avatar.Fallback>
+							</Avatar.Root>
+							<div>
+								<Card.Title>David Kizivat</Card.Title>
+								<Card.Description>@kizivat</Card.Description>
+							</div>
+						</Card.Header>
+					</Testimonials.Author>
+					<Card.Content>
+						<Testimonials.Quote>
+							We had this once said about us.
+						</Testimonials.Quote>
+					</Card.Content>
+				</Card.Root>
+			</Testimonials.Figure>
+			<Testimonials.Figure>
+				<Card.Root>
+					<Testimonials.Author>
+						<Card.Header class="flex flex-row items-center gap-4">
+							<Avatar.Root>
+								<Avatar.Fallback>
+									<UserIcon />
+								</Avatar.Fallback>
+							</Avatar.Root>
+							<div>
+								<Card.Title>David Kizivat</Card.Title>
+								<Card.Description>@kizivat</Card.Description>
+							</div>
+						</Card.Header>
+					</Testimonials.Author>
+					<Card.Content>
+						<Testimonials.Quote>
+							As one of the first users, I can say that this is a great. I love
+							it. My team loves it. We are going to use this.
+						</Testimonials.Quote>
+					</Card.Content>
+				</Card.Root>
+			</Testimonials.Figure>
+			<Testimonials.Figure>
+				<Card.Root>
+					<Testimonials.Author>
+						<Card.Header class="flex flex-row items-center gap-4">
+							<Avatar.Root>
+								<Avatar.Fallback>
+									<UserIcon />
+								</Avatar.Fallback>
+							</Avatar.Root>
+							<div>
+								<Card.Title>David Kizivat</Card.Title>
+								<Card.Description>@kizivat</Card.Description>
+							</div>
+						</Card.Header>
+					</Testimonials.Author>
+					<Card.Content>
+						<Testimonials.Quote>
+							No way this is free. It is too good to be free. I would pay for
+							this at least $100. It is that good. I'm going to use this for my
+							next project. Thank you so much for making this. I'm looking for a
+							way to pay you back.
+						</Testimonials.Quote>
+					</Card.Content>
+				</Card.Root>
+			</Testimonials.Figure>
+			<Testimonials.Figure>
+				<Card.Root>
+					<Testimonials.Author>
+						<Card.Header class="flex flex-row items-center gap-4">
+							<Avatar.Root>
+								<Avatar.Fallback>
+									<UserIcon />
+								</Avatar.Fallback>
+							</Avatar.Root>
+							<div>
+								<Card.Title>David Kizivat</Card.Title>
+								<Card.Description>@kizivat</Card.Description>
+							</div>
+						</Card.Header>
+					</Testimonials.Author>
+					<Card.Content>
+						<Testimonials.Quote>
+							Would totally use this again. It is very nice. Nice job! Keep it
+							up! 🚀
+						</Testimonials.Quote>
+					</Card.Content>
+				</Card.Root>
+			</Testimonials.Figure>
+			<Testimonials.Figure>
+				<Card.Root>
+					<Testimonials.Author>
+						<Card.Header class="flex flex-row items-center gap-4">
+							<Avatar.Root>
+								<Avatar.Fallback>
+									<UserIcon />
+								</Avatar.Fallback>
+							</Avatar.Root>
+							<div>
+								<Card.Title>David Kizivat</Card.Title>
+								<Card.Description>@kizivat</Card.Description>
+							</div>
+						</Card.Header>
+					</Testimonials.Author>
+					<Card.Content>
+						<Testimonials.Quote>
+							Great job! I love it! I would recommend this to anyone.
+						</Testimonials.Quote>
+					</Card.Content>
+				</Card.Root>
+			</Testimonials.Figure>
+		</Testimonials.Root>
+	</Section.Root>
+	<Section.Root>
+		<Section.Title>Logos Cloud</Section.Title>
+		<LogosCloud.Root class="justify-around">
+			<LogosCloud.Logo>
+				<SvelteLogo />
+			</LogosCloud.Logo>
+			<LogosCloud.Logo>
+				<SupabaseLogo />
+			</LogosCloud.Logo>
+			<LogosCloud.Logo>
+				<ShadcnLogo />
+			</LogosCloud.Logo>
+			<LogosCloud.Logo>
+				<TailwindLogo />
+			</LogosCloud.Logo>
+			<LogosCloud.Logo>
+				<StripeLogo />
+			</LogosCloud.Logo>
+			<LogosCloud.Logo>
+				<PostgresLogo />
+			</LogosCloud.Logo>
+		</LogosCloud.Root>
+	</Section.Root>
 </div>

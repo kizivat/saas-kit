@@ -15,7 +15,10 @@
 		"format:check": "prettier --check --plugin prettier-plugin-svelte ."
 	},
 	"devDependencies": {
+		"@iconify-json/devicon-plain": "^1.1.40",
+		"@iconify-json/line-md": "^1.1.37",
 		"@iconify-json/lucide": "^1.1.187",
+		"@iconify-json/simple-icons": "^1.1.101",
 		"@sveltejs/adapter-auto": "^2.0.0",
 		"@sveltejs/kit": "^1.30.4",
 		"@tailwindcss/typography": "^0.5.10",
