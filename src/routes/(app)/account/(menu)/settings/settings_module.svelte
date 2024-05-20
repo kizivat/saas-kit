@@ -47,9 +47,9 @@
 	};
 </script>
 
-<div class="card p-6 pb-7 mt-8 max-w-xl flex flex-col md:flex-row shadow">
+<div class="card mt-8 flex max-w-xl flex-col p-6 pb-7 shadow md:flex-row">
 	{#if title}
-		<div class="text-xl font-bold mb-3 w-48 flex-none">{title}</div>
+		<div class="mb-3 w-48 flex-none text-xl font-bold">{title}</div>
 	{/if}
 
 	<div class="w-full min-w-48">
@@ -59,7 +59,7 @@
 					{#if dangerous}
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
-							class="stroke-current shrink-0 h-6 w-6"
+							class="h-6 w-6 shrink-0 stroke-current"
 							fill="none"
 							viewBox="0 0 24 24"
 							><path
@@ -95,17 +95,17 @@
 							placeholder={field.placeholder ?? field.label ?? ''}
 							class="{fieldError($page?.form, field.id)
 								? 'input-error'
-								: ''} input-sm mt-1 input input-bordered w-full max-w-xs mb-3 text-base py-4"
+								: ''} input-sm input input-bordered mb-3 mt-1 w-full max-w-xs py-4 text-base"
 							value={$page.form ? $page.form[field.id] : field.initialValue}
 							maxlength={field.maxlength ? field.maxlength : null}
 						/>
 					{:else}
-						<div class="text-lg mb-3">{field.initialValue}</div>
+						<div class="mb-3 text-lg">{field.initialValue}</div>
 					{/if}
 				{/each}
 
 				{#if $page?.form?.errorMessage}
-					<p class="text-red-700 text-sm font-bold mt-1">
+					<p class="mt-1 text-sm font-bold text-red-700">
 						{$page?.form?.errorMessage}
 					</p>
 				{/if}
@@ -114,14 +114,14 @@
 					<div>
 						<button
 							type="submit"
-							class="ml-auto btn btn-sm mt-3 min-w-[145px] {dangerous
+							class="btn btn-sm ml-auto mt-3 min-w-[145px] {dangerous
 								? 'btn-error'
 								: 'btn-success'}"
 							disabled={loading}
 						>
 							{#if loading}
 								<span
-									class="loading loading-spinner loading-md align-middle mx-3"
+									class="loading loading-spinner loading-md mx-3 align-middle"
 								></span>
 							{:else}
 								{saveButtonTitle}

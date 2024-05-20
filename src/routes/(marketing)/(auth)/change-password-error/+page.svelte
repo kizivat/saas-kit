@@ -2,7 +2,7 @@
 	<title>Current Password Incorrect</title>
 </svelte:head>
 
-<h1 class="text-2xl font-bold mb-6">Current Password Incorrect</h1>
+<h1 class="mb-6 text-2xl font-bold">Current Password Incorrect</h1>
 
 <p>
 	You attempted edit your account with an incorrect current password, and have

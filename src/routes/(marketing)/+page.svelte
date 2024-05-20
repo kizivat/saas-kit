@@ -13,7 +13,7 @@
 	<meta name="description" content="{WebsiteName} Home Page" />
 </svelte:head>
 
-<div class="flex flex-col gap-20 mb-40">
+<div class="mb-40 flex flex-col gap-20">
 	<Section.Root>
 		<HeroSection />
 	</Section.Root>

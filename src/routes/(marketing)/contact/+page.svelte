@@ -64,22 +64,22 @@
 </script>
 
 <div
-	class="flex flex-col lg:flex-row mx-auto my-4 min-h-[70vh] place-items-center lg:place-items-start place-content-center"
+	class="mx-auto my-4 flex min-h-[70vh] flex-col place-content-center place-items-center lg:flex-row lg:place-items-start"
 >
 	<div
-		class="max-w-[400px] lg:max-w-[500px] flex flex-col place-content-center p-4 lg:mr-8 lg:mb-8 lg:min-h-[70vh]"
+		class="flex max-w-[400px] flex-col place-content-center p-4 lg:mb-8 lg:mr-8 lg:min-h-[70vh] lg:max-w-[500px]"
 	>
 		<div class="px-6">
-			<h1 class="text-2xl lg:text-4xl font-bold mb-4">Contact Us</h1>
+			<h1 class="mb-4 text-2xl font-bold lg:text-4xl">Contact Us</h1>
 			<p class="text-lg">Talk to one of our service professionals to:</p>
-			<ul class="list-disc list-outside pl-6 py-4 space-y-1">
+			<ul class="list-outside list-disc space-y-1 py-4 pl-6">
 				<li class="">Get a live demo</li>
 				<li class="">Discuss your specific needs</li>
 				<li>Get a quote</li>
 				<li>Answer any technical questions you have</li>
 			</ul>
 			<p>Once you complete the form, we'll reach out to you! *</p>
-			<p class="text-sm pt-8">
+			<p class="pt-8 text-sm">
 				*Not really for this demo page, but you should say something like that
 				😉
 			</p>
@@ -87,19 +87,19 @@
 	</div>
 
 	<div
-		class="flex flex-col flex-grow m-4 lg:ml-10 min-w-[300px] stdphone:min-w-[360px] max-w-[400px] place-content-center lg:min-h-[70vh]"
+		class="stdphone:min-w-[360px] m-4 flex min-w-[300px] max-w-[400px] flex-grow flex-col place-content-center lg:ml-10 lg:min-h-[70vh]"
 	>
 		{#if showSuccess}
 			<div class="flex flex-col place-content-center lg:min-h-[70vh]">
 				<div
-					class="card card-bordered shadow-lg py-6 px-6 mx-2 lg:mx-0 lg:p-6 mb-10"
+					class="card card-bordered mx-2 mb-10 px-6 py-6 shadow-lg lg:mx-0 lg:p-6"
 				>
-					<div class="text-2xl font-bold mb-4">Thank you!</div>
+					<div class="mb-4 text-2xl font-bold">Thank you!</div>
 					<p class="">We've received your message and will be in touch soon.</p>
 				</div>
 			</div>
 		{:else}
-			<div class="card card-bordered shadow-lg p-4 pt-6 mx-2 lg:mx-0 lg:p-6">
+			<div class="card card-bordered mx-2 p-4 pt-6 shadow-lg lg:mx-0 lg:p-6">
 				<form
 					class="form-widget flex flex-col"
 					method="POST"
@@ -111,7 +111,7 @@
 							<div class="flex flex-row">
 								<div class="text-base font-bold">{field.label}</div>
 								{#if errors[field.id]}
-									<div class="text-red-600 flex-grow text-sm ml-2 text-right">
+									<div class="ml-2 flex-grow text-right text-sm text-red-600">
 										{errors[field.id]}
 									</div>
 								{/if}
@@ -124,7 +124,7 @@
 									rows={4}
 									class="{errors[field.id]
 										? 'input-error'
-										: ''} h-24 input-sm mt-1 input input-bordered w-full mb-3 text-base py-4"
+										: ''} input-sm input input-bordered mb-3 mt-1 h-24 w-full py-4 text-base"
 								></textarea>
 							{:else}
 								<input
@@ -134,14 +134,14 @@
 									autocomplete={field.autocomplete}
 									class="{errors[field.id]
 										? 'input-error'
-										: ''} input-sm mt-1 input input-bordered w-full mb-3 text-base py-4"
+										: ''} input-sm input input-bordered mb-3 mt-1 w-full py-4 text-base"
 								/>
 							{/if}
 						</label>
 					{/each}
 
 					{#if Object.keys(errors).length > 0}
-						<p class="text-red-600 text-sm mb-2">
+						<p class="mb-2 text-sm text-red-600">
 							Please resolve above issues.
 						</p>
 					{/if}

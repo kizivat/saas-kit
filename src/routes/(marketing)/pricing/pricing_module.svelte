@@ -54,24 +54,24 @@
 </script>
 
 <div
-	class="flex flex-col lg:flex-row gap-10 {center
+	class="flex flex-col gap-10 lg:flex-row {center
 		? 'place-content-center'
 		: ''} flex-wrap"
 >
 	{#each pricingPlans as plan}
 		<div
-			class="flex-none card card-bordered {plan.id === highlightedPlanId
+			class="card card-bordered flex-none {plan.id === highlightedPlanId
 				? 'border-primary'
-				: 'border-gray-200'} shadow-xl flex-1 flex-grow min-w-[260px] max-w-[310px] p-6"
+				: 'border-gray-200'} min-w-[260px] max-w-[310px] flex-1 flex-grow p-6 shadow-xl"
 		>
-			<div class="flex flex-col h-full">
+			<div class="flex h-full flex-col">
 				<div class="text-xl font-bold">{plan.name}</div>
-				<p class="mt-2 text-sm text-gray-500 leading-relaxed">
+				<p class="mt-2 text-sm leading-relaxed text-gray-500">
 					{plan.description}
 				</p>
 				<div class="mt-auto pt-4 text-sm text-gray-600">
 					Plan Includes:
-					<ul class="list-disc list-inside mt-2 space-y-1">
+					<ul class="mt-2 list-inside list-disc space-y-1">
 						{#each plan.features as feature}
 							<li class="">{feature}</li>
 						{/each}
@@ -81,10 +81,10 @@
 				<div class="pt-8">
 					<span class="text-4xl font-bold">{plan.price}</span>
 					<span class="text-gray-400">{plan.priceIntervalName}</span>
-					<div class="mt-6 pt-4 flex-1 flex flex-row items-center">
+					<div class="mt-6 flex flex-1 flex-row items-center pt-4">
 						{#if plan.id === currentPlanId}
 							<div
-								class="btn btn-outline btn-success no-animation w-[80%] mx-auto cursor-default"
+								class="btn btn-outline btn-success no-animation mx-auto w-[80%] cursor-default"
 							>
 								Current Plan
 							</div>
@@ -92,7 +92,7 @@
 							<a
 								href={'/account/subscribe/' +
 									(plan?.stripe_price_id ?? 'free_plan')}
-								class="btn btn-primary w-[80%] mx-auto"
+								class="btn btn-primary mx-auto w-[80%]"
 							>
 								{callToAction}
 							</a>
@@ -104,10 +104,10 @@
 	{/each}
 </div>
 
-<h1 class="text-2xl font-bold text-center mt-24">Pricing FAQ</h1>
+<h1 class="mt-24 text-center text-2xl font-bold">Pricing FAQ</h1>
 <div class="flex place-content-center">
-	<div class="join join-vertical max-w-xl py-6 mx-auto">
-		<div class="collapse collapse-arrow join-item border border-primary">
+	<div class="join join-vertical mx-auto max-w-xl py-6">
+		<div class="collapse-arrow join-item collapse border border-primary">
 			<input type="radio" name="faq-accordion" />
 			<div class="collapse-title text-lg font-medium">
 				Is this template free to use?
@@ -116,7 +116,7 @@
 				<p>Yup! This template is free to use for any project.</p>
 			</div>
 		</div>
-		<div class="collapse collapse-arrow join-item border border-primary">
+		<div class="collapse-arrow join-item collapse border border-primary">
 			<input type="radio" name="faq-accordion" />
 			<div class="collapse-title text-lg font-medium">
 				Why does a free template have a pricing page?
@@ -128,7 +128,7 @@
 				</p>
 			</div>
 		</div>
-		<div class="collapse collapse-arrow join-item border border-primary">
+		<div class="collapse-arrow join-item collapse border border-primary">
 			<input type="radio" name="faq-accordion" />
 			<div class="collapse-title text-lg font-medium">
 				What license is the template under?
@@ -137,7 +137,7 @@
 				<p>The template is under the MIT license.</p>
 			</div>
 		</div>
-		<div class="collapse collapse-arrow join-item border border-primary">
+		<div class="collapse-arrow join-item collapse border border-primary">
 			<input type="radio" name="faq-accordion" />
 			<div class="collapse-title text-lg font-medium">
 				Can I try out purchase flows without real a credit card?
@@ -184,15 +184,15 @@
 	</defs>
 </svg>
 
-<h1 class="text-2xl font-bold text-center mt-16">Plan Features</h1>
-<h2 class="text-xl text-center text-slate-500 mt-1 pb-3">
+<h1 class="mt-16 text-center text-2xl font-bold">Plan Features</h1>
+<h2 class="mt-1 pb-3 text-center text-xl text-slate-500">
 	Example feature table
 </h2>
 
-<div class="overflow-visible mx-auto max-w-xl mt-4">
+<div class="mx-auto mt-4 max-w-xl overflow-visible">
 	<table class="table">
 		<thead
-			class="text-lg sticky top-0 bg-base-100 bg-opacity-50 z-10 backdrop-blur"
+			class="bg-base-100 sticky top-0 z-10 bg-opacity-50 text-lg backdrop-blur"
 		>
 			<tr>
 				<th></th>
@@ -215,14 +215,14 @@
 							{:else if feature.freeIncluded}
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
-									class="w-8 h-8 ml-2 inline text-success"
+									class="text-success ml-2 inline h-8 w-8"
 								>
 									<use href="#checkcircle" />
 								</svg>
 							{:else}
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
-									class="w-[26px] h-[26px] inline text-base-200"
+									class="text-base-200 inline h-[26px] w-[26px]"
 								>
 									<use href="#nocircle" />
 								</svg>
@@ -234,14 +234,14 @@
 							{:else if feature.proIncluded}
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
-									class="w-8 h-8 ml-2 inline text-success"
+									class="text-success ml-2 inline h-8 w-8"
 								>
 									<use href="#checkcircle" />
 								</svg>
 							{:else}
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
-									class="w-[26px] h-[26px] inline text-base-200"
+									class="text-base-200 inline h-[26px] w-[26px]"
 								>
 									<use href="#nocircle" />
 								</svg>

@@ -8,7 +8,7 @@
 	class={cn(
 		'[&>*]:h-full',
 		emphasized &&
-			'row-[1] md:row-[unset] scale-110 rounded-lg border border-primary',
+			'row-[1] scale-110 rounded-lg border border-primary md:row-[unset]',
 		emphasized && '[&>*]:border-none [&>*]:shadow-none',
 	)}
 >

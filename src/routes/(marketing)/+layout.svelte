@@ -28,11 +28,11 @@
 
 <header class="sticky top-0 z-10 border-b border-border bg-card py-4">
 	<div
-		class="grid grid-cols-2 sm:grid-cols-3 flex-nowrap justify-between items-center container"
+		class="container grid grid-cols-2 flex-nowrap items-center justify-between sm:grid-cols-3"
 	>
 		<HomeButton />
-		<nav class="hidden sm:block mx-auto">
-			<ul class="px-1 hidden sm:flex font-bold text-lg">
+		<nav class="mx-auto hidden sm:block">
+			<ul class="hidden px-1 text-lg font-bold sm:flex">
 				{#each Object.entries(menuItems) as [href, text]}
 					<li class="md:mx-2">
 						<Button variant="ghost" {href} class="text-base text-foreground">
@@ -42,12 +42,12 @@
 				{/each}
 			</ul>
 		</nav>
-		<div class="hidden sm:block justify-self-end">
+		<div class="hidden justify-self-end sm:block">
 			<!-- <Button variant="secondary" href="/account">Get started</Button> -->
 			<PersonalDropdown />
 		</div>
 
-		<div class="sm:hidden justify-self-end">
+		<div class="justify-self-end sm:hidden">
 			<Drawer.Root bind:open={menuOpen}>
 				<Drawer.Trigger asChild let:builder>
 					<Button variant="ghost" size="icon" builders={[builder]}>
@@ -56,7 +56,7 @@
 					</Button>
 				</Drawer.Trigger>
 				<Drawer.Content>
-					<Drawer.Header class="py-0 flex justify-end">
+					<Drawer.Header class="flex justify-end py-0">
 						<Drawer.Close asChild let:builder>
 							<Button variant="ghost" size="icon" builders={[builder]}>
 								<span class="sr-only">Close</span>
@@ -69,7 +69,7 @@
 							<div class="p-2">
 								<Button
 									variant="ghost"
-									class="w-full text-base flex gap-2 flex-nowrap"
+									class="flex w-full flex-nowrap gap-2 text-base"
 									builders={[builder]}
 								>
 									Switch theme
@@ -79,7 +79,7 @@
 						</Collapsible.Trigger>
 						<Collapsible.Content>
 							<ul
-								class="grid grid-cols-[auto,auto] items-center p-2 pt-0 gap-x-2"
+								class="grid grid-cols-[auto,auto] items-center gap-x-2 p-2 pt-0"
 							>
 								<li class="col-span-2 grid grid-cols-subgrid">
 									<ThemeSwitchButton
@@ -103,11 +103,11 @@
 						</Collapsible.Content>
 					</Collapsible.Root>
 					<Separator />
-					<nav class="[&_ul]:p-2 [&_ul]:flex [&_ul]:flex-col">
+					<nav class="[&_ul]:flex [&_ul]:flex-col [&_ul]:p-2">
 						<ul>
 							{#each Object.entries(menuItems) as [href, text]}
 								<li>
-									<Button {href} variant="ghost" class="py-6 w-full text-base">
+									<Button {href} variant="ghost" class="w-full py-6 text-base">
 										{text}
 									</Button>
 								</li>
@@ -119,7 +119,7 @@
 								<Button
 									href="/account"
 									variant="ghost"
-									class="py-6 w-full text-base"
+									class="w-full py-6 text-base"
 								>
 									Register
 								</Button>
@@ -128,7 +128,7 @@
 								<Button
 									href="/account"
 									variant="ghost"
-									class="py-6 w-full text-base"
+									class="w-full py-6 text-base"
 								>
 									Log in
 								</Button>
@@ -149,15 +149,15 @@
 <div class="flex-grow"></div>
 <footer class="border-t border-border bg-card py-6">
 	<div class="container flex flex-col gap-12">
-		<div class="flex flex-col sm:flex-row flex-wrap gap-12">
+		<div class="flex flex-col flex-wrap gap-12 sm:flex-row">
 			<div class="flex-[0.3]">
 				<HomeButton />
 			</div>
 			<div
 				class={cn(
-					'flex-1 grid grid-cols-2 sm:grid-cols-4 gap-8 p-4',
+					'grid flex-1 grid-cols-2 gap-8 p-4 sm:grid-cols-4',
 					'[&_.col]:flex [&_.col]:flex-col [&_.col]:gap-3',
-					'[&_.footer-title]:text-lg [&_.footer-title]:text-primary [&_.footer-title]:font-semibold',
+					'[&_.footer-title]:text-lg [&_.footer-title]:font-semibold [&_.footer-title]:text-primary',
 					'[&_nav]:flex [&_nav]:flex-col [&_nav]:gap-3 [&_nav]:text-muted-foreground',
 				)}
 			>
@@ -168,7 +168,7 @@
 							<Button
 								{href}
 								variant="link"
-								class="text-start text-base text-muted-foreground p-0 h-auto block font-normal"
+								class="block h-auto p-0 text-start text-base font-normal text-muted-foreground"
 							>
 								{text}
 							</Button>
@@ -181,14 +181,14 @@
 						<Button
 							href="/login"
 							variant="link"
-							class="text-start text-base text-muted-foreground p-0 h-auto block font-normal"
+							class="block h-auto p-0 text-start text-base font-normal text-muted-foreground"
 						>
 							Login
 						</Button>
 						<Button
 							href="/register"
 							variant="link"
-							class="text-start text-base text-muted-foreground p-0 h-auto block font-normal"
+							class="block h-auto p-0 text-start text-base font-normal text-muted-foreground"
 						>
 							Register
 						</Button>
@@ -199,7 +199,7 @@
 					<nav>
 						<Button
 							variant="link"
-							class="text-start text-base text-muted-foreground p-0 h-auto block font-normal"
+							class="block h-auto p-0 text-start text-base font-normal text-muted-foreground"
 							href="https://kizivat.eu"
 							target="_blank"
 						>
@@ -207,7 +207,7 @@
 						</Button>
 						<Button
 							variant="link"
-							class="text-start text-base text-muted-foreground p-0 h-auto block font-normal"
+							class="block h-auto p-0 text-start text-base font-normal text-muted-foreground"
 							href="https://twitter.com/kizivat"
 							target="_blank"
 						>
@@ -215,7 +215,7 @@
 						</Button>
 						<Button
 							variant="link"
-							class="text-start text-base text-muted-foreground p-0 h-auto block font-normal"
+							class="block h-auto p-0 text-start text-base font-normal text-muted-foreground"
 							href="https://github.com/kizivat"
 							target="_blank"
 						>
@@ -223,7 +223,7 @@
 						</Button>
 						<Button
 							variant="link"
-							class="text-start text-base text-muted-foreground p-0 h-auto block font-normal"
+							class="block h-auto p-0 text-start text-base font-normal text-muted-foreground"
 							href="https://www.linkedin.com/in/david-kizivat/"
 							target="_blank"
 						>
@@ -233,22 +233,22 @@
 				</div>
 			</div>
 		</div>
-		<p class="max-w-prose text-center leading-6 place-self-center text-sm">
+		<p class="max-w-prose place-self-center text-center text-sm leading-6">
 			&copy; {new Date().getFullYear()}
 			SaaS Kit created by <Button
 				variant="link"
 				href="https://kizivat.eu"
 				target="_blank"
-				class="p-0 h-auto text-primary underline hover:no-underline"
+				class="h-auto p-0 text-primary underline hover:no-underline"
 				>David Kizivat</Button
 			>. Based on <Button
 				variant="link"
-				class="p-0 h-auto text-primary underline hover:no-underline"
+				class="h-auto p-0 text-primary underline hover:no-underline"
 				href="https://github.com/CriticalMoments/CMSaasStarter"
 				target="_blank">CriticalMoments/CMSaasStarter</Button
 			>. Landing page design inspired by Leo Miranda's <Button
 				variant="link"
-				class="p-0 h-auto text-primary underline hover:no-underline"
+				class="h-auto p-0 text-primary underline hover:no-underline"
 				href="https://shadcn-landing-page.vercel.app/"
 				target="_blank">Shadcn Landing Page</Button
 			>.

@@ -6,7 +6,7 @@
 
 <Button
 	variant="ghost"
-	class="text-xl w-fit flex flex-nowrap gap-3 items-center"
+	class="flex w-fit flex-nowrap items-center gap-3 text-xl"
 	href="/"
 >
 	<Logo />

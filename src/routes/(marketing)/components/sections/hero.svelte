@@ -5,13 +5,13 @@
 	import HeroAnimation from '../HeroAnimation.svelte';
 </script>
 
-<div class="grid md:grid-cols-2 items-center overflow-visible">
-	<div class="flex flex-col sm:gap-6 items-center md:items-start">
+<div class="grid items-center overflow-visible md:grid-cols-2">
+	<div class="flex flex-col items-center sm:gap-6 md:items-start">
 		<h1
 			class={cn(
 				'inline',
-				'text-xl md:text-3xl font-bold',
-				'bg-clip-text text-transparent bg-gradient-to-r from-primary/20 via-primary to-primary/20',
+				'text-xl font-bold md:text-3xl',
+				'bg-gradient-to-r from-primary/20 via-primary to-primary/20 bg-clip-text text-transparent',
 			)}
 		>
 			SaaS Kit Demo
@@ -20,14 +20,14 @@
 		<p
 			class={cn(
 				'text-center md:text-left',
-				'text-4xl md:text-6xl font-bold px-2 leading-[1.2]',
-				'[&_em]:underline [&_em]:decoration-primary [&_em]:decoration-4 [&_em]:md:decoration-[6px] [&_em]:not-italic',
+				'px-2 text-4xl font-bold leading-[1.2] md:text-6xl',
+				'[&_em]:not-italic [&_em]:underline [&_em]:decoration-primary [&_em]:decoration-4 [&_em]:md:decoration-[6px]',
 			)}
 		>
 			The <em>MIT</em> licensed, <em>optimized</em>, and <em>free to run</em> SaaS
 			template
 		</p>
-		<p class="md:text-lg text-center md:text-left">
+		<p class="text-center md:text-left md:text-lg">
 			Built with <a
 				href="https://kit.svelte.dev"
 				class="link font-bold"
@@ -53,7 +53,7 @@
 				target="_blank">Postgres</a
 			>.
 		</p>
-		<div class="mt-6 md:mt-2 flex gap-3">
+		<div class="mt-6 flex gap-3 md:mt-2">
 			<Button href="/login">Try it out</Button>
 			<Button
 				variant="secondary"

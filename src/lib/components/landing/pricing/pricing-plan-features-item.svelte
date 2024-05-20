@@ -3,9 +3,9 @@
 	import LucideCheck from '~icons/lucide/check';
 </script>
 
-<li class={cn('flex flex-col pt-2 divide-muted', $$props.class)}>
+<li class={cn('flex flex-col divide-muted pt-2', $$props.class)}>
 	<div class="flex items-center gap-2">
-		<LucideCheck class="w-4 h-4 text-primary" />
+		<LucideCheck class="h-4 w-4 text-primary" />
 		<slot />
 	</div>
 </li>

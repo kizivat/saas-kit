@@ -23,7 +23,7 @@
 	<title>Billing</title>
 </svelte:head>
 
-<h1 class="text-2xl font-bold mb-6">
+<h1 class="mb-6 text-2xl font-bold">
 	{data.isActiveCustomer ? 'Billing' : 'Select a Plan'}
 </h1>
 

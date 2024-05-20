@@ -2,6 +2,6 @@
 	import { cn } from '$lib/utils';
 </script>
 
-<dt class={cn('font-bold text-2xl', $$props.class)}>
+<dt class={cn('text-2xl font-bold', $$props.class)}>
 	<slot />
 </dt>

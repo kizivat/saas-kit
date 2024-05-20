@@ -8,13 +8,13 @@
 	<meta name="description" content="Pricing details for {WebsiteName}" />
 </svelte:head>
 
-<div class="min-h-[70vh] pb-8 pt-[5vh] px-4">
-	<h1 class="text-3xl font-bold text-center">Pricing</h1>
-	<h2 class="text-xl text-center text-slate-500 mt-1 pb-3">
+<div class="min-h-[70vh] px-4 pb-8 pt-[5vh]">
+	<h1 class="text-center text-3xl font-bold">Pricing</h1>
+	<h2 class="mt-1 pb-3 text-center text-xl text-slate-500">
 		Totally free, scale to millions of users
 	</h2>
 
-	<div class="w-full my-8">
+	<div class="my-8 w-full">
 		<PricingModule callToAction="Get Started" highlightedPlanId="pro" />
 	</div>
 </div>

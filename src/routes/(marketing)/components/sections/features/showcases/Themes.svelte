@@ -21,15 +21,15 @@
 	}
 </script>
 
-<p class="my-3 text-muted-foreground italic">
+<p class="my-3 italic text-muted-foreground">
 	Try it yourself. Select a theme below to change it live.
 </p>
-<div class={cn(' flex gap-2 [&_button]:rounded-full [&_button]:size-6')}>
+<div class={cn(' flex gap-2 [&_button]:size-6 [&_button]:rounded-full')}>
 	<button
 		class={cn(
 			'bg-neutral-500',
 			theme === 'neutral' &&
-				'ring-2 ring-neutral-500 ring-offset-background ring-offset-2',
+				'ring-2 ring-neutral-500 ring-offset-2 ring-offset-background',
 		)}
 		on:click={() => {
 			import(`./themes/neutral.css`);
@@ -42,7 +42,7 @@
 		class={cn(
 			'bg-yellow-500',
 			theme === 'yellow' &&
-				'ring-2 ring-primary ring-offset-background ring-offset-2',
+				'ring-2 ring-primary ring-offset-2 ring-offset-background',
 		)}
 		on:click={() => {
 			import('./themes/yellow.css');
@@ -56,7 +56,7 @@
 		class={cn(
 			'bg-rose-500',
 			theme === 'rose' &&
-				'ring-2 ring-primary ring-offset-background ring-offset-2',
+				'ring-2 ring-primary ring-offset-2 ring-offset-background',
 		)}
 		on:click={() => {
 			import('./themes/rose.css');
@@ -69,7 +69,7 @@
 		class={cn(
 			'bg-blue-500',
 			theme === 'blue' &&
-				'ring-2 ring-primary ring-offset-background ring-offset-2',
+				'ring-2 ring-primary ring-offset-2 ring-offset-background',
 		)}
 		on:click={() => {
 			import('./themes/blue.css');
@@ -82,7 +82,7 @@
 		class={cn(
 			'bg-green-500',
 			theme === 'green' &&
-				'ring-2 ring-primary ring-offset-background ring-offset-2',
+				'ring-2 ring-primary ring-offset-2 ring-offset-background',
 		)}
 		on:click={() => {
 			import('./themes/green.css');
@@ -95,7 +95,7 @@
 		class={cn(
 			'bg-orange-500',
 			theme === 'orange' &&
-				'ring-2 ring-primary ring-offset-background ring-offset-2',
+				'ring-2 ring-primary ring-offset-2 ring-offset-background',
 		)}
 		on:click={() => {
 			import('./themes/orange.css');

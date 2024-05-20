@@ -3,7 +3,7 @@
 </script>
 
 <ul
-	class={cn('flex flex-wrap gap-12 items-center justify-center', $$props.class)}
+	class={cn('flex flex-wrap items-center justify-center gap-12', $$props.class)}
 >
 	<slot />
 </ul>

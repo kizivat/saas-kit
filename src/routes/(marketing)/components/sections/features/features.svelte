@@ -63,19 +63,19 @@
 	let expanded: boolean = false;
 </script>
 
-<Collapsible.Root class="max-w-screen-lg mx-auto" bind:open={expanded}>
+<Collapsible.Root class="mx-auto max-w-screen-lg" bind:open={expanded}>
 	<Features.Root>
 		{#each features.toSpliced(SHOW_BASE) as { title, icon, description, showcase }}
-			<Features.FeatureItem class="flex flex-nowrap gap-4 items-start mb-4">
+			<Features.FeatureItem class="mb-4 flex flex-nowrap items-start gap-4">
 				<svelte:component
 					this={icon}
-					class="size-10 fill-primary flex-shrink-0"
+					class="size-10 flex-shrink-0 fill-primary"
 				/>
 				<div>
-					<Features.Term class="leading-none mb-3">
+					<Features.Term class="mb-3 leading-none">
 						<span>{title}</span>
 					</Features.Term>
-					<Features.Description class="text-justify hyphens-auto">
+					<Features.Description class="hyphens-auto text-justify">
 						{description}
 					</Features.Description>
 				</div>
@@ -87,7 +87,7 @@
 					<svelte:component this={showcase} />
 				{:else}
 					<div
-						class="bg-black dark:bg-white opacity-5 w-full h-full min-h-80 rounded-lg"
+						class="h-full min-h-80 w-full rounded-lg bg-black opacity-5 dark:bg-white"
 					></div>
 				{/if}
 			</Features.FeatureShowcase>
@@ -96,14 +96,14 @@
 	<div class="flex items-center p-10">
 		<Collapsible.Trigger asChild let:builder>
 			<Button
-				class="text-center mx-auto place-self-center"
+				class="mx-auto place-self-center text-center"
 				variant="link"
 				builders={[builder]}
 			>
 				Show {#if expanded}less{:else}more{/if} features
 				<LucideChevronDown
 					class={cn(
-						'size-4 ms-2 transition-transform',
+						'ms-2 size-4 transition-transform',
 						expanded && '-rotate-180',
 					)}
 				/>
@@ -114,20 +114,20 @@
 		<Features.Root>
 			{#each features.toSpliced(0, SHOW_BASE) as { title, icon, description }}
 				<Features.FeatureItem>
-					<div class="flex flex-nowrap gap-4 items-start mb-4">
+					<div class="mb-4 flex flex-nowrap items-start gap-4">
 						<svelte:component
 							this={icon}
-							class="h-8 w-8 fill-primary flex-shrink-0"
+							class="h-8 w-8 flex-shrink-0 fill-primary"
 						/>
 						<Features.Term>{title}</Features.Term>
 					</div>
-					<Features.Description class="text-justify hyphens-auto">
+					<Features.Description class="hyphens-auto text-justify">
 						{description}
 					</Features.Description>
 				</Features.FeatureItem>
 				<Features.FeatureShowcase>
 					<div
-						class="bg-white opacity-5 w-full h-full min-h-80 rounded-lg"
+						class="h-full min-h-80 w-full rounded-lg bg-white opacity-5"
 					></div>
 				</Features.FeatureShowcase>
 			{/each}

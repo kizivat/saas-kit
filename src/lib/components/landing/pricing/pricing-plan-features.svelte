@@ -2,6 +2,6 @@
 	import { cn } from '$lib/utils';
 </script>
 
-<ul class={cn('flex flex-col gap-2 divide-y w-full text-sm', $$props.class)}>
+<ul class={cn('flex w-full flex-col gap-2 divide-y text-sm', $$props.class)}>
 	<slot />
 </ul>

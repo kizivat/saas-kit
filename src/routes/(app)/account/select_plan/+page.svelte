@@ -7,11 +7,11 @@
 </svelte:head>
 
 <div
-	class="text-center content-center min-h-[100vh] pb-12 mt-4 flex items-center place-content-center"
+	class="mt-4 flex min-h-[100vh] place-content-center content-center items-center pb-12 text-center"
 >
-	<div class="flex flex-col w-full px-6">
+	<div class="flex w-full flex-col px-6">
 		<div>
-			<h1 class="text-2xl font-bold mb-6">Select a Plan</h1>
+			<h1 class="mb-6 text-2xl font-bold">Select a Plan</h1>
 			<PricingModule callToAction="Select Plan" />
 		</div>
 	</div>

@@ -6,12 +6,12 @@
 	role="img"
 	aria-label="SaaS Kit logo"
 	class={cn(
-		'size-6 aspect-square',
+		'aspect-square size-6',
 		'flex flex-col items-center justify-center',
 		'bg-primary text-primary-foreground',
-		'-rotate-12 font-bold rounded',
+		'-rotate-12 rounded font-bold',
 		'text-xs',
-		'[&_*]:leading-[0.85] [&_*]:mt-[-2px]',
+		'[&_*]:mt-[-2px] [&_*]:leading-[0.85]',
 	)}
 >
 	<span>sa</span>

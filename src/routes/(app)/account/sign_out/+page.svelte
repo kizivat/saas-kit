@@ -15,4 +15,4 @@
 	});
 </script>
 
-<h1 class="text-2xl font-bold m-6">{message}</h1>
+<h1 class="m-6 text-2xl font-bold">{message}</h1>

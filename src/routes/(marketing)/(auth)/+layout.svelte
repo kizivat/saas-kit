@@ -10,9 +10,9 @@
 </script>
 
 <div
-	class="text-center content-center max-w-lg mx-auto min-h-[70vh] pb-12 flex items-center place-content-center"
+	class="mx-auto flex min-h-[70vh] max-w-lg place-content-center content-center items-center pb-12 text-center"
 >
-	<div class="flex flex-col w-64 lg:w-80">
+	<div class="flex w-64 flex-col lg:w-80">
 		<slot />
 		<div class="mt-8 {isEurope ? 'block' : 'hidden'}">
 			🍪 Logging in uses Cookies 🍪

@@ -4,7 +4,7 @@
 
 <p
 	class={cn(
-		'text-muted-foreground text-sm sm:text-base text-center max-w-prose mx-auto',
+		'mx-auto max-w-prose text-center text-sm text-muted-foreground sm:text-base',
 		$$props.class,
 	)}
 >

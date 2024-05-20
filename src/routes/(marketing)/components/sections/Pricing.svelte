@@ -45,7 +45,7 @@
 			<Card.Content class="flex flex-col gap-3">
 				<div>
 					<span class="text-5xl font-black tracking-tight">$5</span>
-					<span class="text-base text-muted-foreground tracking-wide">
+					<span class="text-base tracking-wide text-muted-foreground">
 						/ lifetime
 					</span>
 				</div>
@@ -73,7 +73,7 @@
 			<Card.Content class="flex flex-col gap-3">
 				<div>
 					<span class="text-5xl font-black tracking-tight">$100</span>
-					<span class="text-base text-muted-foreground tracking-wide">
+					<span class="text-base tracking-wide text-muted-foreground">
 						/ lifetime
 					</span>
 				</div>

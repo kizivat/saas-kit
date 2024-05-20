@@ -1,3 +1,3 @@
-<blockquote class="whitespace-pre-wrap break-words hyphens-auto">
+<blockquote class="hyphens-auto whitespace-pre-wrap break-words">
 	<slot />
 </blockquote>

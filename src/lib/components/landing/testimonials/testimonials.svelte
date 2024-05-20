@@ -8,7 +8,7 @@
 	class={cn(
 		'mx-auto',
 		variant === 'masonry' &&
-			'grid md:grid-cols-2 lg:grid-cols-4 sm:block columns-2 lg:columns-3 lg:gap-6 space-y-4 lg:space-y-6',
+			'grid columns-2 space-y-4 sm:block md:grid-cols-2 lg:columns-3 lg:grid-cols-4 lg:gap-6 lg:space-y-6',
 		// variant === 'carousel' && '',
 		$$props.class,
 	)}

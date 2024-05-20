@@ -10,11 +10,11 @@
 	<title>Account</title>
 </svelte:head>
 
-<h1 class="text-2xl font-bold mb-1">Dashboard</h1>
-<div class="alert alert-error max-w-lg mt-2">
+<h1 class="mb-1 text-2xl font-bold">Dashboard</h1>
+<div class="alert alert-error mt-2 max-w-lg">
 	<svg
 		xmlns="http://www.w3.org/2000/svg"
-		class="stroke-current shrink-0 h-6 w-6"
+		class="h-6 w-6 shrink-0 stroke-current"
 		fill="none"
 		viewBox="0 0 24 24"
 		><path
@@ -39,8 +39,8 @@
 </div>
 
 <div class="my-6">
-	<h1 class="text-xl font-bold mb-1">Users</h1>
-	<div class="stats shadow stats-vertical sm:stats-horizontal sm:w-[420px]">
+	<h1 class="mb-1 text-xl font-bold">Users</h1>
+	<div class="stats stats-vertical sm:stats-horizontal shadow sm:w-[420px]">
 		<div class="stat place-items-center">
 			<div class="stat-title">Downloads</div>
 			<div class="stat-value">31K</div>
@@ -55,8 +55,8 @@
 	</div>
 </div>
 <div class="my-6">
-	<h1 class="text-xl font-bold mb-1">Accounts</h1>
-	<div class="stats shadow stats-vertical sm:stats-horizontal sm:w-[420px]">
+	<h1 class="mb-1 text-xl font-bold">Accounts</h1>
+	<div class="stats stats-vertical sm:stats-horizontal shadow sm:w-[420px]">
 		<div class="stat place-items-center">
 			<div class="stat-title">New Registers</div>
 			<div class="stat-value">1,200</div>
@@ -71,8 +71,8 @@
 	</div>
 </div>
 <div class="my-6">
-	<h1 class="text-xl font-bold mb-1">Revenue</h1>
-	<div class="stats shadow stats-vertical sm:stats-horizontal sm:w-[420px]">
+	<h1 class="mb-1 text-xl font-bold">Revenue</h1>
+	<div class="stats stats-vertical sm:stats-horizontal shadow sm:w-[420px]">
 		<div class="stat place-items-center">
 			<div class="stat-title text-success">Revenue</div>
 			<div class="stat-value text-success">$4200</div>
