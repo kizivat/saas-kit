@@ -15,7 +15,7 @@
 
 	let currentPlanId = data.currentPlanId ?? defaultPlanId;
 	let currentPlanName = pricingPlans.find(
-		x => x.id === data.currentPlanId,
+		(x) => x.id === data.currentPlanId,
 	)?.name;
 </script>
 

@@ -56,7 +56,7 @@ export const actions = {
 
 		// Can check if we're a "password recovery" session by checking session amr
 		// let currentPassword take priority if provided (user can use either form)
-		const recoveryAmr = amr?.find(x => x.method === 'recovery');
+		const recoveryAmr = amr?.find((x) => x.method === 'recovery');
 		const isRecoverySession = recoveryAmr && !currentPassword;
 
 		// if this is password recovery session, check timestamp of recovery session

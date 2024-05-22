@@ -14,7 +14,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 		PUBLIC_SUPABASE_ANON_KEY,
 		{
 			cookies: {
-				get: key => event.cookies.get(key),
+				get: (key) => event.cookies.get(key),
 				/**
 				 * Note: You have to add the `path` variable to the
 				 * set and remove method due to sveltekit's cookie API

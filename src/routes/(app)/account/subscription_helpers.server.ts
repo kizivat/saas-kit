@@ -92,7 +92,7 @@ export const fetchSubscription = async ({
 	}
 
 	// find "primary". The user may have several old ones, we want an active one (including trials, and past_due in grace period).
-	const primaryStripeSubscription = stripeSubscriptions.data.find(x => {
+	const primaryStripeSubscription = stripeSubscriptions.data.find((x) => {
 		return (
 			x.status === 'active' ||
 			x.status === 'trialing' ||
@@ -103,7 +103,7 @@ export const fetchSubscription = async ({
 	if (primaryStripeSubscription) {
 		const productId =
 			primaryStripeSubscription?.items?.data?.[0]?.price.product ?? '';
-		appSubscription = pricingPlans.find(x => {
+		appSubscription = pricingPlans.find((x) => {
 			return x.stripe_product_id === productId;
 		});
 		if (!appSubscription) {

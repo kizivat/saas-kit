@@ -21,7 +21,7 @@
 	};
 
 	let menuOpen = false;
-	onNavigate(_ => {
+	onNavigate((_) => {
 		menuOpen = false;
 	});
 </script>

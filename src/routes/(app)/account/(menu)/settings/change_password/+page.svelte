@@ -12,9 +12,9 @@
 
 	// True if definitely has a password, but can be false if they
 	// logged in with oAuth or email link
-	let hasPassword = amr?.find(x => x.method === 'password') ? true : false;
+	let hasPassword = amr?.find((x) => x.method === 'password') ? true : false;
 
-	let usingOAuth = amr?.find(x => x.method === 'oauth') ? true : false;
+	let usingOAuth = amr?.find((x) => x.method === 'oauth') ? true : false;
 
 	let sendBtn: HTMLButtonElement;
 	let sentEmail = false;
@@ -27,7 +27,7 @@
 				.resetPasswordForEmail(email, {
 					redirectTo: `${$page.url.origin}/auth/callback?next=%2Faccount%2Fsettings%2Freset_password`,
 				})
-				.then(d => {
+				.then((d) => {
 					sentEmail = d.error ? false : true;
 				});
 		}

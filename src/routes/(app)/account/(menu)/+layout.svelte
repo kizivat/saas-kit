@@ -6,7 +6,7 @@
 	const adminSectionStore = writable('');
 	setContext('adminSection', adminSectionStore);
 	let adminSection: string;
-	adminSectionStore.subscribe(value => {
+	adminSectionStore.subscribe((value) => {
 		adminSection = value;
 	});
 
