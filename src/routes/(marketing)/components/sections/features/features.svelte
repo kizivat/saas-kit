@@ -65,7 +65,7 @@
 
 <Collapsible.Root class="mx-auto max-w-screen-lg" bind:open={expanded}>
 	<Features.Root>
-		{#each features.toSpliced(SHOW_BASE) as { title, icon, description, showcase }}
+		{#each [...features].splice(0, SHOW_BASE) as { title, icon, description, showcase }}
 			<Features.FeatureItem class="mb-4 flex flex-nowrap items-start gap-4">
 				<svelte:component
 					this={icon}
@@ -112,7 +112,7 @@
 	</div>
 	<Collapsible.Content>
 		<Features.Root>
-			{#each features.toSpliced(0, SHOW_BASE) as { title, icon, description }}
+			{#each [...features].splice(SHOW_BASE) as { title, icon, description }}
 				<Features.FeatureItem>
 					<div class="mb-4 flex flex-nowrap items-start gap-4">
 						<svelte:component
