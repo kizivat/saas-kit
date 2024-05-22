@@ -2,6 +2,7 @@
 	import Logo from '$lib/components/Logo.svelte';
 
 	import { Button } from '$lib/components/ui/button';
+	import { WebsiteName } from '../../../config';
 </script>
 
 <Button
@@ -10,5 +11,5 @@
 	href="/"
 >
 	<Logo />
-	<span>SaaS Kit</span>
+	<span>{WebsiteName}</span>
 </Button>
