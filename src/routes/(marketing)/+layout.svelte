@@ -141,7 +141,7 @@
 	</div>
 </header>
 
-<main class="container p-8">
+<main class="container flex flex-col items-center p-8">
 	<slot />
 </main>
 
