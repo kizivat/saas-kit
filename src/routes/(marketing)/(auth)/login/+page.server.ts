@@ -21,7 +21,7 @@ export const actions: Actions = {
 			const { data, error } = await event.locals.supabase.auth.signInWithOAuth({
 				provider,
 				options: {
-					redirectTo: `${event.url.origin}/auth/callback`,
+					redirectTo: `${event.url.origin}/auth/callback?next=/account`,
 					queryParams: {
 						access_type: 'offline',
 						prompt: 'consent',

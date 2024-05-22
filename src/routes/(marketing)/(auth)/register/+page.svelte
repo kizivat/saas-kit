@@ -1,5 +1,6 @@
 <script lang="ts">
 	import * as Card from '$lib/components/ui/card';
+	import { WebsiteName } from '../../../../config';
 	import SocialsAuth from '../components/socials-auth.svelte';
 	import RegisterForm from './register-form.svelte';
 
@@ -12,9 +13,9 @@
 
 <Card.Root class="mx-auto max-w-sm">
 	<Card.Header>
-		<Card.Title tag="h1" class="text-2xl"
-			>Create an <span class="sr-only">SaaS Kit</span> account</Card.Title
-		>
+		<Card.Title tag="h1" class="text-2xl">
+			Create an account on <span class="sr-only">{WebsiteName}</span>
+		</Card.Title>
 	</Card.Header>
 	<Card.Content class="flex flex-col gap-4">
 		<SocialsAuth />

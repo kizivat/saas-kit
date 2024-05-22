@@ -28,7 +28,7 @@
 {#if oAuthProviders.length > 0}
 	<form method="POST" class="flex flex-col gap-4">
 		<p class="flex text-sm text-muted-foreground">
-			Continue with third-party authorization service
+			Continue with third-party service
 		</p>
 		<ul class="flex flex-wrap justify-center gap-4">
 			{#each oAuthProviders as provider}
