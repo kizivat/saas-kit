@@ -9,11 +9,11 @@
 	been logged out.
 </p>
 <p class="mt-6">
-	If you remember your password <a href="/login" class="link">sign in</a> and try
-	again.
+	If you remember your password <a href="/login" class="underline">sign in</a> and
+	try again.
 </p>
 <p class="mt-6">
-	If you forget your password <a href="/forgot-password" class="link"
+	If you forget your password <a href="/forgot-password" class="underline"
 		>reset it</a
 	>.
 </p>
