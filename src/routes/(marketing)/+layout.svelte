@@ -9,6 +9,7 @@
 	import MenuIcon from 'virtual:icons/lucide/menu';
 	import XIcon from 'virtual:icons/lucide/x';
 	import '../../app.css';
+	import { WebsiteName } from '../../config';
 	import HomeButton from './components/HomeButton.svelte';
 	import PersonalDropdown from './components/PersonalDropdown.svelte';
 	import ThemeSwitchButton from './components/ThemeSwitchButton.svelte';
@@ -141,7 +142,7 @@
 	</div>
 </header>
 
-<main class="container flex flex-col items-center p-8">
+<main class="container mx-auto p-8">
 	<slot />
 </main>
 
@@ -235,7 +236,7 @@
 		</div>
 		<p class="max-w-prose place-self-center text-center text-sm leading-6">
 			&copy; {new Date().getFullYear()}
-			SaaS Kit created by <Button
+			{WebsiteName} created by <Button
 				variant="link"
 				href="https://kizivat.eu"
 				target="_blank"
