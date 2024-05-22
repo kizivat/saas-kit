@@ -155,6 +155,21 @@ enabled = true
 client_id = "env(SUPABASE_AUTH_EXTERNAL_TWITTER_CLIENT_ID)"
 secret = "env(SUPABASE_AUTH_EXTERNAL_TWITTER_SECRET)"
 
+# [auth.external.apple]
+# enabled = true
+# client_id = "env(SUPABASE_AUTH_EXTERNAL_APPLE_CLIENT_ID)"
+# secret = "env(SUPABASE_AUTH_EXTERNAL_APPLE_SECRET)"
+
+# [auth.external.facebook]
+# enabled = true
+# client_id = "env(SUPABASE_AUTH_EXTERNAL_FACEBOOK_CLIENT_ID)"
+# secret = "env(SUPABASE_AUTH_EXTERNAL_FACEBOOK_SECRET)"
+
+[auth.external.github]
+enabled = true
+client_id = "env(SUPABASE_AUTH_EXTERNAL_GITHUB_CLIENT_ID)"
+secret = "env(SUPABASE_AUTH_EXTERNAL_GITHUB_SECRET)"
+
 [analytics]
 enabled = false
 port = 54327
