@@ -10,7 +10,6 @@
 
 <svelte:head>
 	<title>{WebsiteName}</title>
-	<meta name="description" content="{WebsiteName} Home Page" />
 </svelte:head>
 
 <div class="mb-40 flex flex-col gap-20">

@@ -4,7 +4,10 @@
 	import { expoOut } from 'svelte/easing';
 	import { slide } from 'svelte/transition';
 	import '../app.css';
+	import MetaTags from './(marketing)/meta-tags.svelte';
 </script>
+
+<MetaTags />
 
 <ModeWatcher />
 {#if $navigating}
