@@ -18,7 +18,7 @@
 			builders={[builder]}
 		>
 			<span class="sr-only">Personal</span>
-			<Avatar.Root class="border-2 border-muted p-0.5">
+			<Avatar.Root class="border-2 border-primary p-0.5">
 				<Avatar.Fallback>
 					<UserIcon />
 				</Avatar.Fallback>
