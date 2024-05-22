@@ -9,13 +9,11 @@
 	}
 </script>
 
-<div
-	class="mx-auto flex min-h-[70vh] max-w-lg place-content-center content-center items-center pb-12 text-center"
->
-	<div class="flex w-64 flex-col lg:w-80">
+<div class="flex max-w-screen-lg flex-col items-center">
+	<div>
 		<slot />
-		<div class="mt-8 {isEurope ? 'block' : 'hidden'}">
-			🍪 Logging in uses Cookies 🍪
-		</div>
+	</div>
+	<div class="mt-8 {isEurope ? 'block' : 'hidden'}">
+		🍪 Logging in uses Cookies 🍪
 	</div>
 </div>

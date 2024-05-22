@@ -2,18 +2,39 @@ export const ssr = false;
 
 import { fail, redirect, type Actions } from '@sveltejs/kit';
 
-export const actions: Actions = {
-	default: async ({ request, locals: { supabase } }) => {
-		const formData = await request.formData();
-		const email = formData.get('email') as string;
-		const password = formData.get('password') as string;
+import { setError, superValidate } from 'sveltekit-superforms';
+import { zod } from 'sveltekit-superforms/adapters';
+import type { PageServerLoad } from './$types.js';
+import { formSchema } from './schema';
 
-		const { error } = await supabase.auth.signUp({ email, password });
+export const load: PageServerLoad = async () => {
+	return {
+		form: await superValidate(zod(formSchema)),
+	};
+};
+
+export const actions: Actions = {
+	default: async event => {
+		const supabase = event.locals.supabase;
+		const form = await superValidate(event, zod(formSchema));
+		if (!form.valid) {
+			return fail(400, {
+				form,
+			});
+		}
+
+		const { email, password } = form.data;
+
+		const { error } = await supabase.auth.signUp({
+			email,
+			password,
+		});
 
 		if (error) {
-			return fail(400, { error: error.message });
-		} else {
-			throw redirect(303, '/auth/callback');
+			console.error(error);
+			return setError(form, '', 'Could not sign up. Please try again.');
 		}
+
+		throw redirect(303, '/auth/callback');
 	},
 };

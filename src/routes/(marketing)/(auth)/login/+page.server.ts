@@ -2,20 +2,61 @@ export const ssr = false;
 
 import { fail, redirect, type Actions } from '@sveltejs/kit';
 
+import type { Provider } from '@supabase/supabase-js';
+import { setError, superValidate } from 'sveltekit-superforms';
+import { zod } from 'sveltekit-superforms/adapters';
+import type { PageServerLoad } from './$types.js';
+import { formSchema } from './schema';
+
+export const load: PageServerLoad = async () => {
+	return {
+		form: await superValidate(zod(formSchema)),
+	};
+};
+
 export const actions: Actions = {
-	default: async ({ request, locals: { supabase } }) => {
-		const formData = await request.formData();
-		const email = formData.get('email') as string;
-		const password = formData.get('password') as string;
+	default: async (event) => {
+		const provider = event.url.searchParams.get('provider') as Provider;
+		if (provider) {
+			const { data, error } = await event.locals.supabase.auth.signInWithOAuth({
+				provider,
+				options: {
+					redirectTo: `${event.url.origin}/auth/callback`,
+					queryParams: {
+						access_type: 'offline',
+						prompt: 'consent',
+					},
+				},
+			});
+
+			if (error) {
+				console.error(error);
+				return fail(400, {});
+			}
+
+			throw redirect(303, data.url);
+		}
+
+		const supabase = event.locals.supabase;
+		const form = await superValidate(event, zod(formSchema));
+		if (!form.valid) {
+			return fail(400, {
+				form,
+			});
+		}
+
+		const { email, password } = form.data;
 
 		const { error } = await supabase.auth.signInWithPassword({
 			email,
 			password,
 		});
+
 		if (error) {
-			return fail(400, { error: error.message });
-		} else {
-			throw redirect(303, '/auth/callback');
+			console.error(error);
+			return setError(form, '', 'Invalid credentials');
 		}
+
+		throw redirect(303, '/auth/callback');
 	},
 };
