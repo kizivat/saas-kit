@@ -7,6 +7,10 @@ env:
   PUBLIC_SUPABASE_ANON_KEY: 'fake_anon_key'
   PRIVATE_SUPABASE_SERVICE_ROLE: 'fake_service_role'
   PRIVATE_STRIPE_API_KEY: 'fake_strip_api_key'
+  PRIVATE_SMTP_HOST: 'fake_smtp_host'
+  PRIVATE_SMTP_PORT: 'fake_smtp_port'
+  PRIVATE_SMTP_USER: 'fake_smtp_user'
+  PRIVATE_SMTP_PASSWORD: 'fake_smtp_pass'
 
 jobs:
   build_and_test:
