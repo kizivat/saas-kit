@@ -3,7 +3,7 @@ import type { Database } from '../../../DatabaseDefinitions';
 
 import { PRIVATE_STRIPE_API_KEY } from '$env/static/private';
 import Stripe from 'stripe';
-import { pricingPlans } from '../../(marketing)/pricing/pricing_plans';
+// import { pricingPlans } from '../../(marketing)/pricing/pricing_plans';
 const stripe = new Stripe(PRIVATE_STRIPE_API_KEY, { apiVersion: '2023-08-16' });
 
 export const getOrCreateCustomerId = async ({
@@ -101,11 +101,9 @@ export const fetchSubscription = async ({
 	});
 	let appSubscription = null;
 	if (primaryStripeSubscription) {
-		const productId =
-			primaryStripeSubscription?.items?.data?.[0]?.price.product ?? '';
-		appSubscription = pricingPlans.find((x) => {
-			return x.stripe_product_id === productId;
-		});
+		// const productId =
+		// 	primaryStripeSubscription?.items?.data?.[0]?.price.product ?? '';
+		appSubscription = null;
 		if (!appSubscription) {
 			return {
 				error:
