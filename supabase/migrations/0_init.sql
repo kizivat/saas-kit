@@ -33,17 +33,15 @@ alter table stripe_customers enable row level security;
 
 -- Create a table for "Contact Us" form submissions
 -- Limit RLS policies -- only server side access
-create table contact_requests (
+create table contact_messages (
   id uuid primary key default gen_random_uuid(),
   updated_at timestamp with time zone,
-  first_name text,
-  last_name text,
+  "name" text,
   email text,
-  phone text,
-  company_name text,
-  message_body text
+  "subject" text,
+  body text
 );
-alter table contact_requests enable row level security;
+alter table contact_messages enable row level security;
 
 -- This trigger automatically creates a profile entry when a new user signs up via Supabase Auth.
 -- See https://supabase.com/docs/guides/auth/managing-user-data#using-triggers for more details.

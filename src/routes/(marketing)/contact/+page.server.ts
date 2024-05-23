@@ -1,71 +1,88 @@
-import { fail } from '@sveltejs/kit';
+export const ssr = false;
 
-/** @type {import('./$types').Actions} */
-export const actions = {
-	submitContactUs: async ({ request, locals: { supabaseServiceRole } }) => {
-		const formData = await request.formData();
-		const errors: { [fieldName: string]: string } = {};
+import {
+	PRIVATE_SMTP_HOST,
+	PRIVATE_SMTP_PASSWORD,
+	PRIVATE_SMTP_PORT,
+	PRIVATE_SMTP_USER,
+} from '$env/static/private';
+import { fail, type Actions, type ServerLoad } from '@sveltejs/kit';
+import { createTransport } from 'nodemailer';
+import { message, setError, superValidate } from 'sveltekit-superforms';
+import { zod } from 'sveltekit-superforms/adapters';
+import { formSchema } from './schema';
 
-		const firstName = formData.get('first_name')?.toString() ?? '';
-		if (firstName.length < 2) {
-			errors['first_name'] = 'First name is required';
-		}
-		if (firstName.length > 500) {
-			errors['first_name'] = 'First name too long';
-		}
+export const load: ServerLoad = async () => {
+	return {
+		form: await superValidate(zod(formSchema)),
+	};
+};
 
-		const lastName = formData.get('last_name')?.toString() ?? '';
-		if (lastName.length < 2) {
-			errors['last_name'] = 'Last name is required';
-		}
-		if (lastName.length > 500) {
-			errors['last_name'] = 'Last name too long';
-		}
-
-		const email = formData.get('email')?.toString() ?? '';
-		if (email.length < 6) {
-			errors['email'] = 'Email is required';
-		} else if (email.length > 500) {
-			errors['email'] = 'Email too long';
-		} else if (!email.includes('@') || !email.includes('.')) {
-			errors['email'] = 'Invalid email';
-		}
-
-		const company = formData.get('company')?.toString() ?? '';
-		if (company.length > 500) {
-			errors['company'] = 'Company too long';
-		}
-
-		const phone = formData.get('phone')?.toString() ?? '';
-		if (phone.length > 100) {
-			errors['phone'] = 'Phone number too long';
-		}
-
-		const message = formData.get('message')?.toString() ?? '';
-		if (message.length > 2000) {
-			errors['message'] = 'Message too long (' + message.length + ' of 2000)';
-		}
-
-		console.log('errors:', errors);
-		if (Object.keys(errors).length > 0) {
-			return fail(400, { errors });
-		}
-
-		// Save to database
-		const { error: insertError } = await supabaseServiceRole
-			.from('contact_requests')
-			.insert({
-				first_name: firstName,
-				last_name: lastName,
-				email,
-				company_name: company,
-				phone,
-				message_body: message,
-				updated_at: new Date(),
+export const actions: Actions = {
+	default: async (event) => {
+		const supabaseServiceRole = event.locals.supabaseServiceRole;
+		const form = await superValidate(event, zod(formSchema));
+		if (!form.valid) {
+			return fail(400, {
+				form,
 			});
-
-		if (insertError) {
-			return fail(500, { errors: { _: 'Error saving' } });
 		}
+
+		const { name, email, subject, body } = form.data;
+
+		const transport = createTransport({
+			host: PRIVATE_SMTP_HOST,
+			port: Number(PRIVATE_SMTP_PORT),
+			secure: true,
+			auth: {
+				user: PRIVATE_SMTP_USER,
+				pass: PRIVATE_SMTP_PASSWORD,
+			},
+		});
+
+		const insert = supabaseServiceRole.from('contact_messages').insert({
+			name,
+			email,
+			subject,
+			body,
+			updated_at: new Date(),
+		});
+
+		const send = transport.sendMail({
+			from: `${name} <david@kizivat.dev>`,
+			to: 'david.kizivat@gmail.com',
+			subject,
+			text: `from: ${name} <${email}>\nsubject:${subject}\n\n${body}`,
+		});
+
+		const [result, { error }] = await Promise.all([send, insert]);
+
+		console.debug('Contact email status: ', result);
+
+		if (error) {
+			console.error(
+				'Error inserting contact request message into the database: ',
+				error,
+			);
+			console.error(
+				`Contact message from ${name} <${email}> with subject ${subject} and body ${body} was not saved.`,
+			);
+		}
+
+		if (result.rejected.length > 0) {
+			console.error('Rejected email send response: ', result.response);
+			console.error(
+				`Email from ${name} <${email}> with subject ${subject} and body ${body} was rejected.`,
+			);
+			return setError(
+				form,
+				'',
+				'An error occured while sending the message. Please try again later.',
+			);
+		}
+
+		return message(form, {
+			success: 'Thank you for your message. We will get back to you soon.',
+		});
 	},
 };

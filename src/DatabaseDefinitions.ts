@@ -9,36 +9,30 @@ export type Json =
 export interface Database {
 	public: {
 		Tables: {
-			contact_requests: {
+			contact_messages: {
 				Row: {
-					company_name: string | null;
 					email: string | null;
-					first_name: string | null;
+					name: string | null;
+					subject: string | null;
 					id: string;
-					last_name: string | null;
-					message_body: string | null;
-					phone: string | null;
+					body: string | null;
 					updated_at: Date | null;
 				};
 				Insert: {
-					company_name?: string | null;
 					email?: string | null;
-					first_name?: string | null;
+					name?: string | null;
+					subject?: string | null;
 					id?: string;
-					last_name?: string | null;
-					message_body?: string | null;
-					phone?: string | null;
-					updated_at?: Date | null;
+					body?: string | null;
+					updated_at: Date | null;
 				};
 				Update: {
-					company_name?: string | null;
-					email?: string | null;
-					first_name?: string | null;
-					id?: string;
-					last_name?: string | null;
-					message_body?: string | null;
-					phone?: string | null;
-					updated_at?: Date | null;
+					email: string | null;
+					name: string | null;
+					subject: string | null;
+					id: string;
+					body: string | null;
+					updated_at: Date | null;
 				};
 				Relationships: [];
 			};
