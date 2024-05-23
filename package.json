@@ -11,8 +11,8 @@
 		"test:watch": "vitest",
 		"test": "vitest run",
 		"lint": "eslint .",
-		"format": "prettier --write .",
-		"format:check": "prettier --check ."
+		"format": "prettier --write . --ignore-path .gitignore",
+		"format:check": "prettier --check . --ignore-path .gitignore"
 	},
 	"devDependencies": {
 		"@iconify-json/bi": "^1.1.23",
