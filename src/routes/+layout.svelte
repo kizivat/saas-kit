@@ -5,11 +5,13 @@
 	import { slide } from 'svelte/transition';
 	import '../app.css';
 	import MetaTags from './(marketing)/meta-tags.svelte';
+	import CookiesBanner from '$lib/components/landing/cookies-banner/cookies-banner.svelte';
 </script>
 
 <MetaTags />
-
 <ModeWatcher />
+<CookiesBanner />
+
 {#if $navigating}
 	<!-- 
 	Loading animation for next page since svelte doesn't show any indicator. 
