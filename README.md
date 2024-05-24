@@ -1,4 +1,6 @@
-<h1 style="display: flex; align-items: center; gap: 1rem;"> <img alt="SaaS Kit logo" src="./static/images/logo@512.png" width="64" height="64"> SaaSKit</h1>
+<img alt="SaaS Kit logo" src="./static/images/logo@512.png" width="64" height="64">
+
+# SaaS Kit
 
 [![Build](https://github.com/kizivat/saas-kit/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/kizivat/saas-kit/actions/workflows/build.yml)
 [![Format Check](https://github.com/kizivat/saas-kit/actions/workflows/format.yml/badge.svg?branch=main)](https://github.com/kizivat/saas-kit/actions/workflows/format.yml)
