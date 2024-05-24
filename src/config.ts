@@ -1,6 +1,6 @@
 import type { Provider } from '@supabase/supabase-js';
 
-export const WebsiteName: string = 'SaaS Starter';
+export const WebsiteName: string = 'SaaS Kit';
 
 /* You'll need to configure your providers in
 your Supabase project settings `/supabase/config.toml` */
