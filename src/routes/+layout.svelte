@@ -1,11 +1,28 @@
 <script lang="ts">
+	import { invalidate } from '$app/navigation';
 	import { navigating } from '$app/stores';
+	import CookiesBanner from '$lib/components/landing/cookies-banner/cookies-banner.svelte';
 	import { ModeWatcher } from 'mode-watcher';
+	import { onMount } from 'svelte';
 	import { expoOut } from 'svelte/easing';
 	import { slide } from 'svelte/transition';
 	import '../app.css';
 	import MetaTags from './(marketing)/meta-tags.svelte';
-	import CookiesBanner from '$lib/components/landing/cookies-banner/cookies-banner.svelte';
+
+	export let data;
+
+	let { supabase, session } = data;
+	$: ({ supabase, session } = data);
+
+	onMount(() => {
+		const { data } = supabase.auth.onAuthStateChange((event, _session) => {
+			if (_session?.expires_at !== session?.expires_at) {
+				invalidate('supabase:auth');
+			}
+		});
+
+		return () => data.subscription.unsubscribe();
+	});
 </script>
 
 <MetaTags />

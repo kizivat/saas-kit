@@ -11,8 +11,8 @@
 	import '../../app.css';
 	import { WebsiteName } from '../../config';
 	import HomeButton from './components/HomeButton.svelte';
-	import PersonalDropdown from './components/PersonalDropdown.svelte';
 	import ThemeSwitchButton from './components/ThemeSwitchButton.svelte';
+	import PersonalMenu from './components/personal-menu.svelte';
 
 	const menuItems = {
 		'/': 'Home',
@@ -25,6 +25,8 @@
 	onNavigate((_) => {
 		menuOpen = false;
 	});
+
+	export let data;
 </script>
 
 <header class="sticky top-0 z-10 border-b border-border bg-card py-4">
@@ -44,8 +46,7 @@
 			</ul>
 		</nav>
 		<div class="hidden justify-self-end sm:block">
-			<!-- <Button variant="secondary" href="/account">Get started</Button> -->
-			<PersonalDropdown />
+			<PersonalMenu user={data.user} />
 		</div>
 
 		<div class="justify-self-end sm:hidden">
@@ -116,24 +117,7 @@
 						</ul>
 						<Separator />
 						<ul class="">
-							<li>
-								<Button
-									href="/account"
-									variant="ghost"
-									class="w-full py-6 text-base"
-								>
-									Register
-								</Button>
-							</li>
-							<li>
-								<Button
-									href="/account"
-									variant="ghost"
-									class="w-full py-6 text-base"
-								>
-									Log in
-								</Button>
-							</li>
+							<PersonalMenu user={data.user} />
 						</ul>
 					</nav>
 				</Drawer.Content>
