@@ -13,7 +13,7 @@
 	try again.
 </p>
 <p class="mt-6">
-	If you forget your password <a href="/forgot-password" class="underline"
+	If you forgot your password <a href="/forgot-password" class="underline"
 		>reset it</a
 	>.
 </p>
