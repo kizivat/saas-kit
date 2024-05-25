@@ -56,8 +56,8 @@
 					Dark
 				</DropdownMenu.RadioItem>
 			</DropdownMenu.RadioGroup>
-			<DropdownMenu.Separator />
 			{#if user}
+				<DropdownMenu.Separator />
 				<DropdownMenu.Item href="/account">Account</DropdownMenu.Item>
 				<DropdownMenu.Item href="/log-out">Log out</DropdownMenu.Item>
 			{/if}
