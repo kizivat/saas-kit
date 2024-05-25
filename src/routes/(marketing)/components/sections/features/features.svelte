@@ -14,17 +14,17 @@
 	import Themes from './showcases/Themes.svelte';
 	const features = [
 		{
-			title: 'Responsive Design',
-			icon: TabletSmartphoneIcon,
-			description:
-				'Your app will designed to work on any device, from mobile to desktop. This includes the marketing site, the app itself, and any other pages.',
-		},
-		{
 			icon: PaletteIcon,
 			title: 'Themeable + Mode Switcher',
 			description:
 				"You can copy-paste any of the shadcn's premade themes, or create your own tweaking a few CSS variables. Any theme can be toggled between light and dark mode.",
 			showcase: Themes,
+		},
+		{
+			title: 'Responsive Design',
+			icon: TabletSmartphoneIcon,
+			description:
+				'Your app will designed to work on any device, from mobile to desktop. This includes the marketing site, the app itself, and any other pages.',
 		},
 		{
 			icon: LucideLayoutPanelTop,
@@ -66,7 +66,9 @@
 <Collapsible.Root class="mx-auto max-w-screen-lg" bind:open={expanded}>
 	<Features.Root>
 		{#each [...features].splice(0, SHOW_BASE) as { title, icon, description, showcase }}
-			<Features.FeatureItem class="mb-4 flex flex-nowrap items-start gap-4">
+			<Features.FeatureItem
+				class="mb-4 flex min-h-80 flex-nowrap items-start gap-4"
+			>
 				<svelte:component
 					this={icon}
 					class="size-10 flex-shrink-0 fill-primary"
@@ -81,7 +83,7 @@
 				</div>
 			</Features.FeatureItem>
 			<Features.FeatureShowcase
-				class="flex flex-col items-center justify-center"
+				class="flex flex-col items-center justify-start"
 			>
 				{#if showcase}
 					<svelte:component this={showcase} />

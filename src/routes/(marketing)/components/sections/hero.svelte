@@ -5,7 +5,7 @@
 	import HeroAnimation from '../HeroAnimation.svelte';
 </script>
 
-<div class="grid items-center overflow-visible md:grid-cols-2">
+<div class="grid items-center gap-10 overflow-visible md:grid-cols-2">
 	<div class="flex flex-col items-center sm:gap-6 md:items-start">
 		<h1
 			class={cn(
@@ -27,31 +27,17 @@
 			The <em>MIT</em> licensed, <em>optimized</em>, and <em>free to run</em> SaaS
 			template
 		</p>
-		<p class="text-center md:text-left md:text-lg">
-			Built with <a
+		<p class="text-center md:text-left md:text-lg [&_a]:underline">
+			An open-source SaaS starter-kit built with <a
 				href="https://kit.svelte.dev"
-				class="link font-bold"
 				target="_blank">SvelteKit</a
 			>,
-			<a href="https://supabase.com" class="link font-bold" target="_blank"
-				>Supabase</a
-			>,
-			<a href="https://stripe.com" class="link font-bold" target="_blank"
-				>Stripe</a
-			>,
-			<a href="https://tailwindcss.com" class="link font-bold" target="_blank"
-				>Tailwind</a
-			>,
-			<a
-				href="https://shadcn-svelte.com/"
-				class="link font-bold"
-				target="_blank">shadcn-svelte</a
-			>, and
-			<a
-				href="https://www.postgresql.org"
-				class="link font-bold"
-				target="_blank">Postgres</a
-			>.
+			<a href="https://supabase.io" target="_blank">Supabase</a>,
+			<a href="https://tailwindcss.com" target="_blank">TailwindCSS</a>,
+			<a href="https://stripe.com" target="_blank">Stripe</a>, and
+			<a href="https://shadcn-svelte.com" target="_blank">shadcn-svelte</a>.
+			Host and scale up to 50,000 customers for free on Supabase and Cloudflare
+			Workers.
 		</p>
 		<div class="mt-6 flex gap-3 md:mt-2">
 			<Button href="/login">Try it out</Button>

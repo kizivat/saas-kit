@@ -5,7 +5,7 @@
 	<meta name="title" content="SaaS Kit" />
 	<meta
 		name="description"
-		content="An open source SaaS starter kit built with SvelteKit, Supabase, TailwindCSS, Stripe and shadcn-svelte. Host and scale up to 50,000 customers for free on Supabase and Cloudflare Workers."
+		content="An open-source SaaS starter-kit built with SvelteKit, Supabase, TailwindCSS, Stripe, and shadcn-svelte. Host and scale up to 50,000 customers for free on Supabase and Cloudflare Workers."
 	/>
 	<meta
 		name="keywords"
