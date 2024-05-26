@@ -1,5 +1,6 @@
 <script>
 	import { onNavigate } from '$app/navigation';
+	import PersonalMenu from '$lib/components/personal-menu.svelte';
 	import Button from '$lib/components/ui/button/button.svelte';
 	import * as Collapsible from '$lib/components/ui/collapsible';
 	import * as Drawer from '$lib/components/ui/drawer';
@@ -12,7 +13,6 @@
 	import { WebsiteName } from '../../config';
 	import HomeButton from './components/HomeButton.svelte';
 	import ThemeSwitchButton from './components/ThemeSwitchButton.svelte';
-	import PersonalMenu from './components/personal-menu.svelte';
 
 	const menuItems = {
 		'/': 'Home',

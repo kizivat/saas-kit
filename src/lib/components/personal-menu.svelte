@@ -35,9 +35,9 @@
 				<DropdownMenu.Item href="/login">Login</DropdownMenu.Item>
 				<DropdownMenu.Item href="/register">Register</DropdownMenu.Item>
 			{:else}
-				<p class="p-1 text-sm">
+				<DropdownMenu.Label>
 					Welcome back,<br /><strong>{user.email}</strong>
-				</p>
+				</DropdownMenu.Label>
 			{/if}
 
 			<DropdownMenu.Separator />
@@ -69,12 +69,12 @@
 	<ul class="">
 		{#if !user}
 			<li>
-				<Button href="/account" variant="ghost" class="w-full py-6 text-base">
+				<Button href="/register" variant="ghost" class="w-full py-6 text-base">
 					Register
 				</Button>
 			</li>
 			<li>
-				<Button href="/account" variant="ghost" class="w-full py-6 text-base">
+				<Button href="/log-in" variant="ghost" class="w-full py-6 text-base">
 					Log in
 				</Button>
 			</li>
