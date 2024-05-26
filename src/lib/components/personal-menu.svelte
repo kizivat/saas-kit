@@ -16,14 +16,14 @@
 	<DropdownMenu.Root>
 		<DropdownMenu.Trigger asChild let:builder>
 			<Button
-				variant="ghost"
+				variant="default"
 				size="icon"
 				class="rounded-full"
 				builders={[builder]}
 			>
 				<span class="sr-only">Personal</span>
-				<Avatar.Root class="border-2 border-primary p-0.5">
-					<Avatar.Fallback>
+				<Avatar.Root>
+					<Avatar.Fallback class="bg-primary">
 						<UserIcon />
 					</Avatar.Fallback>
 				</Avatar.Root>
@@ -58,7 +58,7 @@
 			</DropdownMenu.RadioGroup>
 			{#if user}
 				<DropdownMenu.Separator />
-				<DropdownMenu.Item href="/account">Account</DropdownMenu.Item>
+				<DropdownMenu.Item href="/settings">Settings</DropdownMenu.Item>
 				<DropdownMenu.Item href="/log-out">Log out</DropdownMenu.Item>
 			{/if}
 		</DropdownMenu.Content>
