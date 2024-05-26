@@ -1,7 +1,7 @@
 <script lang="ts">
-	import type { HTMLLiAttributes } from 'svelte/elements';
-	import ChevronRight from 'lucide-svelte/icons/chevron-right';
 	import { cn } from '$lib/utils.js';
+	import type { HTMLLiAttributes } from 'svelte/elements';
+	import ChevronRight from '~icons/lucide/chevron-right';
 
 	type $$Props = HTMLLiAttributes & {
 		el?: HTMLLIElement;
