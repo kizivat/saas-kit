@@ -19,7 +19,8 @@ export const load = async ({ locals: { supabase, safeGetSession } }) => {
 	return {
 		changePasswordForm: await superValidate(zod(changePasswordFormSchema)),
 		createPasswordForm: await superValidate(zod(createPasswordFormSchema)),
-		resetOrCreate: !passwordSet || Boolean(recoveryAmr),
+		recoverySession: Boolean(recoveryAmr),
+		createPassword: !passwordSet,
 	};
 };
 
@@ -101,10 +102,7 @@ export const actions = {
 
 		if (recoveryAmr) {
 			await supabase.auth.signOut();
-			return {
-				form,
-				signedOut: true,
-			};
+			throw redirect(303, '/login?alertDialog=reset-password');
 		}
 
 		return 'old_password' in form.data

@@ -17,6 +17,7 @@
 
 	export let data: SuperValidated<Infer<CreatePasswordFormSchema>>;
 	export let user: User | null;
+	export let recoverySession: boolean = false;
 
 	const form = superForm(data, {
 		validators: zodClient(createPasswordFormSchema),
@@ -28,11 +29,9 @@
 <Card.Root>
 	<Card.Header>
 		<Card.Title>
-				Create Password
+			{recoverySession ? 'Reset Password' : 'Create Password'}
 		</Card.Title>
-		<Card.Description>
-				Create a password for your account.
-		</Card.Description>
+		<Card.Description>Create a new password for your account.</Card.Description>
 	</Card.Header>
 	<form method="POST" action="?/updatePassword" use:enhance>
 		<input
@@ -60,7 +59,7 @@
 			</Form.Field>
 			<Form.Field {form} name="confirm_password">
 				<Form.Control let:attrs>
-					<Form.Label>Confirm Password</Form.Label>
+					<Form.Label>Confirm New Password</Form.Label>
 					<Input
 						{...attrs}
 						type="password"
@@ -77,9 +76,9 @@
 			<Form.Button type="submit" disabled={$submitting || !$tainted}>
 				{#if $submitting}
 					<LoaderCircle class="mr-2 h-4 w-4 animate-spin" />
-					Creating Password…
+					{recoverySession ? 'Resetting Password…' : 'Creating Password…'}
 				{:else}
-					Create Password
+					{recoverySession ? 'Reset Password' : 'Create Password'}
 				{/if}
 			</Form.Button>
 			{#if $message?.success}

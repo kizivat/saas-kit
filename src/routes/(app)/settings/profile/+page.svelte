@@ -1,6 +1,4 @@
 <script lang="ts">
-	import { goto } from '$app/navigation';
-	import * as AlertDialog from '$lib/components/ui/alert-dialog';
 	import { Button } from '$lib/components/ui/button';
 	import * as Card from '$lib/components/ui/card';
 	import * as Dialog from '$lib/components/ui/dialog';
@@ -10,7 +8,6 @@
 	import InfoForm from './info-form.svelte';
 
 	export let data;
-	export let form;
 </script>
 
 <svelte:head>
@@ -63,24 +60,3 @@
 		{/if}
 	</Card.Content>
 </Card.Root>
-
-<AlertDialog.Root open={form?.deleted} closeOnEscape={false}>
-	<AlertDialog.Content>
-		<AlertDialog.Header>
-			<AlertDialog.Title>Account deleted</AlertDialog.Title>
-			<AlertDialog.Description>
-				Your account has been successfully deleted. You will now be redirected
-				to the homepage.
-			</AlertDialog.Description>
-		</AlertDialog.Header>
-		<AlertDialog.Footer>
-			<AlertDialog.Action
-				on:click={async () => {
-					goto('/register');
-				}}
-			>
-				Continue
-			</AlertDialog.Action>
-		</AlertDialog.Footer>
-	</AlertDialog.Content>
-</AlertDialog.Root>

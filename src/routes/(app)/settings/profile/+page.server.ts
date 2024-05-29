@@ -144,9 +144,6 @@ export const actions = {
 
 		await supabase.auth.signOut();
 
-		return {
-			form,
-			deleted: true,
-		};
+		throw redirect(303, '/register?alertDialog=account-deletion');
 	},
 };
