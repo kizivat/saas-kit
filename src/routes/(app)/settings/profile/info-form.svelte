@@ -19,7 +19,6 @@
 	});
 
 	const { form: formData, enhance, submitting, tainted, message } = form;
-
 </script>
 
 <Card.Root>
