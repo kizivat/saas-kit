@@ -21,7 +21,7 @@ export const actions: Actions = {
 			const { data, error } = await event.locals.supabase.auth.signInWithOAuth({
 				provider,
 				options: {
-					redirectTo: `${event.url.origin}/auth/callback?next=/account`,
+					redirectTo: `${event.url.origin}/auth/callback?next=/dashboard`,
 					queryParams: {
 						access_type: 'offline',
 						prompt: 'consent',
@@ -57,6 +57,6 @@ export const actions: Actions = {
 			return setError(form, '', 'Invalid credentials');
 		}
 
-		throw redirect(303, '/auth/callback');
+		throw redirect(303, '/auth/callback?next=/dashboard');
 	},
 };

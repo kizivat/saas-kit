@@ -2,10 +2,7 @@
 create table profiles (
   id uuid references auth.users on delete cascade not null primary key,
   updated_at timestamp with time zone,
-  full_name text,
-  company_name text,
-  avatar_url text,
-  website text
+  "name" text
 );
 -- Set up Row Level Security (RLS)
 -- See https://supabase.com/docs/guides/auth/row-level-security for more details.
@@ -48,14 +45,22 @@ alter table contact_messages enable row level security;
 create function public.handle_new_user()
 returns trigger as $$
 begin
-  insert into public.profiles (id, full_name, avatar_url)
-  values (new.id, new.raw_user_meta_data->>'full_name', new.raw_user_meta_data->>'avatar_url');
+  insert into public.profiles (id, "name")
+  values (new.id, new.raw_user_meta_data->>'name');
   return new;
 end;
 $$ language plpgsql security definer;
 create trigger on_auth_user_created
   after insert on auth.users
   for each row execute procedure public.handle_new_user();
+
+-- Function to check whether a user has password set
+create function public.user_password_set()
+returns boolean as $$
+begin
+  return exists (select 1 from auth.users where id = auth.uid() and length(auth.users.encrypted_password) > 0);
+end;
+$$ language plpgsql security definer;
 
 -- Set up Storage!
 insert into storage.buckets (id, name)

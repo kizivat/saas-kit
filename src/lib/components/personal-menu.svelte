@@ -10,6 +10,13 @@
 	import UserIcon from 'virtual:icons/lucide/user-round';
 
 	export let user: User | null;
+
+	let username =
+		user?.user_metadata.name ||
+		user?.user_metadata.full_name ||
+		user?.user_metadata.preferred_username ||
+		user?.user_metadata.user_name ||
+		user?.email;
 </script>
 
 <div class="hidden sm:block">
@@ -23,6 +30,7 @@
 			>
 				<span class="sr-only">Personal</span>
 				<Avatar.Root>
+					<Avatar.Image src={user?.user_metadata.avatar_url} alt={username} />
 					<Avatar.Fallback class="bg-primary">
 						<UserIcon />
 					</Avatar.Fallback>
@@ -36,7 +44,7 @@
 				<DropdownMenu.Item href="/register">Register</DropdownMenu.Item>
 			{:else}
 				<DropdownMenu.Label>
-					Welcome back,<br /><strong>{user.email}</strong>
+					Welcome back,<br /><strong>{username}</strong>
 				</DropdownMenu.Label>
 			{/if}
 
@@ -80,8 +88,8 @@
 			</li>
 		{:else}
 			<li>
-				<Button href="/account" variant="ghost" class="w-full py-6 text-base">
-					Account
+				<Button href="/settings" variant="ghost" class="w-full py-6 text-base">
+					Settings
 				</Button>
 			</li>
 			<li>

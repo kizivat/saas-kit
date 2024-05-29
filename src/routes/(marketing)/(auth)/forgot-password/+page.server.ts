@@ -24,7 +24,7 @@ export const actions: Actions = {
 		const { email } = form.data;
 		const base = new URL(request.url).origin;
 		const redirectTo = new URL(
-			`/auth/callback?next=${encodeURIComponent('/account/settings/reset_password')}`,
+			`/auth/callback?next=${encodeURIComponent('/settings/security')}`,
 			base,
 		).toString();
 		const { error } = await supabase.auth.resetPasswordForEmail(email, {

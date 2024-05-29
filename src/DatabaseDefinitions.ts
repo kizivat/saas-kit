@@ -38,28 +38,19 @@ export interface Database {
 			};
 			profiles: {
 				Row: {
-					avatar_url: string | null;
-					full_name: string | null;
+					name: string | null;
 					id: string;
 					updated_at: string | null;
-					company_name: string | null;
-					website: string | null;
 				};
 				Insert: {
-					avatar_url?: string | null;
-					full_name?: string | null;
+					name?: string | null;
 					id: string;
 					updated_at?: Date | null;
-					company_name?: string | null;
-					website?: string | null;
 				};
 				Update: {
-					avatar_url?: string | null;
-					full_name?: string | null;
+					name?: string | null;
 					id?: string;
 					updated_at?: string | null;
-					company_name?: string | null;
-					website?: string | null;
 				};
 				Relationships: [
 					{
@@ -100,7 +91,12 @@ export interface Database {
 			[_ in never]: never;
 		};
 		Functions: {
-			[_ in never]: never;
+			user_password_set: {
+				Args: {
+					[_ in never]: never;
+				};
+				Returns: boolean;
+			};
 		};
 		Enums: {
 			[_ in never]: never;

@@ -14,9 +14,9 @@
 			data-x-chunk-description="A sidebar navigation with links to general, security, integrations, support, organizations, and advanced settings."
 			data-x-chunk-container="chunk-container after:right-0"
 		>
-			<a href="##"> Profile </a>
-			<a href="##">Security</a>
-			<a href="##">Billing</a>
+			<a href="/settings/profile" class="font-semibold text-primary">Profile</a>
+			<a href="/settings/security">Security</a>
+			<a href="/settings/billing">Billing</a>
 		</nav>
 		<div class="flex flex-1 flex-col gap-6">
 			<slot />
