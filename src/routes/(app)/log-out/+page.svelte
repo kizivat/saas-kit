@@ -10,7 +10,7 @@
 		if (error) {
 			message = 'There was an issue signing out.';
 		} else {
-			goto('/');
+			goto('/login');
 		}
 	});
 </script>

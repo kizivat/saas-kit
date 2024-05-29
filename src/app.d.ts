@@ -1,4 +1,9 @@
-import { Session, SupabaseClient, type AMREntry } from '@supabase/supabase-js';
+import {
+	Session,
+	SupabaseClient,
+	type AMREntry,
+	type User,
+} from '@supabase/supabase-js';
 import 'unplugin-icons/types/svelte';
 import { Database } from './DatabaseDefinitions';
 

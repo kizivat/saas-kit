@@ -4,8 +4,6 @@
 	import ForgotPasswordForm from './forgot-password-form.svelte';
 
 	export let data;
-
-	$: console.log(data);
 </script>
 
 <svelte:head>

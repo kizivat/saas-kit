@@ -35,6 +35,6 @@ export const actions: Actions = {
 			return setError(form, '', 'Could not sign up. Please try again.');
 		}
 
-		throw redirect(303, '/auth/callback');
+		throw redirect(303, '/auth/callback?next=/dashboard');
 	},
 };

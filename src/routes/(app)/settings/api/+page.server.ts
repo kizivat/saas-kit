@@ -1,48 +1,6 @@
 import { fail, redirect } from '@sveltejs/kit';
 
 export const actions = {
-	updateEmail: async ({ request, locals: { supabase, safeGetSession } }) => {
-		const { session } = await safeGetSession();
-		if (!session) {
-			throw redirect(303, '/login');
-		}
-
-		const formData = await request.formData();
-		const email = formData.get('email') as string;
-
-		let validationError;
-		if (!email || email === '') {
-			validationError = 'An email address is required';
-		}
-		// Dead simple check -- there's no standard here (which is followed),
-		// and lots of errors will be missed until we actually email to verify, so
-		// just do that
-		else if (!email.includes('@')) {
-			validationError = 'A valid email address is required';
-		}
-		if (validationError) {
-			return fail(400, {
-				errorMessage: validationError,
-				errorFields: ['email'],
-				email,
-			});
-		}
-
-		// Supabase does not change the email until the user verifies both
-		// if 'Secure email change' is enabled in the Supabase dashboard
-		const { error } = await supabase.auth.updateUser({ email: email });
-
-		if (error) {
-			return fail(500, {
-				errorMessage: 'Unknown error. If this persists please contact us.',
-				email,
-			});
-		}
-
-		return {
-			email,
-		};
-	},
 	updatePassword: async ({ request, locals: { supabase, safeGetSession } }) => {
 		const { session, user, amr } = await safeGetSession();
 		if (!session) {
@@ -123,7 +81,7 @@ export const actions = {
 			});
 			if (error) {
 				// The user was logged out because of bad password. Redirect to error page explaining.
-				throw redirect(303, '/change-password-error');
+				throw redirect(303, '/security-error');
 			}
 		}
 
@@ -173,7 +131,7 @@ export const actions = {
 		});
 		if (pwError) {
 			// The user was logged out because of bad password. Redirect to error page explaining.
-			throw redirect(303, '/change-password-error');
+			throw redirect(303, '/security-error');
 		}
 
 		const { error } = await supabaseServiceRole.auth.admin.deleteUser(
@@ -260,14 +218,5 @@ export const actions = {
 			companyName,
 			website,
 		};
-	},
-	signout: async ({ locals: { supabase, safeGetSession } }) => {
-		const { session } = await safeGetSession();
-		if (session) {
-			await supabase.auth.signOut();
-			throw redirect(303, '/');
-		} else {
-			throw redirect(303, '/');
-		}
 	},
 };
