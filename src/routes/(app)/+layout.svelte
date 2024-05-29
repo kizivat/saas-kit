@@ -6,11 +6,12 @@
 
 	import Logo from '$lib/components/Logo.svelte';
 	import PersonalMenu from '$lib/components/personal-menu.svelte';
-	import * as Breadcrumb from '$lib/components/ui/breadcrumb';
 	import { Button } from '$lib/components/ui/button';
 	import { Input } from '$lib/components/ui/input';
 	import * as Sheet from '$lib/components/ui/sheet';
 	import * as Tooltip from '$lib/components/ui/tooltip';
+	import Breadcrumbs from './components/breadcrumbs.svelte';
+	import NavLink from './components/nav-link.svelte';
 
 	export let data;
 </script>
@@ -29,15 +30,15 @@
 			</a>
 			<Tooltip.Root>
 				<Tooltip.Trigger asChild let:builder>
-					<a
+					<NavLink
 						href="/dashboard"
-						class="flex h-9 w-9 items-center justify-center rounded-lg bg-accent text-accent-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
-						use:builder.action
-						{...builder}
+						class="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
+						activeClass="bg-accent text-accent-foreground"
+						{builder}
 					>
 						<Home class="h-5 w-5" />
 						<span class="sr-only">Dashboard</span>
-					</a>
+					</NavLink>
 				</Tooltip.Trigger>
 				<Tooltip.Content side="right">Dashboard</Tooltip.Content>
 			</Tooltip.Root>
@@ -45,15 +46,15 @@
 		<nav class="mt-auto flex flex-col items-center gap-4 px-2 sm:py-5">
 			<Tooltip.Root>
 				<Tooltip.Trigger asChild let:builder>
-					<a
+					<NavLink
 						href="/settings"
 						class="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
-						use:builder.action
-						{...builder}
+						activeClass="bg-accent text-accent-foreground"
+						{builder}
 					>
 						<Settings class="h-5 w-5" />
 						<span class="sr-only">Settings</span>
-					</a>
+					</NavLink>
 				</Tooltip.Trigger>
 				<Tooltip.Content side="right">Settings</Tooltip.Content>
 			</Tooltip.Root>
@@ -94,13 +95,7 @@
 					</nav>
 				</Sheet.Content>
 			</Sheet.Root>
-			<Breadcrumb.Root class="hidden md:flex">
-				<Breadcrumb.List>
-					<Breadcrumb.Item>
-						<Breadcrumb.Link href="##">Dashboard</Breadcrumb.Link>
-					</Breadcrumb.Item>
-				</Breadcrumb.List>
-			</Breadcrumb.Root>
+			<Breadcrumbs />
 			<div class="relative ml-auto flex-1 md:grow-0">
 				<Search
 					class="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground"

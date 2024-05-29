@@ -14,6 +14,8 @@
 	<title>Profile | Settings</title>
 </svelte:head>
 
+<h2 class="text-xl font-semibold">Profile</h2>
+
 <EmailForm data={data.emailForm} user={data.user} />
 <InfoForm data={data.infoForm} />
 

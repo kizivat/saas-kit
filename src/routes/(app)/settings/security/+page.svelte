@@ -11,6 +11,8 @@
 	<title>Security | Settings</title>
 </svelte:head>
 
+<h2 class="text-xl font-semibold">Security</h2>
+
 {#if form?.success}
 	<p class="text-green-700">{form.success}</p>
 {/if}
