@@ -9,8 +9,6 @@
 	let cls: string = '';
 	export { cls as class };
 
-	$: console.log({ builder });
-
 	$: active = $page.url.pathname.startsWith(href);
 </script>
 

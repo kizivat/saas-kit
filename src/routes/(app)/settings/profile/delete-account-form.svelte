@@ -21,11 +21,7 @@
 		resetForm: false,
 	});
 
-	const { form: formData, enhance, tainted, submitting, message } = form;
-
-	$: openAlert = Boolean($message?.success);
-
-	$: console.log(openAlert);
+	const { form: formData, enhance, tainted, submitting } = form;
 </script>
 
 <form

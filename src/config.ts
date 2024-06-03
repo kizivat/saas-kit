@@ -11,3 +11,9 @@ export const oAuthProviders: Provider[] = [
 	// 'facebook',
 	'github',
 ];
+
+/**
+ * List of Stripe Product IDs to display in the billing settings page.
+ * If set to `null`, all products will be displayed.
+ */
+export const stripeProductIds: null | string[] = null;

@@ -25,11 +25,11 @@
 		return () => data.subscription.unsubscribe();
 	});
 
+	// TODO: remove this as we cannot SSR root layout then
 	$: hasAlertDialog = $page.url.searchParams.has('alertDialog');
 	async function loadAlertDialog() {
 		const alertDialog = $page.url.searchParams.get('alertDialog');
 		// need to look into dynamic path imports; for now - switch
-		console.log('id', alertDialog);
 		switch (alertDialog) {
 			case 'account-deletion':
 				return (await import('./alert-dialogs/account-deletion.svelte'))
