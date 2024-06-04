@@ -64,15 +64,15 @@
 										}).format(price.unit_amount / 100)}
 									</span>
 									{#if price.recurring}
-										<span class="text-muted-foreground"
-											>/ {price.recurring.interval}</span
-										>
+										<span class="text-muted-foreground">
+											/ {price.recurring.interval}
+										</span>
 									{/if}
 								</div>
 							{/if}
 						</Card.Content>
 						<Card.Footer>
-							<Button>Select Plan</Button>
+							<Button href="/checkout/{price.id}">Select Plan</Button>
 						</Card.Footer>
 					</Card.Root>
 				</li>
