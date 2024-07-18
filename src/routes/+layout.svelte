@@ -4,7 +4,7 @@
 	import CookiesBanner from '$lib/components/landing/cookies-banner/cookies-banner.svelte';
 	import * as AlertDialog from '$lib/components/ui/alert-dialog';
 	import { ModeWatcher } from 'mode-watcher';
-	import { onMount } from 'svelte';
+	import { afterUpdate, onMount } from 'svelte';
 	import { expoOut } from 'svelte/easing';
 	import { slide } from 'svelte/transition';
 	import '../app.css';
@@ -25,8 +25,12 @@
 		return () => data.subscription.unsubscribe();
 	});
 
-	// TODO: remove this as we cannot SSR root layout then
-	$: hasAlertDialog = $page.url.searchParams.has('alertDialog');
+	let hasAlertDialog = false;
+
+	afterUpdate(() => {
+		hasAlertDialog = $page.url.searchParams.has('alertDialog');
+	});
+
 	async function loadAlertDialog() {
 		const alertDialog = $page.url.searchParams.get('alertDialog');
 		// need to look into dynamic path imports; for now - switch
@@ -55,9 +59,9 @@
 				</AlertDialog.Description>
 			</AlertDialog.Header>
 			<AlertDialog.Footer>
-				<AlertDialog.Action on:click={() => goto('?')}
-					>Dismiss</AlertDialog.Action
-				>
+				<AlertDialog.Action on:click={() => goto('?')}>
+					Dismiss
+				</AlertDialog.Action>
 			</AlertDialog.Footer>
 		{/await}
 	</AlertDialog.Content>
