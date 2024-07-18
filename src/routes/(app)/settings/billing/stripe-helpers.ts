@@ -1,6 +1,9 @@
 import type Stripe from 'stripe';
 
-export type ProductWithPrices = Stripe.Product & { prices: Stripe.Price[] };
+export type ProductWithPrices = Stripe.Product & {
+	default_price: Stripe.Price;
+	prices: Stripe.Price[];
+};
 
 export function toSortedPrices(prices: Stripe.Price[]): Stripe.Price[] {
 	const result = [...prices];

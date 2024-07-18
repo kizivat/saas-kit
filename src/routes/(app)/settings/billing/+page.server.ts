@@ -23,6 +23,7 @@ export const load: PageServerLoad = async () => {
 		products: toSortedProducts(
 			products.map((product) => ({
 				...product,
+				default_price: product.default_price as Stripe.Price, // just force the type
 				prices: prices.filter((price) => price.product === product.id),
 			})),
 		),
