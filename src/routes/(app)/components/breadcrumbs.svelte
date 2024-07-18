@@ -16,7 +16,7 @@
 		{#each parts as part, i}
 			<Breadcrumb.Separator />
 			<Breadcrumb.Item>
-				<Breadcrumb.Link href={parts.slice(0, i + 1).join('/')}>
+				<Breadcrumb.Link href="/{parts.slice(0, i + 1).join('/')}">
 					{part.charAt(0).toUpperCase() + part.slice(1)}
 				</Breadcrumb.Link>
 			</Breadcrumb.Item>
