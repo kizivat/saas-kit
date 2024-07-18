@@ -1,8 +1,7 @@
 <script lang="ts">
 	import Button from '$lib/components/ui/button/button.svelte';
 	import * as Card from '$lib/components/ui/card';
-	import PriceAmount from './components/PriceAmount.svelte';
-	import PriceDescription from './components/PriceDescription.svelte';
+	import * as Price from './components/price/index.js';
 
 	export let data;
 
@@ -47,11 +46,11 @@
 						<Card.Header>
 							<Card.Title tag="h3">{product.name}</Card.Title>
 							<Card.Description>
-								<PriceDescription {price} />
+								<Price.Description {price} />
 							</Card.Description>
 						</Card.Header>
 						<Card.Content>
-							<PriceAmount {price} />
+							<Price.Amount {price} />
 						</Card.Content>
 						<Card.Footer>
 							<Button href="/checkout/{price.id}">Select Plan</Button>
@@ -73,11 +72,11 @@
 						<Card.Header>
 							<Card.Title tag="h3">{product.name}</Card.Title>
 							<Card.Description>
-								<PriceDescription {price} />
+								<Price.Description {price} />
 							</Card.Description>
 						</Card.Header>
 						<Card.Content>
-							<PriceAmount {price} />
+							<Price.Amount {price} />
 						</Card.Content>
 						<Card.Footer>
 							<Button href="/checkout/{price.id}">Select Plan</Button>
