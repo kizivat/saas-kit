@@ -127,6 +127,7 @@ export const actions = {
 			password: confirmation,
 		});
 		if (pwError) {
+			await supabase.auth.signOut();
 			// The user was logged out because of bad password. Redirect to error page explaining.
 			throw redirect(303, '/security-error');
 		}

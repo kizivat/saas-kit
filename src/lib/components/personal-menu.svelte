@@ -82,7 +82,7 @@
 				</Button>
 			</li>
 			<li>
-				<Button href="/log-in" variant="ghost" class="w-full py-6 text-base">
+				<Button href="/login" variant="ghost" class="w-full py-6 text-base">
 					Log in
 				</Button>
 			</li>
