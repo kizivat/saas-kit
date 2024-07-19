@@ -1,13 +1,16 @@
 export const ssr = false;
 
 import {
+	PRIVATE_NOTIFICATIONS_EMAIL,
 	PRIVATE_SMTP_HOST,
 	PRIVATE_SMTP_PASSWORD,
 	PRIVATE_SMTP_PORT,
 	PRIVATE_SMTP_USER,
 } from '$env/static/private';
+import { PostgrestError } from '@supabase/supabase-js';
 import { fail, type Actions, type ServerLoad } from '@sveltejs/kit';
 import { createTransport } from 'nodemailer';
+import SMTPTransport from 'nodemailer/lib/smtp-transport';
 import { message, setError, superValidate } from 'sveltekit-superforms';
 import { zod } from 'sveltekit-superforms/adapters';
 import { formSchema } from './schema';
@@ -49,15 +52,25 @@ export const actions: Actions = {
 		});
 
 		const send = transport.sendMail({
-			from: `${name} <david@kizivat.dev>`,
-			to: 'david.kizivat@gmail.com',
+			from: `${name} ${PRIVATE_SMTP_USER}`,
+			to: PRIVATE_NOTIFICATIONS_EMAIL,
 			subject,
 			text: `from: ${name} <${email}>\nsubject:${subject}\n\n${body}`,
 		});
 
-		const [result, { error }] = await Promise.all([send, insert]);
+		let result: SMTPTransport.SentMessageInfo | null = null,
+			error: PostgrestError | null = null;
 
-		console.debug('Contact email status: ', result);
+		try {
+			[result, { error }] = await Promise.all([send, insert]);
+		} catch (e) {
+			console.warn("Couldn't send contact request email.");
+			if (!error) {
+				console.info(
+					`Contact message from ${name} <${email}> with subject "${subject}" and body "${body}" was saved to your databases \`contact_messages\` table.`,
+				);
+			}
+		}
 
 		if (error) {
 			console.error(
@@ -65,11 +78,11 @@ export const actions: Actions = {
 				error,
 			);
 			console.error(
-				`Contact message from ${name} <${email}> with subject ${subject} and body ${body} was not saved.`,
+				`Contact message from ${name} <${email}> with subject "${subject}" and body "${body}" was not saved.`,
 			);
 		}
 
-		if (result.rejected.length > 0) {
+		if (result && result.rejected.length > 0) {
 			console.error('Rejected email send response: ', result.response);
 			console.error(
 				`Email from ${name} <${email}> with subject ${subject} and body ${body} was rejected.`,
