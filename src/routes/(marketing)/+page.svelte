@@ -6,6 +6,10 @@
 	import LogosCloud from './components/sections/logos-cloud.svelte';
 	import Pricing from './components/sections/pricing.svelte';
 	import Testimonials from './components/sections/testimonials.svelte';
+
+	export let data;
+
+	const { prices } = data;
 </script>
 
 <svelte:head>
@@ -27,15 +31,25 @@
 		<LogosCloud />
 	</Section.Root>
 	<Section.Root anchor="features">
-		<Section.Title>Features</Section.Title>
+		<Section.Header>
+			<Section.Title>Features</Section.Title>
+		</Section.Header>
 		<Features />
 	</Section.Root>
 	<Section.Root>
-		<Section.Title>Testimonials</Section.Title>
+		<Section.Header>
+			<Section.Title>Testimonials</Section.Title>
+		</Section.Header>
 		<Testimonials />
 	</Section.Root>
 	<Section.Root anchor="pricing">
-		<Section.Title>Pricing</Section.Title>
-		<Pricing />
+		<Section.Header>
+			<Section.Title>Pricing</Section.Title>
+			<Section.Description class="text-balance">
+				We support multiple types of available pricing models on Stripe.
+				Including one-time payments, recurring payments, and pay-what-you-want.
+			</Section.Description>
+		</Section.Header>
+		<Pricing {prices} />
 	</Section.Root>
 </div>

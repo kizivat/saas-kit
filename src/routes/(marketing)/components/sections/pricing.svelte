@@ -2,20 +2,28 @@
 	import * as Pricing from '$lib/components/landing/pricing';
 	import { Button } from '$lib/components/ui/button';
 	import * as Card from '$lib/components/ui/card';
+	import Stripe from 'stripe';
+	import * as Price from '../../../../lib/components/price/index.js';
+
+	type Price = Stripe.Price & {
+		product: Stripe.Product;
+	};
+	export let prices: readonly [Price, Price, Price];
 </script>
 
 <Pricing.Root>
 	<Pricing.Plan>
 		<Card.Root>
 			<Card.Header>
-				<Card.Title>Free</Card.Title>
+				<Card.Title>{prices[0].product.name}</Card.Title>
 				<Card.Description>
-					This kit is free of charge forever. You don't have to pay me anything.
+					{prices[0].product.description ?? ''}
 				</Card.Description>
 			</Card.Header>
-			<Card.Content class="flex flex-col gap-3">
-				<span class="text-5xl font-black tracking-tight">$0</span>
-				<Button>Get Started</Button>
+			<Card.Content class="flex flex-col gap-6">
+				<!-- <span class="text-5xl font-black tracking-tight">$0</span> -->
+				<Price.Amount price={prices[0]} />
+				<Button href="/checkout/{prices[0].id}">Get Started</Button>
 			</Card.Content>
 			<Card.Footer>
 				<Pricing.PlanFeatures>
@@ -30,26 +38,15 @@
 	<Pricing.Plan emphasized>
 		<Card.Root>
 			<Card.Header>
-				<Card.Title>Say thanks</Card.Title>
-				<Card.Description class="[&>span]:ms-1">
-					<!--
-						The card number is visually 
-						formatted via `spans.ms-1` to be easier to read, but still
-						selectable by double-clicking.
-					 -->
-					You can use this for free. But if you wish so you can buy me an overpriced
-					coffee to say thanks. Or you can just use Stripe's test card number
-					<span>4242</span><span>4242</span><span>4242</span><span>4242</span>.
+				<Card.Title>{prices[1].product.name}</Card.Title>
+				<Card.Description>
+					{prices[1].product.description ?? ''}
 				</Card.Description>
 			</Card.Header>
-			<Card.Content class="flex flex-col gap-3">
-				<div>
-					<span class="text-5xl font-black tracking-tight">$5</span>
-					<span class="text-base tracking-wide text-muted-foreground">
-						/ lifetime
-					</span>
-				</div>
-				<Button>Get Started</Button>
+			<Card.Content class="flex flex-col gap-6">
+				<!-- <span class="text-5xl font-black tracking-tight">$0</span> -->
+				<Price.Amount price={prices[1]} />
+				<Button href="/checkout/{prices[1].id}">Get Started</Button>
 			</Card.Content>
 			<Card.Footer>
 				<Pricing.PlanFeatures>
@@ -64,21 +61,15 @@
 	<Pricing.Plan>
 		<Card.Root>
 			<Card.Header>
-				<Card.Title>Sponsor</Card.Title>
+				<Card.Title>{prices[2].product.name}</Card.Title>
 				<Card.Description>
-					If you want to sponsor this kit and earn a spot in the logo cloud
-					section, this way.
+					{prices[2].product.description ?? ''}
 				</Card.Description>
 			</Card.Header>
-			<Card.Content class="flex flex-col gap-3">
-				<div>
-					<span class="text-5xl font-black tracking-tight">$100</span>
-					<span class="text-base tracking-wide text-muted-foreground">
-						/ lifetime
-					</span>
-				</div>
-
-				<Button>Get Started</Button>
+			<Card.Content class="flex flex-col gap-6">
+				<!-- <span class="text-5xl font-black tracking-tight">$0</span> -->
+				<Price.Amount price={prices[2]} />
+				<Button href="/checkout/{prices[2].id}">Get Started</Button>
 			</Card.Content>
 			<Card.Footer>
 				<Pricing.PlanFeatures>

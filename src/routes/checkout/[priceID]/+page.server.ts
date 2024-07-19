@@ -34,7 +34,7 @@ export const load: PageServerLoad = async ({
 							product: price.product as string,
 						},
 					}
-				: { price: price.id, currency: price.currency }),
+				: { price: price.id }),
 			quantity: 1,
 		},
 	];
