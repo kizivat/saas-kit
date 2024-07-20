@@ -29,7 +29,9 @@ export const load: PageServerLoad = async ({
 				? {
 						price_data: {
 							// TODO: Add support for custom unit amount
-							unit_amount: 1000,
+							unit_amount: url.searchParams.has('amount')
+								? parseInt(url.searchParams.get('amount') || '0', 10)
+								: price.custom_unit_amount.preset || 0,
 							currency: price.currency,
 							product: price.product as string,
 						},
@@ -55,4 +57,25 @@ export const load: PageServerLoad = async ({
 	}
 
 	throw redirect(303, checkoutUrl ?? '/pricing');
+};
+
+export const actions = {
+	customPrice: async (event) => {
+		const { priceID } = event.params;
+		const formData = await event.request.formData();
+
+		const amountStr = formData.get('customAmount');
+
+		if (!amountStr) {
+			throw error(400, 'Amount is required');
+		}
+
+		const amount = parseInt(amountStr.toString(), 10);
+
+		if (isNaN(amount) || amount < 1) {
+			throw error(400, 'Invalid amount');
+		}
+
+		throw redirect(303, `/checkout/${priceID}?amount=${amount * 100}`);
+	},
 };

@@ -1,6 +1,5 @@
 <script lang="ts">
 	import * as Price from '$lib/components/price/index.js';
-	import Button from '$lib/components/ui/button/button.svelte';
 	import * as Card from '$lib/components/ui/card';
 
 	export let data;
@@ -24,8 +23,6 @@
 			),
 		};
 	});
-
-	$: console.log(data, withDefaultPrices, withOtherPrices);
 </script>
 
 <svelte:head>
@@ -49,12 +46,14 @@
 								<Price.Model {price} />
 							</Card.Description>
 						</Card.Header>
-						<Card.Content>
-							<Price.Amount {price} />
-						</Card.Content>
-						<Card.Footer>
-							<Button href="/checkout/{price.id}">Select Plan</Button>
-						</Card.Footer>
+						<Price.Core {price}>
+							<Card.Content>
+								<Price.Amount {price} />
+							</Card.Content>
+							<Card.Footer>
+								<Price.Button {price}>Select Plan</Price.Button>
+							</Card.Footer>
+						</Price.Core>
 					</Card.Root>
 				</li>
 			{/each}
@@ -75,12 +74,14 @@
 								<Price.Model {price} />
 							</Card.Description>
 						</Card.Header>
-						<Card.Content>
-							<Price.Amount {price} />
-						</Card.Content>
-						<Card.Footer>
-							<Button href="/checkout/{price.id}">Select Plan</Button>
-						</Card.Footer>
+						<Price.Core {price}>
+							<Card.Content>
+								<Price.Amount {price} />
+							</Card.Content>
+							<Card.Footer>
+								<Price.Button {price}>Select Plan</Price.Button>
+							</Card.Footer>
+						</Price.Core>
 					</Card.Root>
 				</li>
 			{/each}

@@ -2,7 +2,6 @@
 	import { Input } from '$lib/components/ui/input';
 	import Label from '$lib/components/ui/label/label.svelte';
 	import Stripe from 'stripe';
-
 	export let price: Stripe.Price;
 </script>
 
@@ -27,12 +26,16 @@
 				id="custom-amount"
 				name="customAmount"
 				type="number"
-				min="1"
+				min={price.custom_unit_amount.minimum
+					? price.custom_unit_amount.minimum / 100
+					: 0}
+				max={price.custom_unit_amount.maximum
+					? price.custom_unit_amount.maximum / 100
+					: 999_999}
 				class="text-xl"
 				value={price.custom_unit_amount.preset
 					? price.custom_unit_amount.preset / 100
 					: ''}
-				placeholder="Enter amount"
 			/>
 		</div>
 	</div>

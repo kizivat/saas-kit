@@ -1,6 +1,5 @@
 <script lang="ts">
 	import * as Pricing from '$lib/components/landing/pricing';
-	import { Button } from '$lib/components/ui/button';
 	import * as Card from '$lib/components/ui/card';
 	import Stripe from 'stripe';
 	import * as Price from '../../../../lib/components/price/index.js';
@@ -20,11 +19,13 @@
 					{prices[0].product.description ?? ''}
 				</Card.Description>
 			</Card.Header>
-			<Card.Content class="flex flex-col gap-6">
-				<!-- <span class="text-5xl font-black tracking-tight">$0</span> -->
-				<Price.Amount price={prices[0]} />
-				<Button href="/checkout/{prices[0].id}">Get Started</Button>
-			</Card.Content>
+			<Price.Core price={prices[0]}>
+				<Card.Content class="flex flex-col gap-6">
+					<!-- <span class="text-5xl font-black tracking-tight">$0</span> -->
+					<Price.Amount price={prices[0]} />
+					<Price.Button price={prices[0]}>Get Started</Price.Button>
+				</Card.Content>
+			</Price.Core>
 			<Card.Footer>
 				<Pricing.PlanFeatures>
 					<Pricing.FeatureItem>Everything</Pricing.FeatureItem>
@@ -43,11 +44,13 @@
 					{prices[1].product.description ?? ''}
 				</Card.Description>
 			</Card.Header>
-			<Card.Content class="flex flex-col gap-6">
-				<!-- <span class="text-5xl font-black tracking-tight">$0</span> -->
-				<Price.Amount price={prices[1]} />
-				<Button href="/checkout/{prices[1].id}">Get Started</Button>
-			</Card.Content>
+			<Price.Core price={prices[1]}>
+				<Card.Content class="flex flex-col gap-6">
+					<!-- <span class="text-5xl font-black tracking-tight">$0</span> -->
+					<Price.Amount price={prices[1]} />
+					<Price.Button price={prices[1]}>Get Started</Price.Button>
+				</Card.Content>
+			</Price.Core>
 			<Card.Footer>
 				<Pricing.PlanFeatures>
 					<Pricing.FeatureItem>Everything from free</Pricing.FeatureItem>
@@ -66,11 +69,13 @@
 					{prices[2].product.description ?? ''}
 				</Card.Description>
 			</Card.Header>
-			<Card.Content class="flex flex-col gap-6">
-				<!-- <span class="text-5xl font-black tracking-tight">$0</span> -->
-				<Price.Amount price={prices[2]} />
-				<Button href="/checkout/{prices[2].id}">Get Started</Button>
-			</Card.Content>
+			<Price.Core price={prices[2]}>
+				<Card.Content class="flex flex-col gap-6">
+					<!-- <span class="text-5xl font-black tracking-tight">$0</span> -->
+					<Price.Amount price={prices[2]} />
+					<Price.Button price={prices[2]}>Get Started</Price.Button>
+				</Card.Content>
+			</Price.Core>
 			<Card.Footer>
 				<Pricing.PlanFeatures>
 					<Pricing.FeatureItem>
