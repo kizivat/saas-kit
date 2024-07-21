@@ -17,11 +17,20 @@ export const load: PageServerLoad = async () => {
 export const actions: Actions = {
 	default: async (event) => {
 		const provider = event.url.searchParams.get('provider') as Provider;
+		const search = (await event.request.formData()).get('query');
+		const searchParams = new URLSearchParams(search as string);
+		searchParams.set('next', searchParams.get('next') || '/dashboard');
+
+		console.log(
+			'redirectTo: ',
+			+`${event.url.origin}/auth/callback?${searchParams.toString()}`,
+		);
+
 		if (provider) {
 			const { data, error } = await event.locals.supabase.auth.signInWithOAuth({
 				provider,
 				options: {
-					redirectTo: `${event.url.origin}/auth/callback?next=/dashboard`,
+					redirectTo: `${event.url.origin}/auth/callback?${searchParams.toString()}`,
 					queryParams: {
 						access_type: 'offline',
 						prompt: 'consent',

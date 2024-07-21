@@ -16,5 +16,12 @@ export const GET = async (event) => {
 		}
 	}
 
-	throw redirect(303, `/${next.slice(1)}`);
+	const search = new URLSearchParams(url.search);
+	search.delete('code');
+	search.delete('next');
+
+	console.log(url.search);
+	console.log(`Redirecting to ${next}?${search.toString()}`);
+
+	throw redirect(303, `/${next.slice(1)}?${search.toString()}`);
 };

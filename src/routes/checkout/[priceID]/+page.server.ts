@@ -10,7 +10,9 @@ export const load: PageServerLoad = async ({
 }) => {
 	const { session, user } = await safeGetSession();
 	if (!session || !user) {
-		throw redirect(303, '/login');
+		const search = new URLSearchParams(url.search);
+		search.set('next', url.pathname);
+		throw redirect(303, `/register?${search.toString()}`);
 	}
 
 	const stripe = new Stripe(PRIVATE_STRIPE_SECRET_KEY, {

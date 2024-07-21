@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { page } from '$app/stores';
 	import Button from '$lib/components/ui/button/button.svelte';
 	import Separator from '$lib/components/ui/separator/separator.svelte';
 	import * as Tooltip from '$lib/components/ui/tooltip';
@@ -27,6 +28,8 @@
 
 {#if oAuthProviders.length > 0}
 	<form method="POST" class="flex flex-col gap-4">
+		<!-- TODO: I don't like this hidden field here too much. Change later. -->
+		<input type="hidden" name="query" value={$page.url.search} />
 		<p class="flex text-sm text-muted-foreground">
 			Continue with third-party service
 		</p>

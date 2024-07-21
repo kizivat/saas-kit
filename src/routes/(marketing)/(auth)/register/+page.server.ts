@@ -35,6 +35,9 @@ export const actions: Actions = {
 			return setError(form, '', 'Could not sign up. Please try again.');
 		}
 
-		throw redirect(303, '/auth/callback?next=/dashboard');
+		const search = new URLSearchParams(event.url.search);
+		search.set('next', event.url.searchParams.get('next') || '/dashboard');
+
+		throw redirect(303, '/auth/callback?' + search.toString());
 	},
 };
