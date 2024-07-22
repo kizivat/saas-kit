@@ -7,8 +7,15 @@ import { zod } from 'sveltekit-superforms/adapters';
 import type { PageServerLoad } from './$types.js';
 import { formSchema } from './schema';
 
-export const load: PageServerLoad = async () => {
+export const load: PageServerLoad = async ({ url }) => {
+	const next = url.searchParams.get('next');
+	const isCheckout = Boolean(
+		typeof next === 'string' &&
+			decodeURIComponent(next).match(/^\/checkout\/.+$/),
+	);
+
 	return {
+		isCheckout,
 		form: await superValidate(zod(formSchema)),
 	};
 };
