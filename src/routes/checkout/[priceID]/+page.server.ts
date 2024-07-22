@@ -6,7 +6,7 @@ import type { PageServerLoad } from './$types';
 export const load: PageServerLoad = async ({
 	params,
 	url,
-	locals: { safeGetSession },
+	locals: { safeGetSession, supabase },
 }) => {
 	const { session, user } = await safeGetSession();
 	if (!session || !user) {
@@ -21,16 +21,42 @@ export const load: PageServerLoad = async ({
 
 	const price = await stripe.prices.retrieve(params.priceID);
 
-	const { id: customer } = await stripe.customers.create({
-		email: user.email,
-	});
+	const { data: results } = await supabase
+		.from('stripe_customers')
+		.select('stripe_customer_id')
+		.eq('user_id', user.id);
+
+	let customer: string;
+	if (results && results.length > 0) {
+		customer = results[0].stripe_customer_id;
+	} else {
+		const { id } = await stripe.customers.create({
+			email: user.email,
+			metadata: {
+				user_id: user.id,
+			},
+		});
+
+		customer = id;
+
+		const { error: upsertError } = await supabase
+			.from('stripe_customers')
+			.upsert(
+				{ user_id: user.id, stripe_customer_id: customer },
+				{ onConflict: 'user_id' },
+			);
+
+		if (upsertError) {
+			console.error(upsertError);
+			throw error(500, 'Unknown Error: If issue persists please contact us.');
+		}
+	}
 
 	const line_items: Stripe.Checkout.SessionCreateParams['line_items'] = [
 		{
 			...(price.custom_unit_amount
 				? {
 						price_data: {
-							// TODO: Add support for custom unit amount
 							unit_amount: url.searchParams.has('amount')
 								? parseInt(url.searchParams.get('amount') || '0', 10)
 								: price.custom_unit_amount.preset || 0,
