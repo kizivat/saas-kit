@@ -21,11 +21,6 @@ export const actions: Actions = {
 		const searchParams = new URLSearchParams(search as string);
 		searchParams.set('next', searchParams.get('next') || '/dashboard');
 
-		console.log(
-			'redirectTo: ',
-			+`${event.url.origin}/auth/callback?${searchParams.toString()}`,
-		);
-
 		if (provider) {
 			const { data, error } = await event.locals.supabase.auth.signInWithOAuth({
 				provider,

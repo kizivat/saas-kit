@@ -20,8 +20,5 @@ export const GET = async (event) => {
 	search.delete('code');
 	search.delete('next');
 
-	console.log(url.search);
-	console.log(`Redirecting to ${next}?${search.toString()}`);
-
 	throw redirect(303, `/${next.slice(1)}?${search.toString()}`);
 };
