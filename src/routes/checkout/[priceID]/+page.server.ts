@@ -6,7 +6,7 @@ import type { PageServerLoad } from './$types';
 export const load: PageServerLoad = async ({
 	params,
 	url,
-	locals: { safeGetSession, supabase },
+	locals: { safeGetSession, supabaseServiceRole },
 }) => {
 	const { session, user } = await safeGetSession();
 	if (!session || !user) {
@@ -21,7 +21,7 @@ export const load: PageServerLoad = async ({
 
 	const price = await stripe.prices.retrieve(params.priceID);
 
-	const { data: results } = await supabase
+	const { data: results } = await supabaseServiceRole
 		.from('stripe_customers')
 		.select('stripe_customer_id')
 		.eq('user_id', user.id);
@@ -39,7 +39,7 @@ export const load: PageServerLoad = async ({
 
 		customer = id;
 
-		const { error: upsertError } = await supabase
+		const { error: upsertError } = await supabaseServiceRole
 			.from('stripe_customers')
 			.upsert(
 				{ user_id: user.id, stripe_customer_id: customer },
