@@ -39,6 +39,7 @@ create table contact_messages (
   "subject" text,
   body text,
   updated_at timestamp with time zone,
+  created_at timestamp with time zone default now()
 );
 alter table contact_messages enable row level security;
 
