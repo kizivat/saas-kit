@@ -52,7 +52,7 @@ export const load: PageServerLoad = async ({
 		}
 	}
 
-	const line_items: Stripe.Checkout.SessionCreateParams['line_items'] = [
+	const lineItems: Stripe.Checkout.SessionCreateParams['line_items'] = [
 		{
 			...(price.custom_unit_amount
 				? {
@@ -72,7 +72,7 @@ export const load: PageServerLoad = async ({
 	let checkoutUrl;
 	try {
 		const stripeSession = await stripe.checkout.sessions.create({
-			line_items,
+			line_items: lineItems,
 			customer,
 			mode: price.type === 'recurring' ? 'subscription' : 'payment',
 			success_url: `${url.origin}/dashboard`,
