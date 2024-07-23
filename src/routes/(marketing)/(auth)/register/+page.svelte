@@ -13,13 +13,13 @@
 </svelte:head>
 
 {#if data.isCheckout}
-<Alert.Root class="mb-6" variant="warning">
-	<Alert.Title>Create an account to proceed</Alert.Title>
-	<Alert.Description>
-		To continue with purchasing your selected plan, you need to create an
-		account first.
-	</Alert.Description>
-</Alert.Root>
+	<Alert.Root class="mb-6" variant="warning">
+		<Alert.Title>Create an account to proceed</Alert.Title>
+		<Alert.Description>
+			To continue with purchasing your selected plan, you need to create an
+			account first.
+		</Alert.Description>
+	</Alert.Root>
 {/if}
 <Card.Root class="mx-auto max-w-sm">
 	<Card.Header>
