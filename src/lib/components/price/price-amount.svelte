@@ -37,6 +37,9 @@
 					? price.custom_unit_amount.preset / 100
 					: ''}
 			/>
+			<span class="self-end text-nowrap text-sm text-muted-foreground">
+				/ {price.recurring ? price.recurring.interval : 'lifetime'}
+			</span>
 		</div>
 	</div>
 {:else if price.unit_amount !== null}
@@ -49,10 +52,8 @@
 				currencySign: 'accounting',
 			}).format(price.unit_amount / 100)}
 		</span>
-		{#if price.recurring}
-			<span class="text-muted-foreground">
-				/ {price.recurring.interval}
-			</span>
-		{/if}
+		<span class="text-nowrap text-sm text-muted-foreground">
+			/ {price.recurring ? price.recurring.interval : 'lifetime'}
+		</span>
 	</div>
 {/if}
