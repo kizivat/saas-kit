@@ -1,8 +1,9 @@
 -- Create a table for public profiles
 create table profiles (
   id uuid references auth.users on delete cascade not null primary key,
-  updated_at timestamp with time zone,
   "name" text
+  updated_at timestamp with time zone,
+  created_at timestamp with time zone default now()
 );
 -- Set up Row Level Security (RLS)
 -- See https://supabase.com/docs/guides/auth/row-level-security for more details.
@@ -23,8 +24,9 @@ create policy "Users can update own profile." on profiles
 -- Limit RLS policies -- mostly only server side access
 create table stripe_customers (
   user_id uuid references auth.users on delete cascade not null primary key,
-  updated_at timestamp with time zone,
   stripe_customer_id text unique
+  updated_at timestamp with time zone,
+  created_at timestamp with time zone default now()
 );
 alter table stripe_customers enable row level security;
 
@@ -32,11 +34,11 @@ alter table stripe_customers enable row level security;
 -- Limit RLS policies -- only server side access
 create table contact_messages (
   id uuid primary key default gen_random_uuid(),
-  updated_at timestamp with time zone,
   "name" text,
   email text,
   "subject" text,
   body text
+  updated_at timestamp with time zone,
 );
 alter table contact_messages enable row level security;
 

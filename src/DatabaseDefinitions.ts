@@ -17,6 +17,7 @@ export interface Database {
 					id: string;
 					body: string | null;
 					updated_at: Date | null;
+					created_at: Date;
 				};
 				Insert: {
 					email?: string | null;
@@ -41,6 +42,7 @@ export interface Database {
 					name: string | null;
 					id: string;
 					updated_at: string | null;
+					created_at: Date;
 				};
 				Insert: {
 					name?: string | null;
@@ -66,6 +68,7 @@ export interface Database {
 					stripe_customer_id: string;
 					updated_at: Date | null;
 					user_id: string;
+					created_at: Date;
 				};
 				Insert: {
 					stripe_customer_id: string;
