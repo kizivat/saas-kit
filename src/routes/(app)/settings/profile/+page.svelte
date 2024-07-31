@@ -44,7 +44,8 @@
 						<Dialog.Title>Are you sure absolutely sure?</Dialog.Title>
 						<Dialog.Description>
 							This action cannot be undone. This will permanently delete your
-							account and remove your data from our servers.
+							account and remove your data from our servers. Any of your active
+							subscriptions will be cancelled automatically.
 						</Dialog.Description>
 					</Dialog.Header>
 

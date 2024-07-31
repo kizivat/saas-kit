@@ -1,3 +1,4 @@
+import { fetchCurrentUsersSubscription } from '$lib/stripe/client-helpers';
 import { error, redirect } from '@sveltejs/kit';
 import Stripe from 'stripe';
 import type { PageServerLoad } from './$types';
@@ -61,18 +62,9 @@ export const load: PageServerLoad = async ({
 		}
 	}
 
-	const subscriptionsPromise = stripe.subscriptions.list({
+	const currentSubscriptions = await fetchCurrentUsersSubscription(
+		stripe,
 		customer,
-		limit: 100,
-	});
-
-	const [{ data: subscriptions }] = await Promise.all([
-		subscriptionsPromise,
-		// productsPromise,
-	]);
-
-	const currentSubscriptions = subscriptions.filter((sub) =>
-		['active', 'trailing', 'past_due'].includes(sub.status),
 	);
 
 	// const activeProductId = currentSubscriptions.map(

@@ -1,3 +1,4 @@
+import { fetchCurrentUsersSubscription } from '$lib/stripe/client-helpers';
 import { fail, redirect } from '@sveltejs/kit';
 import { message, setError, superValidate } from 'sveltekit-superforms';
 import { zod } from 'sveltekit-superforms/adapters';
@@ -106,7 +107,8 @@ export const actions = {
 		});
 	},
 	deleteAccount: async (event) => {
-		const { safeGetSession, supabase, supabaseServiceRole } = event.locals;
+		const { safeGetSession, supabase, supabaseServiceRole, stripe } =
+			event.locals;
 		const { session, user } = await safeGetSession();
 		if (!session || !user?.id) {
 			throw redirect(303, '/login');
@@ -126,16 +128,49 @@ export const actions = {
 			email: user?.email || '',
 			password: confirmation,
 		});
+
 		if (pwError) {
 			await supabase.auth.signOut();
 			// The user was logged out because of bad password. Redirect to error page explaining.
 			throw redirect(303, '/security-error');
 		}
 
+		const { data: customer, error } = await supabaseServiceRole
+			.from('stripe_customers')
+			.select('stripe_customer_id')
+			.eq('user_id', user.id)
+			.single();
+
+		if (error) {
+			console.error('Error fetching stripe customer:', error);
+			return fail(500, {
+				errorMessage: 'Unknown error. If this persists please contact us.',
+			});
+		}
+
+		try {
+			const currentSubscriptions = await fetchCurrentUsersSubscription(
+				stripe,
+				customer.stripe_customer_id,
+			);
+
+			const cancelPromises = currentSubscriptions.map((sub) =>
+				stripe.subscriptions.cancel(sub.id),
+			);
+
+			await Promise.all(cancelPromises);
+		} catch (error) {
+			console.error('Error fetching subscriptions:', error);
+			return fail(500, {
+				errorMessage: 'Unknown error. If this persists please contact us.',
+			});
+		}
+
 		const { error: delError } = await supabaseServiceRole.auth.admin.deleteUser(
 			user.id,
 			true,
 		);
+
 		if (delError) {
 			console.error('Error deleting account:', delError.message);
 			return fail(500, {

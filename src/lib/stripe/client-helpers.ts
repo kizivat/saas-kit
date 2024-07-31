@@ -32,3 +32,21 @@ export async function fetchSortedProducts(stripe: Stripe) {
 
 	return sortedProducts;
 }
+
+export async function fetchCurrentUsersSubscription(
+	stripe: Stripe,
+	stripeCustomerID: string,
+) {
+	const subscriptionsPromise = stripe.subscriptions.list({
+		customer: stripeCustomerID,
+		limit: 100,
+	});
+
+	const [{ data: subscriptions }] = await Promise.all([subscriptionsPromise]);
+
+	const currentSubscriptions = subscriptions.filter((sub) =>
+		['active', 'trailing', 'past_due'].includes(sub.status),
+	);
+
+	return currentSubscriptions;
+}
