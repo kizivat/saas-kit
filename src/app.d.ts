@@ -4,6 +4,7 @@ import {
 	type AMREntry,
 	type User,
 } from '@supabase/supabase-js';
+import Stripe from 'stripe';
 import 'unplugin-icons/types/svelte';
 import { Database } from './DatabaseDefinitions';
 
@@ -19,6 +20,7 @@ declare global {
 				user: User | null;
 				amr: AMREntry[] | null;
 			}>;
+			stripe: Stripe;
 		}
 		interface PageData {
 			session: Session | null;

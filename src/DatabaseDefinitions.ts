@@ -89,6 +89,35 @@ export interface Database {
 					},
 				];
 			};
+			// TODO: we'll need to use that once we handle products nicely
+			// 	user_products: {
+			// 		Row: {
+			// 			user_id: string;
+			// 			stripe_product_id: string;
+			// 			type: 'payment' | 'subscription';
+			// 			created_at: Date;
+			// 			updated_at: Date | null;
+			// 		};
+			// 		Insert: {
+			// 			user_id: string;
+			// 			stripe_product_id: string;
+			// 			type: 'payment' | 'subscription';
+			// 			updated_at?: Date | null;
+			// 		};
+			// 		Update: {
+			// 			user_id?: string;
+			// 			stripe_product_id?: string;
+			// 			updated_at?: Date | null;
+			// 		};
+			// 		Relationships: [
+			// 			{
+			// 				foreignKeyName: 'user_products_user_id_fkey';
+			// 				columns: ['user_id'];
+			// 				referencedRelation: 'users';
+			// 				referencedColumns: ['id'];
+			// 			},
+			// 		];
+			// 	};
 		};
 		Views: {
 			[_ in never]: never;
@@ -102,7 +131,9 @@ export interface Database {
 			};
 		};
 		Enums: {
-			[_ in never]: never;
+			stripe_payment_mode: {
+				values: ['payment', 'subscription'];
+			};
 		};
 		CompositeTypes: {
 			[_ in never]: never;

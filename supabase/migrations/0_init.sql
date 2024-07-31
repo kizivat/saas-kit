@@ -30,6 +30,27 @@ create table stripe_customers (
 );
 alter table stripe_customers enable row level security;
 
+-- Create enum for stripe payment mode
+-- Used to differentiate between one-time payments and subscriptions
+-- If user has bought a product with a one-time payment, they should not be able to buy it again with a subscription
+create type stripe_payment_mode as enum (
+  'payment',
+  'subscription'
+);
+
+-- Create table for user products
+-- Used to store which products a user has access to and how they paid for them.
+create table user_products (
+    user_id uuid not null,
+    stripe_product_id text not null,
+    type stripe_payment_mode not null,
+    created_at timestamp with time zone not null default now(),
+    updated_at timestamp with time zone null,
+    constraint user_products_pkey primary key (user_id, stripe_product_id, type),
+    constraint user_products_user_id_fkey foreign key (user_id) references auth.users (id) on update cascade on delete cascade
+  );
+alter table user_products enable row level security;
+
 -- Create a table for "Contact Us" form submissions
 -- Limit RLS policies -- only server side access
 create table contact_messages (

@@ -1,5 +1,3 @@
-export const ssr = false;
-
 import {
 	PRIVATE_NOTIFICATIONS_EMAIL,
 	PRIVATE_SMTP_HOST,

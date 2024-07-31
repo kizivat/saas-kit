@@ -1,13 +1,8 @@
-import { PRIVATE_STRIPE_SECRET_KEY } from '$env/static/private';
+import { toSortedPrices } from '$lib/stripe/product-utils';
 import { Stripe } from 'stripe';
-import { toSortedPrices } from '../(app)/settings/billing/stripe-helpers';
 import type { PageServerLoad } from './$types';
 
-export const load: PageServerLoad = async () => {
-	const stripe = new Stripe(PRIVATE_STRIPE_SECRET_KEY, {
-		apiVersion: '2024-04-10',
-	});
-
+export const load: PageServerLoad = async ({ locals: { stripe } }) => {
 	const { data: prices } = await stripe.prices.list({
 		expand: ['data.product'],
 		active: true,

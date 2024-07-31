@@ -1,31 +1,56 @@
-import { PRIVATE_STRIPE_SECRET_KEY } from '$env/static/private';
-import { Stripe } from 'stripe';
-import { stripeProductIds } from '../../../../config';
+import { fetchSortedProducts } from '$lib/stripe/client-helpers';
+import { redirect } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
-import { toSortedProducts } from './stripe-helpers';
 
-export const load: PageServerLoad = async () => {
-	const stripe = new Stripe(PRIVATE_STRIPE_SECRET_KEY, {
-		apiVersion: '2024-04-10',
-	});
+export const load: PageServerLoad = async ({
+	locals: { safeGetSession, supabaseServiceRole, stripe },
+}) => {
+	const { user } = await safeGetSession();
+	if (!user) {
+		throw redirect(303, '/login');
+	}
 
-	const { data: products } = await stripe.products.list({
-		active: true,
-		expand: ['data.default_price'],
-		ids: stripeProductIds ?? undefined,
-	});
+	const products = await fetchSortedProducts(stripe);
 
-	const { data: prices } = await stripe.prices.list({
-		active: true,
+	// Get user's current product
+	const { data: stripeCustomer, error } = await supabaseServiceRole
+		.from('stripe_customers')
+		.select('stripe_customer_id')
+		.eq('user_id', user.id)
+		.limit(1)
+		.single();
+
+	if (error) {
+		console.error(error);
+		return { products };
+	}
+
+	// const { data: userProducts, error: userProductsError } =
+	// 	await supabaseServiceRole
+	// 		.from('user_products')
+	// 		.select('stripe_product_id, type')
+	// 		.eq('user_id', user.id);
+
+	// if (userProductsError) {
+	// 	console.error(userProductsError);
+	// 	return { products: sortedProducts };
+	// }
+
+	// TODO: we'll need to use that once we correctly store the user products
+	// if (
+	// 	userProducts.findIndex((product) => product.type === 'subscription') < 0
+	// ) {
+	// 	return { products: sortedProducts, userProducts };
+	// }
+
+	const { data: subscriptions } = await stripe.subscriptions.list({
+		customer: stripeCustomer.stripe_customer_id,
+		limit: 100,
 	});
 
 	return {
-		products: toSortedProducts(
-			products.map((product) => ({
-				...product,
-				default_price: product.default_price as Stripe.Price, // just force the type
-				prices: prices.filter((price) => price.product === product.id),
-			})),
-		),
+		products,
+		// userProducts,
+		currentSubscriptions: subscriptions,
 	};
 };

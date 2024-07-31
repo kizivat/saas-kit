@@ -1,5 +1,8 @@
 // src/hooks.server.ts
-import { PRIVATE_SUPABASE_SERVICE_ROLE } from '$env/static/private';
+import {
+	PRIVATE_STRIPE_SECRET_KEY,
+	PRIVATE_SUPABASE_SERVICE_ROLE,
+} from '$env/static/private';
 import {
 	PUBLIC_SUPABASE_ANON_KEY,
 	PUBLIC_SUPABASE_URL,
@@ -7,6 +10,7 @@ import {
 import { createServerClient } from '@supabase/ssr';
 import { createClient } from '@supabase/supabase-js';
 import type { Handle } from '@sveltejs/kit';
+import Stripe from 'stripe';
 
 export const handle: Handle = async ({ event, resolve }) => {
 	event.locals.supabase = createServerClient(
@@ -74,6 +78,10 @@ export const handle: Handle = async ({ event, resolve }) => {
 
 		return { session, user, amr: aal.currentAuthenticationMethods };
 	};
+
+	event.locals.stripe = new Stripe(PRIVATE_STRIPE_SECRET_KEY, {
+		apiVersion: '2024-04-10',
+	});
 
 	return resolve(event, {
 		filterSerializedResponseHeaders(name) {

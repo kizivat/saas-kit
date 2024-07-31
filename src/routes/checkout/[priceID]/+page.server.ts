@@ -1,4 +1,3 @@
-import { PRIVATE_STRIPE_SECRET_KEY } from '$env/static/private';
 import { error, redirect } from '@sveltejs/kit';
 import Stripe from 'stripe';
 import type { PageServerLoad } from './$types';
@@ -6,7 +5,7 @@ import type { PageServerLoad } from './$types';
 export const load: PageServerLoad = async ({
 	params,
 	url,
-	locals: { safeGetSession, supabaseServiceRole },
+	locals: { safeGetSession, supabaseServiceRole, stripe },
 }) => {
 	const { session, user } = await safeGetSession();
 	if (!session || !user) {
@@ -14,10 +13,6 @@ export const load: PageServerLoad = async ({
 		search.set('next', url.pathname);
 		throw redirect(303, `/register?${search.toString()}`);
 	}
-
-	const stripe = new Stripe(PRIVATE_STRIPE_SECRET_KEY, {
-		apiVersion: '2024-04-10',
-	});
 
 	const price = await stripe.prices.retrieve(params.priceID);
 
@@ -52,13 +47,46 @@ export const load: PageServerLoad = async ({
 		}
 	}
 
+	const subscriptionsPromise = stripe.subscriptions.list({
+		customer,
+		limit: 100,
+	});
+
+	const [{ data: subscriptions }] = await Promise.all([
+		subscriptionsPromise,
+		// productsPromise,
+	]);
+
+	const currentSubscriptions = subscriptions.filter((sub) =>
+		['active', 'trailing', 'past_due'].includes(sub.status),
+	);
+
+	// const activeProductId = currentSubscriptions.map(
+	// 	(sub) => sub.items.data[0].price.product as string,
+	// )[0]; // force string as we don't expand
+	// const sortedProductIds = products.map((product) => product.id);
+
+	// const comparison =
+	// 	sortedProductIds.indexOf(activeProductId) -
+	// 	sortedProductIds.indexOf(price.product as string);
+
+	stripe.subscriptions.update(currentSubscriptions[0].id, {
+		items: [
+			{
+				id: currentSubscriptions[0].items.data[0].id,
+				price: price.id,
+			},
+		],
+	});
+
 	const lineItems: Stripe.Checkout.SessionCreateParams['line_items'] = [
 		{
 			...(price.custom_unit_amount
 				? {
 						price_data: {
-							unit_amount: url.searchParams.has('amount')
-								? parseInt(url.searchParams.get('amount') || '0', 10)
+							unit_amount: url.searchParams.has('customAmount')
+								? parseInt(url.searchParams.get('customAmount') || '0', 10) *
+									100
 								: price.custom_unit_amount.preset || 0,
 							currency: price.currency,
 							product: price.product as string,
@@ -71,39 +99,26 @@ export const load: PageServerLoad = async ({
 
 	let checkoutUrl;
 	try {
-		const stripeSession = await stripe.checkout.sessions.create({
+		const checkoutSession = await stripe.checkout.sessions.create({
 			line_items: lineItems,
 			customer,
 			mode: price.type === 'recurring' ? 'subscription' : 'payment',
 			success_url: `${url.origin}/dashboard`,
 			cancel_url: `${url.origin}/settings/billing`,
+			// recurring prices have invoice creation enabled automatically
+			...(price.type === 'recurring'
+				? {}
+				: {
+						invoice_creation: {
+							enabled: true,
+						},
+					}),
 		});
-		checkoutUrl = stripeSession.url;
+		checkoutUrl = checkoutSession.url;
 	} catch (e) {
 		console.error(e);
 		throw error(500, 'Unknown Error: If issue persists please contact us.');
 	}
 
 	throw redirect(303, checkoutUrl ?? '/pricing');
-};
-
-export const actions = {
-	customPrice: async (event) => {
-		const { priceID } = event.params;
-		const formData = await event.request.formData();
-
-		const amountStr = formData.get('customAmount');
-
-		if (!amountStr) {
-			throw error(400, 'Amount is required');
-		}
-
-		const amount = parseInt(amountStr.toString(), 10);
-
-		if (isNaN(amount) || amount < 1) {
-			throw error(400, 'Invalid amount');
-		}
-
-		throw redirect(303, `/checkout/${priceID}?amount=${amount * 100}`);
-	},
 };
