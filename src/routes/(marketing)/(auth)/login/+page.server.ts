@@ -17,8 +17,7 @@ export const load: PageServerLoad = async () => {
 export const actions: Actions = {
 	default: async (event) => {
 		const provider = event.url.searchParams.get('provider') as Provider;
-		const search = (await event.request.formData()).get('query');
-		const searchParams = new URLSearchParams(search as string);
+		const searchParams = event.url.searchParams;
 		searchParams.set('next', searchParams.get('next') || '/dashboard');
 
 		if (provider) {
