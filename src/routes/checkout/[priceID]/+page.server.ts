@@ -16,6 +16,20 @@ export const load: PageServerLoad = async ({
 
 	const price = await stripe.prices.retrieve(params.priceID);
 
+	const customAmount = price.custom_unit_amount
+		? url.searchParams.has('customAmount')
+			? parseInt(url.searchParams.get('customAmount') || '0', 10) * 100
+			: price.custom_unit_amount.preset || 0
+		: null;
+
+	const amount =
+		customAmount !== null && !isNaN(customAmount)
+			? customAmount
+			: price.unit_amount;
+	if (amount === 0) {
+		redirect(303, '/dashboard');
+	}
+
 	const { data: results } = await supabaseServiceRole
 		.from('stripe_customers')
 		.select('stripe_customer_id')
@@ -70,24 +84,25 @@ export const load: PageServerLoad = async ({
 	// 	sortedProductIds.indexOf(activeProductId) -
 	// 	sortedProductIds.indexOf(price.product as string);
 
-	stripe.subscriptions.update(currentSubscriptions[0].id, {
-		items: [
-			{
-				id: currentSubscriptions[0].items.data[0].id,
-				price: price.id,
-			},
-		],
-	});
+	if (currentSubscriptions.length > 0) {
+		await stripe.subscriptions.update(currentSubscriptions[0].id, {
+			items: [
+				{
+					id: currentSubscriptions[0].items.data[0].id,
+					price: price.id,
+				},
+			],
+		});
+		throw redirect(303, '/settings/billing');
+	}
 
 	const lineItems: Stripe.Checkout.SessionCreateParams['line_items'] = [
 		{
 			...(price.custom_unit_amount
 				? {
 						price_data: {
-							unit_amount: url.searchParams.has('customAmount')
-								? parseInt(url.searchParams.get('customAmount') || '0', 10) *
-									100
-								: price.custom_unit_amount.preset || 0,
+							unit_amount:
+								customAmount != null && !isNaN(customAmount) ? customAmount : 0,
 							currency: price.currency,
 							product: price.product as string,
 						},
