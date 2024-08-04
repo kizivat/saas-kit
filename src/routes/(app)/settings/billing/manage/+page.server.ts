@@ -6,7 +6,7 @@ export const load = async ({
 }) => {
 	const { user } = await safeGetSession();
 	if (!user) {
-		throw redirect(303, '/login');
+		return redirect(303, '/login');
 	}
 
 	// Get user's current product
@@ -19,7 +19,7 @@ export const load = async ({
 
 	if (error) {
 		console.error(error);
-		throw redirect(303, '/settings/billing');
+		return redirect(303, '/settings/billing');
 	}
 
 	let billingPortalSessionUrl;
@@ -31,8 +31,8 @@ export const load = async ({
 		billingPortalSessionUrl = session.url;
 	} catch (error) {
 		console.error(error);
-		throw redirect(303, '/settings/billing');
+		return redirect(303, '/settings/billing');
 	}
 
-	throw redirect(303, billingPortalSessionUrl);
+	redirect(303, billingPortalSessionUrl);
 };

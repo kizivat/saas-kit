@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { cn } from '$lib/utils';
 
-	const themes = ['neutral', 'rose', 'yellow', 'green', 'orange'];
+	const _themes = ['neutral', 'rose', 'yellow', 'green', 'orange'];
 
-	let theme: (typeof themes)[number] = 'neutral';
+	let theme: (typeof _themes)[number] = 'neutral';
 
 	function reset() {
 		document.documentElement.classList.remove('neutral');
@@ -14,7 +14,7 @@
 		document.documentElement.classList.remove('blue');
 	}
 
-	function setTheme(t: (typeof themes)[number]) {
+	function setTheme(t: (typeof _themes)[number]) {
 		reset();
 		theme = t;
 		document.documentElement.classList.add(t);

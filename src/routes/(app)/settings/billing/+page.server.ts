@@ -9,7 +9,7 @@ export const load: PageServerLoad = async ({
 }) => {
 	const { user } = await safeGetSession();
 	if (!user) {
-		throw redirect(303, '/login');
+		return redirect(303, '/login');
 	}
 
 	const products = await fetchSortedProducts(stripe);

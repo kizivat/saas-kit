@@ -5,7 +5,7 @@ import {
 	PRIVATE_SMTP_PORT,
 	PRIVATE_SMTP_USER,
 } from '$env/static/private';
-import { PostgrestError } from '@supabase/supabase-js';
+import type { PostgrestError } from '@supabase/supabase-js';
 import { fail, type Actions, type ServerLoad } from '@sveltejs/kit';
 import { createTransport } from 'nodemailer';
 import SMTPTransport from 'nodemailer/lib/smtp-transport';
@@ -62,7 +62,7 @@ export const actions: Actions = {
 		try {
 			[result, { error }] = await Promise.all([send, insert]);
 		} catch (e) {
-			console.warn("Couldn't send contact request email.");
+			console.warn("Couldn't send contact request email.", e);
 			if (!error) {
 				console.info(
 					`Contact message from ${name} <${email}> with subject "${subject}" and body "${body}" was saved to your databases \`contact_messages\` table.`,

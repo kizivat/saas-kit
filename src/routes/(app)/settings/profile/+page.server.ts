@@ -49,7 +49,7 @@ export const actions = {
 		const { safeGetSession, supabase } = event.locals;
 		const { session } = await safeGetSession();
 		if (!session) {
-			throw redirect(303, '/login');
+			redirect(303, '/login');
 		}
 
 		const form = await superValidate(event, zod(emailFormSchema));
@@ -79,7 +79,7 @@ export const actions = {
 		const { safeGetSession, supabase } = event.locals;
 		const { session, user } = await safeGetSession();
 		if (!session || !user?.id) {
-			throw redirect(303, '/login');
+			return redirect(303, '/login');
 		}
 
 		const form = await superValidate(event, zod(infoFormSchema));
@@ -111,7 +111,7 @@ export const actions = {
 			event.locals;
 		const { session, user } = await safeGetSession();
 		if (!session || !user?.id) {
-			throw redirect(303, '/login');
+			return redirect(303, '/login');
 		}
 
 		const form = await superValidate(event, zod(deleteAccountFormSchema));
@@ -132,7 +132,7 @@ export const actions = {
 		if (pwError) {
 			await supabase.auth.signOut();
 			// The user was logged out because of bad password. Redirect to error page explaining.
-			throw redirect(303, '/security-error');
+			return redirect(303, '/security-error');
 		}
 
 		const { data: customer, error } = await supabaseServiceRole
@@ -180,6 +180,6 @@ export const actions = {
 
 		await supabase.auth.signOut();
 
-		throw redirect(303, '/register?alertDialog=account-deletion');
+		redirect(303, '/register?alertDialog=account-deletion');
 	},
 };

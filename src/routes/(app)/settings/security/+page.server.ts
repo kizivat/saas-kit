@@ -29,7 +29,7 @@ export const actions = {
 		const { safeGetSession, supabase } = event.locals;
 		const { session, user, amr } = await safeGetSession();
 		if (!session) {
-			throw redirect(303, '/login');
+			redirect(303, '/login');
 		}
 
 		const { data: passwordSet } =
@@ -88,7 +88,7 @@ export const actions = {
 			if (error) {
 				await supabase.auth.signOut();
 				// The user was logged out because of bad password. Redirect to error page explaining.
-				throw redirect(303, '/security-error');
+				redirect(303, '/security-error');
 			}
 		}
 
@@ -103,7 +103,7 @@ export const actions = {
 
 		if (recoveryAmr) {
 			await supabase.auth.signOut();
-			throw redirect(303, '/login?alertDialog=reset-password');
+			redirect(303, '/login?alertDialog=reset-password');
 		}
 
 		return 'old_password' in form.data

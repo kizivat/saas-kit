@@ -45,6 +45,6 @@ export const actions: Actions = {
 		const search = new URLSearchParams(event.url.search);
 		search.set('next', event.url.searchParams.get('next') || '/dashboard');
 
-		throw redirect(303, '/auth/callback?' + search.toString());
+		redirect(303, '/auth/callback?' + search.toString());
 	},
 };

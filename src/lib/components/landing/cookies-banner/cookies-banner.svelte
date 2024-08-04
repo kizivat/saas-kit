@@ -13,7 +13,7 @@
 			.resolvedOptions()
 			.timeZone.startsWith('Europe/');
 	} catch (e) {
-		/* continue */
+		console.error(e);
 	}
 
 	onMount(() => {

@@ -37,7 +37,7 @@ export const actions: Actions = {
 				return fail(400, {});
 			}
 
-			throw redirect(303, data.url);
+			redirect(303, data.url);
 		}
 
 		const supabase = event.locals.supabase;
@@ -60,6 +60,6 @@ export const actions: Actions = {
 			return setError(form, '', 'Invalid credentials');
 		}
 
-		throw redirect(303, '/auth/callback?next=/dashboard');
+		redirect(303, '/auth/callback?next=/dashboard');
 	},
 };

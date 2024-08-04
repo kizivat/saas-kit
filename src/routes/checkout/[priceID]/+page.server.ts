@@ -12,7 +12,7 @@ export const load: PageServerLoad = async ({
 	if (!session || !user) {
 		const search = new URLSearchParams(url.search);
 		search.set('next', url.pathname);
-		throw redirect(303, `/register?${search.toString()}`);
+		return redirect(303, `/register?${search.toString()}`);
 	}
 
 	const price = await stripe.prices.retrieve(params.priceID);
@@ -28,7 +28,7 @@ export const load: PageServerLoad = async ({
 			? customAmount
 			: price.unit_amount;
 	if (amount === 0) {
-		redirect(303, '/dashboard');
+		return redirect(303, '/dashboard');
 	}
 
 	const { data: results } = await supabaseServiceRole
@@ -58,7 +58,7 @@ export const load: PageServerLoad = async ({
 
 		if (upsertError) {
 			console.error(upsertError);
-			throw error(500, 'Unknown Error: If issue persists please contact us.');
+			error(500, 'Unknown Error: If issue persists please contact us.');
 		}
 	}
 
@@ -85,7 +85,7 @@ export const load: PageServerLoad = async ({
 				},
 			],
 		});
-		throw redirect(303, '/settings/billing');
+		return redirect(303, '/settings/billing');
 	}
 
 	const lineItems: Stripe.Checkout.SessionCreateParams['line_items'] = [
@@ -124,8 +124,8 @@ export const load: PageServerLoad = async ({
 		checkoutUrl = checkoutSession.url;
 	} catch (e) {
 		console.error(e);
-		throw error(500, 'Unknown Error: If issue persists please contact us.');
+		error(500, 'Unknown Error: If issue persists please contact us.');
 	}
 
-	throw redirect(303, checkoutUrl ?? '/pricing');
+	redirect(303, checkoutUrl ?? '/pricing');
 };
