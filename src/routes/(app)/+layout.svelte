@@ -20,7 +20,7 @@
 	>
 		<nav class="flex flex-col items-center gap-4 px-2 sm:py-5">
 			<a
-				href="/dashboard"
+				href="/"
 				class="group flex h-9 w-9 shrink-0 items-center justify-center gap-2 md:h-8 md:w-8"
 			>
 				<Logo />

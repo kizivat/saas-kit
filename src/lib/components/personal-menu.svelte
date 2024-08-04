@@ -19,11 +19,11 @@
 		user?.email;
 </script>
 
-<div class="hidden sm:block">
+<div>
 	<DropdownMenu.Root>
 		<DropdownMenu.Trigger asChild let:builder>
 			<Button
-				variant="default"
+				variant="secondary"
 				size="icon"
 				class="rounded-full"
 				builders={[builder]}
@@ -31,7 +31,7 @@
 				<span class="sr-only">Personal</span>
 				<Avatar.Root>
 					<Avatar.Image src={user?.user_metadata.avatar_url} alt={username} />
-					<Avatar.Fallback class="bg-primary">
+					<Avatar.Fallback>
 						<UserIcon />
 					</Avatar.Fallback>
 				</Avatar.Root>
@@ -66,37 +66,10 @@
 			</DropdownMenu.RadioGroup>
 			{#if user}
 				<DropdownMenu.Separator />
+				<DropdownMenu.Item href="/dashboard">Dashboard</DropdownMenu.Item>
 				<DropdownMenu.Item href="/settings">Settings</DropdownMenu.Item>
 				<DropdownMenu.Item href="/log-out">Log out</DropdownMenu.Item>
 			{/if}
 		</DropdownMenu.Content>
 	</DropdownMenu.Root>
-</div>
-
-<div class="block sm:hidden">
-	<ul class="">
-		{#if !user}
-			<li>
-				<Button href="/register" variant="ghost" class="w-full py-6 text-base">
-					Register
-				</Button>
-			</li>
-			<li>
-				<Button href="/login" variant="ghost" class="w-full py-6 text-base">
-					Log in
-				</Button>
-			</li>
-		{:else}
-			<li>
-				<Button href="/settings" variant="ghost" class="w-full py-6 text-base">
-					Settings
-				</Button>
-			</li>
-			<li>
-				<Button href="/log-out" variant="ghost" class="w-full py-6 text-base">
-					Log out
-				</Button>
-			</li>
-		{/if}
-	</ul>
 </div>

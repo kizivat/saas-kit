@@ -31,11 +31,11 @@
 
 <header class="sticky top-0 z-10 border-b border-border bg-card py-4">
 	<div
-		class="container grid grid-cols-2 flex-nowrap items-center justify-between sm:grid-cols-3"
+		class="container grid grid-cols-2 flex-nowrap items-center justify-between sm:grid-cols-[auto,auto,auto]"
 	>
 		<HomeButton />
-		<nav class="mx-auto hidden sm:block">
-			<ul class="hidden px-1 text-lg font-bold sm:flex">
+		<nav class="hidden sm:block">
+			<ul class="hidden flex-wrap px-1 text-lg font-bold sm:flex">
 				{#each Object.entries(menuItems) as [href, text]}
 					<li class="md:mx-2">
 						<Button variant="ghost" {href} class="text-base text-foreground">
@@ -45,7 +45,12 @@
 				{/each}
 			</ul>
 		</nav>
-		<div class="hidden justify-self-end sm:block">
+		<div class="hidden justify-self-end sm:flex sm:gap-4">
+			{#if data.user}
+				<Button href="/dashboard">Dashboard</Button>
+			{:else}
+				<Button href="/login">Try It Out</Button>
+			{/if}
 			<PersonalMenu user={data.user} />
 		</div>
 
@@ -117,7 +122,54 @@
 						</ul>
 						<Separator />
 						<ul class="">
-							<PersonalMenu user={data.user} />
+							{#if !data.user}
+								<li>
+									<Button
+										href="/register"
+										variant="ghost"
+										class="w-full py-6 text-base"
+									>
+										Register
+									</Button>
+								</li>
+								<li>
+									<Button
+										href="/login"
+										variant="ghost"
+										class="w-full py-6 text-base"
+									>
+										Log in
+									</Button>
+								</li>
+							{:else}
+								<li>
+									<Button
+										href="/dashboard"
+										variant="ghost"
+										class="w-full py-6 text-base"
+									>
+										Dashboard
+									</Button>
+								</li>
+								<li>
+									<Button
+										href="/settings"
+										variant="ghost"
+										class="w-full py-6 text-base"
+									>
+										Settings
+									</Button>
+								</li>
+								<li>
+									<Button
+										href="/log-out"
+										variant="ghost"
+										class="w-full py-6 text-base"
+									>
+										Log out
+									</Button>
+								</li>
+							{/if}
 						</ul>
 					</nav>
 				</Drawer.Content>
