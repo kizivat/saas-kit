@@ -80,7 +80,7 @@
 </Testimonials.Root>
 
 <Carousel.Root
-	class=""
+	class="md:hidden"
 	opts={{ loop: true }}
 	plugins={[
 		Autoplay({
@@ -88,7 +88,7 @@
 		}),
 	]}
 >
-	<Testimonials.Root variant="carousel" class="sm:hidden">
+	<Testimonials.Root variant="carousel">
 		<Carousel.Content>
 			{#each testimonials as { author: { avatarUrl, name, sub }, quote }, i (i)}
 				<Carousel.Item>
@@ -117,6 +117,6 @@
 			{/each}
 		</Carousel.Content>
 	</Testimonials.Root>
-	<Carousel.Previous class="-translate-x-full" />
+	<Carousel.Previous class="translate-x-full" />
 	<Carousel.Next class="-translate-x-full" />
 </Carousel.Root>
