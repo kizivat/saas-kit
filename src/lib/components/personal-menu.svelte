@@ -66,7 +66,6 @@
 			</DropdownMenu.RadioGroup>
 			{#if user}
 				<DropdownMenu.Separator />
-				<DropdownMenu.Item href="/dashboard">Dashboard</DropdownMenu.Item>
 				<DropdownMenu.Item href="/settings">Settings</DropdownMenu.Item>
 				<DropdownMenu.Item href="/log-out">Log out</DropdownMenu.Item>
 			{/if}
