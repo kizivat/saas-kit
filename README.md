@@ -1,5 +1,3 @@
-> ⚠️ Not ready for use yet!
-
 <img alt="SaaS Kit logo" src="./static/images/logo@512.png" width="64" height="64">
 
 # SaaS Kit
@@ -9,13 +7,12 @@
 [![Linting](https://github.com/kizivat/saas-kit/actions/workflows/linting.yml/badge.svg?branch=main)](https://github.com/kizivat/saas-kit/actions/workflows/linting.yml)
 [![License](https://img.shields.io/badge/License-MIT-brightgreen?labelColor=32383f)](https://github.com/kizivat/saas-kit/blob/main/LICENSE)
 
-### SaaS Kit is an open source, fast, and free to host SaaS template / boilerplate
+### SaaS Kit is an open-source, fast, and free to host SaaS template / boilerplate
 
 - [Feature Rich](#features): user auth, user dashboard, marketing site, billing/subscriptions, pricing page, and more.
-- [Lightning Performance](#performance--best-practices): fast pre-rendered pages which score 100/100 on Google PageSpeed.
 - [Delighful Developer Experience](#tech-stack): tools you'll love working with, including SvelteKit, Tailwind, shadcn-svelte, Postgres, and Supabase.
 - Extensible: all the tools you need to make additional marketing pages, UI components, user dashboards, admin portals, database backends, API endpoints, and more.
-- [Hosting](#suggested-hosting-stack): Our suggested hosting stack is free to host, cheap to scale, easy to manage, and includes automatic deployments.
+- [Hosting](#suggested-hosting-stack): Our suggested hosting stack is free to host, cheap to scale, easy to manage.
 - [MIT Open Source](https://github.com/kizivat/saas-kit/blob/main/LICENSE)
 - [Quick Start](#quick-start): Full docs from `git clone` to deployment.
 
@@ -23,20 +20,19 @@
 >
 > **Make mobile apps?** Improve conversion rates and ratings with [Critical Moments](https://criticalmoments.io).
 >
-> (I'm not affiliated with Critical Moments, but I love their work and wanted to make it easier for others to use their template.)
+> _(I'm not affiliated with Critical Moments, but I love their work and wanted to make it easier for others to use their template.)_
 
 ## Features
 
 Everything you need to get started for a SaaS company:
 
-- User Authentication: Sign up, sign out, forgot password, email verification, and oAuth. Powered by Supabase Auth.
+- User Authentication: Sign up, sign out, forgot password, email verification, oAuth and account deletion. Powered by Supabase Auth.
 - Marketing Page with SEO optimization
 - User Dashboard with user profile, user settings, update email/password, billing, and more.
 - Subscriptions powered by Stripe Checkout
 - Pricing page
 - Contact-us form
 - Billing portal: self serve to change card, upgrade, cancel, or download receipts
-- Onboarding flow after signup: collect user data, and select a payment plan
 - Style toolkit: theming and UI components
 - Responsive: designed for mobile and desktop.
 - Extensible: all the tools you need to make additional marketing pages, UI components, admin portals, database backends, API endpoints, and more.
@@ -85,16 +81,10 @@ Everything you need to get started for a SaaS company:
 
 The selected tech stack creates lightning fast websites.
 
-- Pre-rendering (static generation) for marketing pages and pricing
 - Instant navigation: the best of CSR + SSR in one. SSR your first page for fastest possible initial load times. For subsequent pages, the content is pre-loaded and rendered with CSR, for instant rendering.
 - CDN optimized, for high edge-cache hit ratios
-- Edge-functions for dynamic APIs/pages
 - Svelte and Tailwind compile out unused HTML, CSS and JS at deploy time for smaller pages
 - Linting to find accessibility and syntax issues
-
-The result is a perfect Google PageSpeed Insights score in all categories!
-
-<img width="420" alt="Screenshot 2024-01-18 at 11 31 32 AM" src="https://github.com/kizivat/saas-kit/assets/848343/46b5e960-2aa0-4fb5-acd7-4f84b380e1d0">
 
 # Quick Start
 
@@ -207,17 +197,13 @@ npx supabase db push
 - Create a Stripe account
 - Create a product and price Tiers
   - Create your [products](https://stripe.com/docs/api/products) and their [prices](https://stripe.com/docs/api/prices) in the Dashboard or with the Stripe CLI.
-  - SaaS Starter works best if you define each tier as a separate product (eg, `SaaS Starter Free`, `Saas Starter Pro`, `Saas Starter Enterprise`). Include a monthly and annual price for each product if you want to support multiple billing periods.
-  - You do not need to create a free plan in Stripe. The free plan is managed within the app.
+  - SaaS Starter works best if you define each tier as a separate product (eg, `SaaS Starter Free`, `Saas Starter Pro`, `Saas Starter Enterprise`). Currently we display the [default price](https://docs.stripe.com/products-prices/manage-prices#default-price) for each product. If you have multiple prices for a product, the user can switch between them in the management portal.
+  - If you want to display only selected products, you can filter them by setting the `stipeProductIds` in `src/config.ts` to an array of the product ids you want to display.
 - Setup your environment
-  - Get your [Secret API](https://dashboard.stripe.com/test/apikeys) key, and add it as an environment variable PRIVATE_STRIPE_API_KEY (`.env.local` locally, and Cloudflare environment for prod). Be sure to use test keys for development, and keep your production/live keys secret and secure.
+  - Get your [Secret API](https://dashboard.stripe.com/test/apikeys) key, and add it as an environment variable `PRIVATE_STRIPE_API_KEY`. Be sure to use test keys for development, and keep your production/live keys secret and secure.
 - Optional: theme your Stripe integration
   - Change the colors and fonts to match your brand [here](https://dashboard.stripe.com/settings/branding)
-- Update your pricing plan data to align to your stripe data
-  - See `/src/routes/(marketing)/pricing/pricing.js` and Fill in all fields for each plan. stripe_price_id and stripe_product_id should only be omitted on a single “free” plan. Multiple free plans are not supported.
-    - The product in Stripe can contain several prices for the same product (annual, monthly, etc). The stripe_price_id you choose to put in this json will be the default we use for the checkout experience. However, if you have more prices configured for a product configured, the user can switch between them in the management portal.
-  - Set the `defaultPlanId` to the plan the user will see as their “current plan” after signup, but before subscribing to a paid plan (typically “free”). It should align to the plan with no stripe_price_id.
-  - if you want an item highlighted on `/pricing`, specify that plan ID in `/src/routes/(marketing)/pricing/+page.svelte`
+- Your pricing data will be fetched from Stripe and displayed on the pricing page automatically. (This approach is a subject to possible change in the future, as it relies on the Stripe API – you can always customize the pricing page to be static for performance reasons, however we like the idea of using Stripe as your "pricing CMS" for now better.)
 - Update your portal configuration
   - Open [stripe portal config](https://dashboard.stripe.com/test/settings/billing/portal) and make the following changes
     - Disallow editing email under customer information (since we allow editing in primary portal)
@@ -243,27 +229,17 @@ If you prefer another host you can explore alternatives:
 
 After the steps above, you’ll have a working version like the demo page. However, it’s not branded, and doesn’t have your content. The following checklist helps you customize the template to make a SaaS homepage for your company.
 
-- Set a name for your site in `src/config.ts:WebsiteName`
-- Content
-  - Add actual content for marketing homepage
-  - Add any pages you want on top of our boiler plate (about, terms of service, etc). Be sure to add links to them in the header, mobile menu header, and footer as appropriate (`src/routes/(marketing)/+layout.svelte`).
-  - Note: if you add any dynamic content to the main marketing page or pricing page, be sure to set `prerender = false` in the appropriate `+page.ts` file. These are currently pre-rendered and served as static assets for performance reasons, but that will break if you add server side rendering requirements.
-- Update SEO content
-  - Update title and meta description tags for every public page. We include generic ones using your site name (`src/config.ts:WebsiteName`), but the more specific these are the better.
-- Style
-  - Create a new shadcn-svelte theme matching your brand (see `src/app.css`)
-  - Update the marketing page layout `src/routes/(marketing)/+layout.svelte`: customize design, delete unwanted pages from header and footer
-  - Style: make it your own look and feel.
-  - Update the favicon in the `/static/` directory
-- Functionality
-  - Add actual SaaS functionality!
-  - Replace the admin dashboard with real content (`/src/routes/(app)/dasboard/+page.svelte`).
-  - Add API endpoints and database tables as needed to deliver your SaaS product.
-
-## Icons
-
-Homescreen Icons are from [Solar Broken Line Icons](https://www.svgrepo.com/collection/solar-broken-line-icons/) and [Solar Linear Icons](https://www.svgrepo.com/collection/solar-linear-icons) via CC Attribution License.
-
-# Sponsor
-
-We hope you enjoy SaaS Starter! If you build mobile apps, please check out its sponsor/creator, [Critical Moments](https://criticalmoments.io). We can help improve your mobile app conversions, improve your app rating, and mitigate major bugs and outages.
+- [ ] Set a name for your site in `src/config.ts:WebsiteName`
+- [ ] Content
+  - [ ] Add actual content for marketing homepage
+  - [ ] Add any pages you want on top of our boiler plate (about, terms of service, etc). Be sure to add links to them in the header, mobile menu header, and footer as appropriate (`src/routes/(marketing)/+layout.svelte`).
+- [ ] Update SEO content
+  - [ ] Update title and meta description tags for every public page. We include generic ones using your site name (`src/config.ts:WebsiteName`), but the more specific these are the better.
+- [ ] Style
+  - [ ] Create or paste your shadcn-svelte theme matching your brand (see `src/app.css`)
+  - [ ] Update the marketing page layout `src/routes/(marketing)/+layout.svelte`: customize design, delete unwanted pages from header and footer
+  - [ ] Update the favicon in the `/static/` directory
+- [ ] Functionality
+  - [ ] Add actual SaaS functionality!
+  - [ ] Replace the admin dashboard with real content (`/src/routes/(app)/dasboard/+page.svelte`).
+  - [ ] Add API endpoints and database tables as needed to deliver your SaaS product.
