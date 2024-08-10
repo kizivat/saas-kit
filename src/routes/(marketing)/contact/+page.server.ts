@@ -1,15 +1,6 @@
-import {
-	PRIVATE_NOTIFICATIONS_EMAIL,
-	PRIVATE_SMTP_HOST,
-	PRIVATE_SMTP_PASSWORD,
-	PRIVATE_SMTP_PORT,
-	PRIVATE_SMTP_USER,
-} from '$env/static/private';
 import type { PostgrestError } from '@supabase/supabase-js';
 import { fail, type Actions, type ServerLoad } from '@sveltejs/kit';
-import { createTransport } from 'nodemailer';
-import SMTPTransport from 'nodemailer/lib/smtp-transport';
-import { message, setError, superValidate } from 'sveltekit-superforms';
+import { message, superValidate } from 'sveltekit-superforms';
 import { zod } from 'sveltekit-superforms/adapters';
 import { formSchema } from './schema';
 
@@ -31,15 +22,15 @@ export const actions: Actions = {
 
 		const { name, email, subject, body } = form.data;
 
-		const transport = createTransport({
-			host: PRIVATE_SMTP_HOST,
-			port: Number(PRIVATE_SMTP_PORT),
-			secure: true,
-			auth: {
-				user: PRIVATE_SMTP_USER,
-				pass: PRIVATE_SMTP_PASSWORD,
-			},
-		});
+		// const transport = createTransport({
+		// 	host: PRIVATE_SMTP_HOST,
+		// 	port: Number(PRIVATE_SMTP_PORT),
+		// 	secure: true,
+		// 	auth: {
+		// 		user: PRIVATE_SMTP_USER,
+		// 		pass: PRIVATE_SMTP_PASSWORD,
+		// 	},
+		// });
 
 		const insert = supabaseServiceRole.from('contact_messages').insert({
 			name,
@@ -49,18 +40,18 @@ export const actions: Actions = {
 			updated_at: new Date(),
 		});
 
-		const send = transport.sendMail({
-			from: `${name} ${PRIVATE_SMTP_USER}`,
-			to: PRIVATE_NOTIFICATIONS_EMAIL,
-			subject,
-			text: `from: ${name} <${email}>\nsubject:${subject}\n\n${body}`,
-		});
+		// const send = transport.sendMail({
+		// 	from: `${name} ${PRIVATE_SMTP_USER}`,
+		// 	to: PRIVATE_NOTIFICATIONS_EMAIL,
+		// 	subject,
+		// 	text: `from: ${name} <${email}>\nsubject:${subject}\n\n${body}`,
+		// });
 
-		let result: SMTPTransport.SentMessageInfo | null = null,
-			error: PostgrestError | null = null;
+		// let result: SMTPTransport.SentMessageInfo | null = null,
+		let error: PostgrestError | null = null;
 
 		try {
-			[result, { error }] = await Promise.all([send, insert]);
+			[/*result,*/ { error }] = await Promise.all([/*send, */ insert]);
 		} catch (e) {
 			console.warn("Couldn't send contact request email.", e);
 			if (!error) {
@@ -80,17 +71,17 @@ export const actions: Actions = {
 			);
 		}
 
-		if (result && result.rejected.length > 0) {
-			console.error('Rejected email send response: ', result.response);
-			console.error(
-				`Email from ${name} <${email}> with subject ${subject} and body ${body} was rejected.`,
-			);
-			return setError(
-				form,
-				'',
-				'An error occured while sending the message. Please try again later.',
-			);
-		}
+		// if (result && result.rejected.length > 0) {
+		// 	console.error('Rejected email send response: ', result.response);
+		// 	console.error(
+		// 		`Email from ${name} <${email}> with subject ${subject} and body ${body} was rejected.`,
+		// 	);
+		// 	return setError(
+		// 		form,
+		// 		'',
+		// 		'An error occured while sending the message. Please try again later.',
+		// 	);
+		// }
 
 		return message(form, {
 			success: 'Thank you for your message. We will get back to you soon.',
