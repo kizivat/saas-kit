@@ -6,7 +6,7 @@
 </script>
 
 <div class="grid items-center gap-10 overflow-visible md:grid-cols-2">
-	<div class="flex flex-col items-center sm:gap-6 md:items-start">
+	<div class="flex flex-col items-center gap-4 sm:gap-6 md:items-start">
 		<h1
 			class={cn(
 				'inline',
@@ -24,23 +24,19 @@
 				'[&_em]:not-italic [&_em]:underline [&_em]:decoration-primary [&_em]:decoration-4 [&_em]:md:decoration-[6px]',
 			)}
 		>
-			The <em>MIT</em> licensed, <em>optimized</em>, and <em>free to run</em> SaaS
-			template
+			Launch Your SaaS with an
+			<em>open-source</em> Template
 		</p>
 		<p class="text-center md:text-left md:text-lg [&_a]:underline">
-			An open-source SaaS starter-kit built with <a
-				href="https://kit.svelte.dev"
-				target="_blank">SvelteKit</a
-			>,
-			<a href="https://supabase.io" target="_blank">Supabase</a>,
-			<a href="https://tailwindcss.com" target="_blank">TailwindCSS</a>,
-			<a href="https://stripe.com" target="_blank">Stripe</a>, and
-			<a href="https://shadcn-svelte.com" target="_blank">shadcn-svelte</a>.
-			Host and scale up to 50,000 customers for free on Supabase and Cloudflare
-			Workers.
+			Kickstart your SaaS with a powerful, open-source starter kit. Built using
+			<a href="https://kit.svelte.dev" target="_blank">SvelteKit</a>,
+			<a href="https://supabase.io" target="_blank">Supabase</a>, and
+			<a href="https://shadcn-svelte.com" target="_blank">shadcn-svelte</a>,
+			with seamless <a href="https://stripe.com" target="_blank">Stripe</a> integration.
+			Scale effortlessly to up to 50,000 users completely free.
 		</p>
-		<div class="mt-6 flex gap-3 md:mt-2">
-			<Button href="/login">Try it out</Button>
+		<div class="mt-6 flex flex-wrap justify-center gap-3 md:mt-2">
+			<Button href="/login">Get Started Now</Button>
 			<Button
 				variant="secondary"
 				href="https://github.com/kizivat/saas-kit"
@@ -48,7 +44,7 @@
 				class="flex flex-nowrap gap-2"
 			>
 				<GitHubIcon class="h-4 w-4" />
-				View on GitHub
+				Explore on GitHub
 			</Button>
 		</div>
 	</div>

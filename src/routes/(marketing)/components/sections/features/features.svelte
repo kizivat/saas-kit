@@ -48,13 +48,13 @@
 			icon: LucideLockKeyhole,
 			title: 'Auth',
 			description:
-				'The authentification system is already set up thanks to the Supabase Auth. There are login and register page as well as user settings page. You can also add social logins like Google, Facebook, and Github.',
+				"The authentification system is already set up thanks to the Supabase Auth. There are login and register page as well as user settings page. You can also add social logins like Google, Facebook, and Github. We've also implemented advanced features like email verification, password reset, account deletion.",
 		},
 		{
 			icon: LucideCreditCard,
 			title: 'Payments',
 			description:
-				'The payments are handled by Stripe. You can create products, subscriptions, and coupons. The user can manage their payment methods and subscriptions.',
+				'The payments are handled by Stripe. You can create products and subscriptions. The user can manage their payment methods and subscriptions. The subscription downgrades and upgrades are also properly handled.',
 		},
 	];
 

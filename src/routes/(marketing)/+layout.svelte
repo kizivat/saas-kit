@@ -49,7 +49,7 @@
 			{#if data.user}
 				<Button href="/dashboard">Dashboard</Button>
 			{:else}
-				<Button href="/login">Try It Out</Button>
+				<Button href="/login">Get Started Now</Button>
 			{/if}
 			<PersonalMenu user={data.user} />
 		</div>

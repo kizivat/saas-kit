@@ -46,8 +46,9 @@
 		<Section.Header>
 			<Section.Title>Pricing</Section.Title>
 			<Section.Description class="text-balance">
-				We support multiple types of available pricing models on Stripe.
-				Including one-time payments, recurring payments, and pay-what-you-want.
+				Currently we support subscription based pricing out of the box. However,
+				you can extend the boilerplate to support one-time or custom pricing
+				models.
 			</Section.Description>
 		</Section.Header>
 		<Pricing {prices} />
