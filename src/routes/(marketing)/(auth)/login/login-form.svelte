@@ -22,7 +22,7 @@
 
 <form
 	method="POST"
-	action="/?redirectTo={encodeURIComponent(
+	action="?redirectTo={encodeURIComponent(
 		`${$page.url.origin}/auth/callback${$page.url.search}`,
 	)}"
 	use:enhance
