@@ -18,13 +18,16 @@ export const actions: Actions = {
 	default: async (event) => {
 		const provider = event.url.searchParams.get('provider') as Provider;
 		const searchParams = event.url.searchParams;
+		const redirectTo = searchParams.get('redirectTo');
 		searchParams.set('next', searchParams.get('next') || '/dashboard');
 
 		if (provider) {
+			if (!redirectTo) return fail(400, {});
+
 			const { data, error } = await event.locals.supabase.auth.signInWithOAuth({
 				provider,
 				options: {
-					redirectTo: `${event.url.origin}/auth/callback?${searchParams.toString()}`,
+					redirectTo,
 					queryParams: {
 						access_type: 'offline',
 						prompt: 'consent',

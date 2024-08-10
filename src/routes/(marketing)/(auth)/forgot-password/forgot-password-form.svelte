@@ -9,6 +9,7 @@
 	import { zodClient } from 'sveltekit-superforms/adapters';
 	import LoaderCircle from '~icons/lucide/loader-circle';
 	import { formSchema, type FormSchema } from './schema';
+	import { page } from '$app/stores';
 
 	export let data: SuperValidated<Infer<FormSchema>>;
 
@@ -19,7 +20,13 @@
 	const { form: formData, enhance, submitting, message } = form;
 </script>
 
-<form method="POST" use:enhance class="grid gap-4">
+<form
+	method="POST"
+	action="/?redirectTo={$page.url
+		.origin}/auth/callback?next={encodeURIComponent('/settings/security')}"
+	use:enhance
+	class="grid gap-4"
+>
 	{#if $message?.success}
 		<p class="text-sm text-green-700">{$message.success}</p>
 		<p class="text-sm text-muted-foreground">

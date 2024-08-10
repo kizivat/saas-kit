@@ -13,7 +13,7 @@ export const load: PageServerLoad = async () => {
 };
 
 export const actions: Actions = {
-	default: async ({ request, locals: { supabase } }) => {
+	default: async ({ url, request, locals: { supabase } }) => {
 		const form = await superValidate(request, zod(formSchema));
 		if (!form.valid) {
 			return fail(400, {
@@ -22,11 +22,11 @@ export const actions: Actions = {
 		}
 
 		const { email } = form.data;
-		const base = new URL(request.url).origin;
-		const redirectTo = new URL(
-			`/auth/callback?next=${encodeURIComponent('/settings/security')}`,
-			base,
-		).toString();
+		const redirectTo = url.searchParams.get('redirectTo');
+		if (!redirectTo) {
+			return setError(form, '', 'Invalid redirect URL.');
+		}
+
 		const { error } = await supabase.auth.resetPasswordForEmail(email, {
 			redirectTo,
 		});

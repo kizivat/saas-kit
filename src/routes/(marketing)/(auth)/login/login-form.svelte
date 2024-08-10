@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { page } from '$app/stores';
 	import * as Form from '$lib/components/ui/form';
 	import { Input } from '$lib/components/ui/input';
 	import {
@@ -19,7 +20,12 @@
 	const { form: formData, enhance, submitting } = form;
 </script>
 
-<form method="POST" use:enhance class="grid gap-4">
+<form
+	method="POST"
+	action="/?redirectTo={$page.url.origin}/auth/callback{$page.url.search}"
+	use:enhance
+	class="grid gap-4"
+>
 	<Form.Errors {form} />
 	<Form.Field {form} name="email">
 		<Form.Control let:attrs>

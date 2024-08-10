@@ -6,7 +6,7 @@
 	} from '$lib/components/ui/button/index.js';
 	import { cn } from '$lib/utils.js';
 	import type { VariantProps } from 'tailwind-variants';
-	import ArrowLeft from '~icons/lucide/arrow-left.svelte';
+	import ArrowLeft from '~icons/lucide/arrow-left';
 	import { getEmblaContext } from './context.js';
 
 	type $$Props = Props;

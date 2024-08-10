@@ -24,6 +24,8 @@
 				throw new Error(`Unknown provider: ${provider}`);
 		}
 	}
+
+	$: redirectTo = `redirectTo=${encodeURIComponent(`${$page.url.origin}/auth/callback?${$page.url.search}`)}`;
 </script>
 
 {#if oAuthProviders.length > 0}
@@ -40,7 +42,7 @@
 						<Tooltip.Trigger asChild let:builder>
 							{#await loadIcon(provider)}
 								<Button
-									formaction="/login?provider={provider}"
+									formaction="/login?provider={provider}&{redirectTo}"
 									variant="outline"
 									size="icon"
 									builders={[builder]}
@@ -50,7 +52,7 @@
 								</Button>
 							{:then Icon}
 								<Button
-									formaction="/login?provider={provider}"
+									formaction="/login?provider={provider}&{redirectTo}"
 									variant="outline"
 									size="icon"
 									builders={[builder]}
@@ -61,7 +63,7 @@
 								</Button>
 							{:catch _}
 								<Button
-									formaction="/login?provider={provider}"
+									formaction="/login?provider={provider}&{redirectTo}"
 									variant="outline"
 									builders={[builder]}
 									type="submit"
