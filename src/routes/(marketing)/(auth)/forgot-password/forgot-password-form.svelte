@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { page } from '$app/stores';
 	import * as Form from '$lib/components/ui/form';
 	import { Input } from '$lib/components/ui/input';
 	import {
@@ -9,7 +10,6 @@
 	import { zodClient } from 'sveltekit-superforms/adapters';
 	import LoaderCircle from '~icons/lucide/loader-circle';
 	import { formSchema, type FormSchema } from './schema';
-	import { page } from '$app/stores';
 
 	export let data: SuperValidated<Infer<FormSchema>>;
 
@@ -22,8 +22,9 @@
 
 <form
 	method="POST"
-	action="/?redirectTo={$page.url
-		.origin}/auth/callback?next={encodeURIComponent('/settings/security')}"
+	action="/?redirectTo={encodeURIComponent(
+		`${$page.url.origin}/auth/callback?next=/settings/security`,
+	)}"
 	use:enhance
 	class="grid gap-4"
 >

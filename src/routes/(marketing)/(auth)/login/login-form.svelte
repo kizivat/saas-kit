@@ -22,7 +22,9 @@
 
 <form
 	method="POST"
-	action="/?redirectTo={$page.url.origin}/auth/callback{$page.url.search}"
+	action="/?redirectTo={encodeURIComponent(
+		`${$page.url.origin}/auth/callback${$page.url.search}`,
+	)}"
 	use:enhance
 	class="grid gap-4"
 >
