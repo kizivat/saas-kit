@@ -12,7 +12,10 @@
 
 <Pricing.Root>
 	<Pricing.Plan>
-		<Card.Root>
+		<Card.Root class="relative">
+			<div class="absolute right-5 top-1.5">
+				<Price.Badges price={prices[0]} />
+			</div>
 			<Card.Header>
 				<Card.Title>{prices[0].product.name}</Card.Title>
 				<Card.Description>
@@ -37,7 +40,10 @@
 		</Card.Root>
 	</Pricing.Plan>
 	<Pricing.Plan emphasized>
-		<Card.Root>
+		<Card.Root class="relative">
+			<div class="absolute right-2 top-1.5">
+				<Price.Badges price={prices[1]} />
+			</div>
 			<Card.Header>
 				<Card.Title>{prices[1].product.name}</Card.Title>
 				<Card.Description>
@@ -62,7 +68,10 @@
 		</Card.Root>
 	</Pricing.Plan>
 	<Pricing.Plan>
-		<Card.Root>
+		<Card.Root class="relative">
+			<div class="absolute right-2 top-1.5">
+				<Price.Badges price={prices[2]} />
+			</div>
 			<Card.Header>
 				<Card.Title>{prices[2].product.name}</Card.Title>
 				<Card.Description>
