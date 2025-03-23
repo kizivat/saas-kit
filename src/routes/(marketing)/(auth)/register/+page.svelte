@@ -6,6 +6,12 @@
 	import RegisterForm from './register-form.svelte';
 
 	export let data;
+	export let form;
+
+	// Check form status
+	$: registrationSuccess = form?.success;
+	$: userEmail = form?.email;
+	$: signupDisabled = form?.signupDisabled;
 </script>
 
 <svelte:head>
@@ -28,17 +34,45 @@
 		</Card.Title>
 	</Card.Header>
 	<Card.Content class="flex flex-col gap-4">
-		<SocialsAuth />
-
-		<div class="flex flex-col gap-3">
-			<p class="text-sm text-muted-foreground">
-				Create an account with your email address below.
+		{#if registrationSuccess}
+			<Alert.Root class="mb-6" variant="default">
+				<Alert.Title>Verification email sent</Alert.Title>
+				<Alert.Description>
+					We've sent a confirmation email to <strong>{userEmail}</strong>.
+					Please check your inbox and follow the instructions to verify your
+					account.
+				</Alert.Description>
+			</Alert.Root>
+			<p class="text-center text-sm">
+				Didn't receive the email? Check your spam folder or <a
+					href="/register"
+					class="underline">try again</a
+				>.
 			</p>
-			<RegisterForm data={data.form} />
-			<div class="mt-4 text-center text-sm">
-				Already have an account?
-				<a href="/login" class="underline">Log in</a>.
+		{:else if signupDisabled}
+			<Alert.Root class="mb-6" variant="destructive">
+				<Alert.Title>Signups temporarily disabled</Alert.Title>
+				<Alert.Description>
+					We're sorry, but new user registration is currently disabled. Please
+					try again later or contact support for assistance.
+				</Alert.Description>
+			</Alert.Root>
+			<p class="text-center text-sm">
+				Already have an account? <a href="/login" class="underline">Log in</a>.
+			</p>
+		{:else}
+			<SocialsAuth />
+
+			<div class="flex flex-col gap-3">
+				<p class="text-sm text-muted-foreground">
+					Create an account with your email address below.
+				</p>
+				<RegisterForm data={data.form} />
+				<div class="mt-4 text-center text-sm">
+					Already have an account?
+					<a href="/login" class="underline">Log in</a>.
+				</div>
 			</div>
-		</div>
+		{/if}
 	</Card.Content>
 </Card.Root>
