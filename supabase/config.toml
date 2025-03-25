@@ -98,9 +98,17 @@ enable_signup = true
 # addresses. If disabled, only the new email is required to confirm.
 double_confirm_changes = true
 # If enabled, users need to confirm their email address before signing in.
-enable_confirmations = false
+enable_confirmations = true
 # Controls the minimum amount of time that must pass before sending another signup confirmation or password reset email.
 max_frequency = "1s"
+
+[auth.email.smtp]
+host="env(PRIVATE_SMTP_HOST)"
+port="env(PRIVATE_SMTP_PORT)"
+user="env(PRIVATE_SMTP_USER)"
+pass="env(PRIVATE_SMTP_PASSWORD)"
+admin_email="env(PRIVATE_SMTP_ADMIN_EMAIL)"
+sender_name="env(PRIVATE_SMTP_SENDER_NAME)"
 
 # Uncomment to customize email template
 # [auth.email.template.invite]
