@@ -31,7 +31,7 @@
 	<Form.Errors {form} />
 	<Form.Field {form} name="email">
 		<Form.Control let:attrs>
-			<Form.Label class="mb-2">Emial</Form.Label>
+			<Form.Label class="mb-2">Email</Form.Label>
 			<Input
 				{...attrs}
 				type="email"

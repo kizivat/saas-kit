@@ -2,7 +2,7 @@ import { z } from 'zod';
 
 export const emailFormSchema = z.object({
 	email: z
-		.string({ required_error: 'Please fill in the emial' })
+		.string({ required_error: 'Please fill in the email' })
 		.email({ message: 'Invalid email' }),
 });
 
