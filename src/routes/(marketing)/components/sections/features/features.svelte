@@ -60,19 +60,17 @@
 
 	const SHOW_BASE = 2;
 
-	let expanded: boolean = false;
+	let expanded: boolean = $state(false);
 </script>
 
 <Collapsible.Root class="mx-auto max-w-screen-lg" bind:open={expanded}>
 	<Features.Root>
-		{#each [...features].splice(0, SHOW_BASE) as { title, icon, description, showcase }}
+		{#each [...features].splice(0, SHOW_BASE) as { title, icon, description, showcase }, i (i)}
 			<Features.FeatureItem
 				class="mb-4 flex min-h-80 flex-nowrap items-start gap-4"
 			>
-				<svelte:component
-					this={icon}
-					class="size-10 flex-shrink-0 fill-primary"
-				/>
+				{@const SvelteComponent = icon}
+				<SvelteComponent class="size-10 flex-shrink-0 fill-primary" />
 				<div>
 					<Features.Term class="mb-3 leading-none">
 						<span>{title}</span>
@@ -86,7 +84,8 @@
 				class="flex flex-col items-center justify-start"
 			>
 				{#if showcase}
-					<svelte:component this={showcase} />
+					{@const SvelteComponent_1 = showcase}
+					<SvelteComponent_1 />
 				{:else}
 					<div
 						class="h-full min-h-80 w-full rounded-lg bg-black opacity-5 dark:bg-white"
@@ -96,31 +95,31 @@
 		{/each}
 	</Features.Root>
 	<div class="flex items-center p-10">
-		<Collapsible.Trigger asChild let:builder>
-			<Button
-				class="mx-auto place-self-center text-center"
-				variant="link"
-				builders={[builder]}
-			>
-				Show {#if expanded}less{:else}more{/if} features
-				<LucideChevronDown
-					class={cn(
-						'ms-2 size-4 transition-transform',
-						expanded && '-rotate-180',
-					)}
-				/>
-			</Button>
+		<Collapsible.Trigger>
+			{#snippet child({ props })}
+				<Button
+					class="mx-auto place-self-center text-center"
+					variant="link"
+					{...props}
+				>
+					Show {#if expanded}less{:else}more{/if} features
+					<LucideChevronDown
+						class={cn(
+							'ms-2 size-4 transition-transform',
+							expanded && '-rotate-180',
+						)}
+					/>
+				</Button>
+			{/snippet}
 		</Collapsible.Trigger>
 	</div>
 	<Collapsible.Content>
 		<Features.Root>
-			{#each [...features].splice(SHOW_BASE) as { title, icon, description }}
+			{#each [...features].splice(SHOW_BASE) as { title, icon, description }, i (i)}
 				<Features.FeatureItem>
+					{@const SvelteComponent_2 = icon}
 					<div class="mb-4 flex flex-nowrap items-start gap-4">
-						<svelte:component
-							this={icon}
-							class="h-8 w-8 flex-shrink-0 fill-primary"
-						/>
+						<SvelteComponent_2 class="h-8 w-8 flex-shrink-0 fill-primary" />
 						<Features.Term>{title}</Features.Term>
 					</div>
 					<Features.Description class="hyphens-auto text-justify">

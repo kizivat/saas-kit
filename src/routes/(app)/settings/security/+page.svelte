@@ -2,9 +2,7 @@
 	import ChangePasswordForm from './change-password-form.svelte';
 	import CreatePasswordForm from './create-password-form.svelte';
 
-	export let data;
-
-	export let form;
+	let { data, form } = $props();
 </script>
 
 <svelte:head>

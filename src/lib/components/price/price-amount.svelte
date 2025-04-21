@@ -2,7 +2,11 @@
 	import { Input } from '$lib/components/ui/input';
 	import Label from '$lib/components/ui/label/label.svelte';
 	import Stripe from 'stripe';
-	export let price: Stripe.Price;
+	interface Props {
+		price: Stripe.Price;
+	}
+
+	let { price }: Props = $props();
 </script>
 
 {#if price.custom_unit_amount !== null}

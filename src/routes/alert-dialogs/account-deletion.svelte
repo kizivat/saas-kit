@@ -1,5 +1,7 @@
 <script lang="ts">
 	import * as AlertDialog from '$lib/components/ui/alert-dialog';
+
+	let { onclick } = $props();
 </script>
 
 <AlertDialog.Header>
@@ -16,5 +18,5 @@
 	</AlertDialog.Description>
 </AlertDialog.Header>
 <AlertDialog.Footer>
-	<AlertDialog.Action on:click>Continue</AlertDialog.Action>
+	<AlertDialog.Action {onclick}>Continue</AlertDialog.Action>
 </AlertDialog.Footer>

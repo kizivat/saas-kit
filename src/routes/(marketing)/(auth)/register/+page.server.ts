@@ -25,6 +25,7 @@ export const actions: Actions = {
 		const supabase = event.locals.supabase;
 		const form = await superValidate(event, zod(formSchema));
 		if (!form.valid) {
+			console.error('Form is not valid', form);
 			return fail(400, {
 				form,
 			});
@@ -54,7 +55,7 @@ export const actions: Actions = {
 				};
 			}
 
-			return setError(form, '', 'Could not sign up. Please try again.');
+			return setError(form, 'email', 'Could not sign up. Please try again.');
 		}
 
 		if (session) {

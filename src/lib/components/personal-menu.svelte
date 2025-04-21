@@ -9,7 +9,11 @@
 	import SunIcon from 'virtual:icons/lucide/sun';
 	import UserIcon from 'virtual:icons/lucide/user-round';
 
-	export let user: User | null;
+	interface Props {
+		user: User | null;
+	}
+
+	let { user }: Props = $props();
 
 	let username =
 		user?.user_metadata.name ||
@@ -21,27 +25,30 @@
 
 <div>
 	<DropdownMenu.Root>
-		<DropdownMenu.Trigger asChild let:builder>
-			<Button
-				variant="secondary"
-				size="icon"
-				class="rounded-full"
-				builders={[builder]}
-			>
-				<span class="sr-only">Personal</span>
-				<Avatar.Root>
-					<Avatar.Image src={user?.user_metadata.avatar_url} alt={username} />
-					<Avatar.Fallback>
-						<UserIcon />
-					</Avatar.Fallback>
-				</Avatar.Root>
-			</Button>
+		<DropdownMenu.Trigger>
+			{#snippet child({ props })}
+				<Button variant="secondary" size="icon" class="rounded-full" {...props}>
+					<span class="sr-only">Personal</span>
+					<Avatar.Root>
+						<Avatar.Image src={user?.user_metadata.avatar_url} alt={username} />
+						<Avatar.Fallback>
+							<UserIcon />
+						</Avatar.Fallback>
+					</Avatar.Root>
+				</Button>
+			{/snippet}
 		</DropdownMenu.Trigger>
 
 		<DropdownMenu.Content align="end">
 			{#if !user}
-				<DropdownMenu.Item href="/login">Login</DropdownMenu.Item>
-				<DropdownMenu.Item href="/register">Register</DropdownMenu.Item>
+				<DropdownMenu.Item
+					>{#snippet child({ props })}<a href="/login" {...props}>Login</a
+						>{/snippet}</DropdownMenu.Item
+				>
+				<DropdownMenu.Item
+					>{#snippet child({ props })}<a href="/register" {...props}>Register</a
+						>{/snippet}</DropdownMenu.Item
+				>
 			{:else}
 				<DropdownMenu.Label>
 					Welcome back,<br /><strong>{username}</strong>
@@ -50,7 +57,7 @@
 
 			<DropdownMenu.Separator />
 			<DropdownMenu.Label>Switch theme</DropdownMenu.Label>
-			<DropdownMenu.RadioGroup bind:value={$userPrefersMode}>
+			<DropdownMenu.RadioGroup bind:value={userPrefersMode.current}>
 				<DropdownMenu.RadioItem value="system">
 					<MonitorIcon class="me-2 h-4 w-4" />
 					System
@@ -66,8 +73,14 @@
 			</DropdownMenu.RadioGroup>
 			{#if user}
 				<DropdownMenu.Separator />
-				<DropdownMenu.Item href="/settings">Settings</DropdownMenu.Item>
-				<DropdownMenu.Item href="/log-out">Log out</DropdownMenu.Item>
+				<DropdownMenu.Item
+					>{#snippet child({ props })}<a href="/settings" {...props}>Settings</a
+						>{/snippet}</DropdownMenu.Item
+				>
+				<DropdownMenu.Item
+					>{#snippet child({ props })}<a href="/log-out" {...props}>Log out</a
+						>{/snippet}</DropdownMenu.Item
+				>
 			{/if}
 		</DropdownMenu.Content>
 	</DropdownMenu.Root>

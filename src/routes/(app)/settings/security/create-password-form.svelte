@@ -15,9 +15,13 @@
 		type CreatePasswordFormSchema,
 	} from './schema';
 
-	export let data: SuperValidated<Infer<CreatePasswordFormSchema>>;
-	export let user: User | null;
-	export let recoverySession: boolean = false;
+	interface Props {
+		data: SuperValidated<Infer<CreatePasswordFormSchema>>;
+		user: User | null;
+		recoverySession?: boolean;
+	}
+
+	let { data, user, recoverySession = false }: Props = $props();
 
 	const form = superForm(data, {
 		validators: zodClient(createPasswordFormSchema),
@@ -42,32 +46,35 @@
 			hidden
 		/>
 		<Card.Content>
-			<Form.Errors {form} />
 			<Form.Field {form} name="new_password">
-				<Form.Control let:attrs>
-					<Form.Label>New Password</Form.Label>
-					<Input
-						{...attrs}
-						type="password"
-						autocomplete="new-password"
-						disabled={$submitting}
-						required
-						bind:value={$formData.new_password}
-					/>
+				<Form.Control>
+					{#snippet children({ props })}
+						<Form.Label>New Password</Form.Label>
+						<Input
+							{...props}
+							type="password"
+							autocomplete="new-password"
+							disabled={$submitting}
+							required
+							bind:value={$formData.new_password}
+						/>
+					{/snippet}
 				</Form.Control>
 				<Form.FieldErrors />
 			</Form.Field>
 			<Form.Field {form} name="confirm_password">
-				<Form.Control let:attrs>
-					<Form.Label>Confirm New Password</Form.Label>
-					<Input
-						{...attrs}
-						type="password"
-						autocomplete="new-password"
-						disabled={$submitting}
-						required
-						bind:value={$formData.confirm_password}
-					/>
+				<Form.Control>
+					{#snippet children({ props })}
+						<Form.Label>Confirm New Password</Form.Label>
+						<Input
+							{...props}
+							type="password"
+							autocomplete="new-password"
+							disabled={$submitting}
+							required
+							bind:value={$formData.confirm_password}
+						/>
+					{/snippet}
 				</Form.Control>
 				<Form.FieldErrors />
 			</Form.Field>

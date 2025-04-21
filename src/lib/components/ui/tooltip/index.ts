@@ -3,13 +3,16 @@ import Content from './tooltip-content.svelte';
 
 const Root = TooltipPrimitive.Root;
 const Trigger = TooltipPrimitive.Trigger;
+const Provider = TooltipPrimitive.Provider;
 
 export {
-	Content,
 	Root,
+	Trigger,
+	Content,
+	Provider,
 	//
 	Root as Tooltip,
 	Content as TooltipContent,
 	Trigger as TooltipTrigger,
-	Trigger,
+	Provider as TooltipProvider,
 };

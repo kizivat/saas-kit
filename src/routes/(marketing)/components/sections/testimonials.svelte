@@ -54,7 +54,7 @@
 </script>
 
 <Testimonials.Root class="hidden md:grid lg:block">
-	{#each testimonials as { author: { avatarUrl, name, sub }, quote }}
+	{#each testimonials as { author: { avatarUrl, name, sub }, quote }, i (i)}
 		<Testimonials.Figure>
 			<Card.Root>
 				<Testimonials.Author>

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import * as Form from '$lib/components/ui/form';
+	import FormErrors from '$lib/components/ui/form/form-errors.svelte';
 	import { Input } from '$lib/components/ui/input';
 	import {
 		superForm,
@@ -11,7 +12,11 @@
 	import LoaderCircle from '~icons/lucide/loader-circle';
 	import { formSchema, type FormSchema } from './schema';
 
-	export let data: SuperValidated<Infer<FormSchema>>;
+	interface Props {
+		data: SuperValidated<Infer<FormSchema>>;
+	}
+
+	let { data }: Props = $props();
 
 	const form = superForm(data, {
 		validators: zodClient(formSchema),
@@ -28,38 +33,42 @@
 	use:enhance
 	class="grid gap-4"
 >
-	<Form.Errors {form} />
+	<FormErrors {form} />
 	<Form.Field {form} name="email">
-		<Form.Control let:attrs>
-			<Form.Label class="mb-2">Email</Form.Label>
-			<Input
-				{...attrs}
-				type="email"
-				placeholder="name@example.com"
-				required
-				bind:value={$formData.email}
-			/>
+		<Form.Control>
+			{#snippet children({ props })}
+				<Form.Label class="mb-2">Email</Form.Label>
+				<Input
+					{...props}
+					type="email"
+					placeholder="name@example.com"
+					required
+					bind:value={$formData.email}
+				/>
+			{/snippet}
 		</Form.Control>
 		<Form.FieldErrors />
 	</Form.Field>
 	<Form.Field {form} name="password">
-		<Form.Control let:attrs>
-			<div class="mb-2 flex items-center">
-				<Form.Label>Password</Form.Label>
-				<a
-					href="/forgot-password"
-					class="ml-auto inline-block text-sm text-muted-foreground underline"
-				>
-					Forgot password?
-				</a>
-			</div>
-			<Input
-				{...attrs}
-				type="password"
-				placeholder="••••••••"
-				required
-				bind:value={$formData.password}
-			/>
+		<Form.Control>
+			{#snippet children({ props })}
+				<div class="mb-2 flex items-center">
+					<Form.Label>Password</Form.Label>
+					<a
+						href="/forgot-password"
+						class="ml-auto inline-block text-sm text-muted-foreground underline"
+					>
+						Forgot password?
+					</a>
+				</div>
+				<Input
+					{...props}
+					type="password"
+					placeholder="••••••••"
+					required
+					bind:value={$formData.password}
+				/>
+			{/snippet}
 		</Form.Control>
 		<Form.FieldErrors />
 	</Form.Field>

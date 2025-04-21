@@ -1,18 +1,20 @@
 <script lang="ts">
-	type $$Props = {
+	interface Props {
 		level?: 2 | 3 | 4 | 5 | 6;
 		anchor?: string;
-	};
+		children?: import('svelte').Snippet;
+		[key: string]: any;
+	}
 
-	export let level: 2 | 3 | 4 | 5 | 6 = 2;
+	let { level = 2, children, ...rest }: Props = $props();
 
 	const elements = ['h2', 'h3', 'h4', 'h5', 'h6'];
 </script>
 
 <svelte:element
 	this={elements[level - 2]}
-	{...$$restProps}
+	{...rest}
 	class="text-center text-xl font-bold md:text-3xl lg:text-4xl"
 >
-	<slot />
+	{@render children?.()}
 </svelte:element>

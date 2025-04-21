@@ -3,7 +3,7 @@
 	import { WebsiteName } from '../../../../config';
 	import ForgotPasswordForm from './forgot-password-form.svelte';
 
-	export let data;
+	let { data } = $props();
 </script>
 
 <svelte:head>
@@ -12,7 +12,7 @@
 
 <Card.Root class="mx-auto max-w-sm">
 	<Card.Header>
-		<Card.Title tag="h1" class="text-2xl">
+		<Card.Title class="text-2xl">
 			Forgot <span class="sr-only">{WebsiteName}</span> password
 		</Card.Title>
 	</Card.Header>

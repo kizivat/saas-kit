@@ -1,7 +1,12 @@
 <script lang="ts">
-	export let anchor: string | undefined = undefined;
+	interface Props {
+		anchor?: string | undefined;
+		children?: import('svelte').Snippet;
+	}
+
+	let { anchor = undefined, children }: Props = $props();
 </script>
 
 <section id={anchor} class="flex flex-col gap-10">
-	<slot />
+	{@render children?.()}
 </section>

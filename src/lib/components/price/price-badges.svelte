@@ -3,7 +3,11 @@
 	import { cn } from '$lib/utils';
 	import Stripe from 'stripe';
 
-	export let price: Stripe.Price;
+	interface Props {
+		price: Stripe.Price;
+	}
+
+	let { price }: Props = $props();
 </script>
 
 {#if !price.livemode}

@@ -16,8 +16,12 @@
 		type ChangePasswordFormSchema,
 	} from './schema';
 
-	export let data: SuperValidated<Infer<ChangePasswordFormSchema>>;
-	export let user: User | null;
+	interface Props {
+		data: SuperValidated<Infer<ChangePasswordFormSchema>>;
+		user: User | null;
+	}
+
+	let { data, user }: Props = $props();
 
 	const changeForm = superForm(data, {
 		validators: zodClient(changePasswordFormSchema),
@@ -27,15 +31,15 @@
 		validators: zodClient(createPasswordFormSchema),
 	});
 
-	$: isUpdate = 'old_password' in data.data;
+	let isUpdate = $derived('old_password' in data.data);
 
-	$: ({
+	let {
 		form: formData,
 		enhance,
 		submitting,
 		tainted,
 		message,
-	} = isUpdate ? changeForm : createForm);
+	} = $derived(isUpdate ? changeForm : createForm);
 </script>
 
 <Card.Root>
@@ -64,36 +68,39 @@
 			hidden
 		/>
 		<Card.Content>
-			<Form.Errors form={isUpdate ? changeForm : createForm} />
 			{#if isUpdate}
 				<Form.Field
 					form={isUpdate ? changeForm : createForm}
 					name="old_password"
 				>
-					<Form.Control let:attrs>
-						<Form.Label>Old Password</Form.Label>
-						<Input
-							{...attrs}
-							type="password"
-							autocomplete="current-password"
-							required
-							bind:value={$formData.old_password}
-						/>
+					<Form.Control>
+						{#snippet children({ props })}
+							<Form.Label>Old Password</Form.Label>
+							<Input
+								{...props}
+								type="password"
+								autocomplete="current-password"
+								required
+								bind:value={$formData.old_password}
+							/>
+						{/snippet}
 					</Form.Control>
 					<Form.FieldErrors />
 				</Form.Field>
 			{/if}
 			<Form.Field form={isUpdate ? changeForm : createForm} name="new_password">
-				<Form.Control let:attrs>
-					<Form.Label>New Password</Form.Label>
-					<Input
-						{...attrs}
-						type="password"
-						autocomplete="new-password"
-						disabled={$submitting}
-						required
-						bind:value={$formData.new_password}
-					/>
+				<Form.Control>
+					{#snippet children({ props })}
+						<Form.Label>New Password</Form.Label>
+						<Input
+							{...props}
+							type="password"
+							autocomplete="new-password"
+							disabled={$submitting}
+							required
+							bind:value={$formData.new_password}
+						/>
+					{/snippet}
 				</Form.Control>
 				<Form.FieldErrors />
 			</Form.Field>
@@ -101,16 +108,18 @@
 				form={isUpdate ? changeForm : createForm}
 				name="confirm_password"
 			>
-				<Form.Control let:attrs>
-					<Form.Label>Confirm Password</Form.Label>
-					<Input
-						{...attrs}
-						type="password"
-						autocomplete="new-password"
-						disabled={$submitting}
-						required
-						bind:value={$formData.confirm_password}
-					/>
+				<Form.Control>
+					{#snippet children({ props })}
+						<Form.Label>Confirm Password</Form.Label>
+						<Input
+							{...props}
+							type="password"
+							autocomplete="new-password"
+							disabled={$submitting}
+							required
+							bind:value={$formData.confirm_password}
+						/>
+					{/snippet}
 				</Form.Control>
 				<Form.FieldErrors />
 			</Form.Field>

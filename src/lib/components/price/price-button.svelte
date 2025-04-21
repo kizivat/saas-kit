@@ -8,23 +8,34 @@
 		price: Stripe.Price;
 	};
 
-	export let price: Stripe.Price;
-	export let disabled: boolean | null | undefined = undefined;
-	let cls: string | null | undefined = undefined;
-	export { cls as class };
+	interface Props {
+		price: Stripe.Price;
+		disabled?: boolean | null | undefined;
+		class?: string | null | undefined;
+		children?: import('svelte').Snippet;
+		[key: string]: unknown;
+	}
+
+	let {
+		price,
+		disabled = undefined,
+		class: cls = undefined,
+		children,
+		...rest
+	}: Props = $props();
 </script>
 
 {#if price.custom_unit_amount !== null}
-	<Button type="submit" class={cls} {disabled} {...$$restProps}>
-		<slot />
+	<Button type="submit" class={cls} {disabled} {...rest}>
+		{@render children?.()}
 	</Button>
 {:else}
 	<Button
 		href="/checkout/{price.id}"
 		class={cn(disabled && 'cursor-not-allowed opacity-50', cls)}
-		on:click={disabled ? (e) => e.preventDefault() : undefined}
-		{...$$restProps}
+		onclick={disabled ? (e) => e.preventDefault() : undefined}
+		{...rest}
 	>
-		<slot />
+		{@render children?.()}
 	</Button>
 {/if}

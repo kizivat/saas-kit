@@ -1,3 +1,11 @@
+<script lang="ts">
+	interface Props {
+		children?: import('svelte').Snippet;
+	}
+
+	let { children }: Props = $props();
+</script>
+
 <figure class="md:break-inside-avoid">
-	<slot />
+	{@render children?.()}
 </figure>

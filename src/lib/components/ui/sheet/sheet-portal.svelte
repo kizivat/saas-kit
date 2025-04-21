@@ -1,13 +1,17 @@
 <script lang="ts">
 	import { Dialog as SheetPrimitive } from 'bits-ui';
-	import { cn } from '$lib/utils.js';
 
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	type $$Props = SheetPrimitive.PortalProps;
 
-	let className: $$Props['class'] = undefined;
-	export { className as class };
+	interface Props {
+		children?: import('svelte').Snippet;
+		[key: string]: unknown;
+	}
+
+	let { children, ...rest }: Props = $props();
 </script>
 
-<SheetPrimitive.Portal class={cn(className)} {...$$restProps}>
-	<slot />
+<SheetPrimitive.Portal {...rest}>
+	{@render children?.()}
 </SheetPrimitive.Portal>

@@ -1,5 +1,10 @@
 <script lang="ts">
 	import NavLink from '../components/nav-link.svelte';
+	interface Props {
+		children?: import('svelte').Snippet;
+	}
+
+	let { children }: Props = $props();
 </script>
 
 <div class="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-10">
@@ -30,7 +35,7 @@
 			</NavLink>
 		</nav>
 		<div class="flex flex-1 flex-col gap-6">
-			<slot />
+			{@render children?.()}
 		</div>
 	</div>
 </div>

@@ -1,6 +1,8 @@
+<!-- @migration-task Error while migrating Svelte code: $$props is used together with named props in a way that cannot be automatically migrated. -->
 <script lang="ts">
 	import { cn } from '$lib/utils.js';
 
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	type $$Props =
 		| {
 				src: string;

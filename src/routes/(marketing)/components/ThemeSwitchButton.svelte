@@ -7,9 +7,15 @@
 	import MoonIcon from 'virtual:icons/lucide/moon';
 	import SunIcon from 'virtual:icons/lucide/sun';
 
-	type Mode = typeof $userPrefersMode;
+	type Mode = typeof userPrefersMode.current;
 
-	export let mode: Mode;
+	interface Props {
+		mode: Mode;
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		[key: string]: any;
+	}
+
+	let { mode, ...props }: Props = $props();
 
 	const settings: Record<
 		Mode,
@@ -36,14 +42,15 @@
 
 <Button
 	variant="ghost"
-	class={cn('w-full text-base', $$props.class)}
-	on:click={() => setMode(mode)}
+	class={cn('w-full text-base', props.class)}
+	onclick={() => setMode(props.mode)}
 >
-	{#if $userPrefersMode === mode}
+	{#if userPrefersMode.current === mode}
 		<CheckIcon class="h-4 w-4 justify-self-end" />
 	{/if}
+	{@const SvelteComponent = settings[mode].icon}
 	<span class="col-[2] flex flex-nowrap items-center gap-2">
-		<svelte:component this={settings[mode].icon} class="h-4 w-4" />
+		<SvelteComponent class="h-4 w-4" />
 		{settings[mode].label}
 	</span>
 </Button>

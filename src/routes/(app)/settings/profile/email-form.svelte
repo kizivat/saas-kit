@@ -2,6 +2,7 @@
 	import * as Alert from '$lib/components/ui/alert';
 	import * as Card from '$lib/components/ui/card';
 	import * as Form from '$lib/components/ui/form';
+	import FormErrors from '$lib/components/ui/form/form-errors.svelte';
 	import { Input } from '$lib/components/ui/input';
 	import type { User } from '@supabase/supabase-js';
 	import {
@@ -14,8 +15,12 @@
 	import TriangleAlert from '~icons/lucide/triangle-alert';
 	import { emailFormSchema, type EmailFormSchema } from './schema';
 
-	export let data: SuperValidated<Infer<EmailFormSchema>>;
-	export let user: User | null;
+	interface Props {
+		data: SuperValidated<Infer<EmailFormSchema>>;
+		user: User | null;
+	}
+
+	let { data, user }: Props = $props();
 
 	const form = superForm(data, {
 		validators: zodClient(emailFormSchema),
@@ -35,16 +40,19 @@
 			</Card.Description>
 		</Card.Header>
 		<Card.Content>
+			<FormErrors {form} />
 			<Form.Field {form} name="email">
-				<Form.Control let:attrs>
-					<Form.Label>Email</Form.Label>
-					<Input
-						{...attrs}
-						type="email"
-						placeholder="name@example.com"
-						required
-						bind:value={$formData.email}
-					/>
+				<Form.Control>
+					{#snippet children({ props })}
+						<Form.Label>Email</Form.Label>
+						<Input
+							{...props}
+							type="email"
+							placeholder="name@example.com"
+							required
+							bind:value={$formData.email}
+						/>
+					{/snippet}
 				</Form.Control>
 				<Form.FieldErrors />
 			</Form.Field>

@@ -8,10 +8,11 @@ env:
   PRIVATE_SUPABASE_SERVICE_ROLE: 'fake_service_role'
   PRIVATE_STRIPE_SECRET_KEY: 'fake_stripe_api_key'
   PRIVATE_NOTIFICATIONS_EMAIL: 'fake_notifications_email'
-  PRIVATE_SMTP_HOST: 'fake_smtp_host'
-  PRIVATE_SMTP_PORT: 'fake_smtp_port'
-  PRIVATE_SMTP_USER: 'fake_smtp_user'
-  PRIVATE_SMTP_PASSWORD: 'fake_smtp_pass'
+  PRIVATE_SMTP_PORT: 'fake_smtp_host'
+  PRIVATE_SMTP_USER: 'fake_smtp_host'
+  PRIVATE_SMTP_PASSWORD: 'fake_smtp_host'
+  PRIVATE_SMTP_ADMIN_EMAIL: 'fake_smtp_host'
+  PRIVATE_SMTP_SENDER_NAME: 'fake_smtp_host'
 
 jobs:
   build_and_test:

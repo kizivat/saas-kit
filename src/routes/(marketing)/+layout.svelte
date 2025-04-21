@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { onNavigate } from '$app/navigation';
 	import PersonalMenu from '$lib/components/personal-menu.svelte';
 	import Button from '$lib/components/ui/button/button.svelte';
@@ -8,7 +8,6 @@
 	import { cn } from '$lib/utils';
 	import ChevronsUpDown from 'virtual:icons/lucide/chevrons-up-down';
 	import MenuIcon from 'virtual:icons/lucide/menu';
-	import XIcon from 'virtual:icons/lucide/x';
 	import '../../app.css';
 	import { WebsiteName } from '../../config';
 	import HomeButton from './components/HomeButton.svelte';
@@ -21,12 +20,12 @@
 		'/contact': 'Contact',
 	};
 
-	let menuOpen = false;
+	let menuOpen = $state(false);
 	onNavigate((_) => {
 		menuOpen = false;
 	});
 
-	export let data;
+	let { data, children } = $props();
 </script>
 
 <header class="sticky top-0 z-10 border-b border-border bg-card py-4">
@@ -36,7 +35,7 @@
 		<HomeButton />
 		<nav class="hidden sm:block">
 			<ul class="hidden flex-wrap px-1 text-lg font-bold sm:flex">
-				{#each Object.entries(menuItems) as [href, text]}
+				{#each Object.entries(menuItems) as [href, text] (href)}
 					<li class="md:mx-2">
 						<Button variant="ghost" {href} class="text-base text-foreground">
 							{text}
@@ -56,33 +55,37 @@
 
 		<div class="justify-self-end sm:hidden">
 			<Drawer.Root bind:open={menuOpen}>
-				<Drawer.Trigger asChild let:builder>
-					<Button variant="ghost" size="icon" builders={[builder]}>
-						<span class="sr-only">Menu</span>
-						<MenuIcon />
-					</Button>
+				<Drawer.Trigger>
+					{#snippet child({ props })}
+						<Button variant="ghost" size="icon" {...props}>
+							<span class="sr-only">Menu</span>
+							<MenuIcon />
+						</Button>
+					{/snippet}
 				</Drawer.Trigger>
 				<Drawer.Content>
 					<Drawer.Header class="flex justify-end py-0">
-						<Drawer.Close asChild let:builder>
-							<Button variant="ghost" size="icon" builders={[builder]}>
-								<span class="sr-only">Close</span>
-								<XIcon />
-							</Button>
+						<Drawer.Close>
+							{#snippet child({ props })}
+								<Button variant="ghost" size="icon" {...props}>
+									<span class="sr-only">Close</span>
+									<MenuIcon />
+								</Button>
+							{/snippet}
 						</Drawer.Close>
 					</Drawer.Header>
 					<Collapsible.Root>
-						<Collapsible.Trigger asChild let:builder>
-							<div class="p-2">
+						<Collapsible.Trigger>
+							{#snippet child({ props })}
 								<Button
 									variant="ghost"
 									class="flex w-full flex-nowrap gap-2 text-base"
-									builders={[builder]}
+									{...props}
 								>
-									Switch theme
+									<span class="flex-1">Switch theme</span>
 									<ChevronsUpDown class="size-4" />
 								</Button>
-							</div>
+							{/snippet}
 						</Collapsible.Trigger>
 						<Collapsible.Content>
 							<ul
@@ -112,7 +115,7 @@
 					<Separator />
 					<nav class="[&_ul]:flex [&_ul]:flex-col [&_ul]:p-2">
 						<ul>
-							{#each Object.entries(menuItems) as [href, text]}
+							{#each Object.entries(menuItems) as [href, text] (href)}
 								<li>
 									<Button {href} variant="ghost" class="w-full py-6 text-base">
 										{text}
@@ -179,7 +182,7 @@
 </header>
 
 <main class="container mx-auto p-8">
-	<slot />
+	{@render children?.()}
 </main>
 
 <!-- Spacer grows so the footer can be at bottom on short pages -->
@@ -201,7 +204,7 @@
 				<div class="col">
 					<span class="footer-title">Menu</span>
 					<nav>
-						{#each Object.entries(menuItems) as [href, text]}
+						{#each Object.entries(menuItems) as [href, text] (href)}
 							<Button
 								{href}
 								variant="link"

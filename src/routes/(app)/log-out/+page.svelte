@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 
-	export let data;
+	let { data } = $props();
 
 	let { supabase } = data;
-	let message = 'Signing out....';
+	let message = $state('Signing out....');
 
 	supabase.auth.signOut().then(({ error }) => {
 		if (error) {

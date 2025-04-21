@@ -24,7 +24,7 @@ export const actions: Actions = {
 		const { email } = form.data;
 		const redirectTo = url.searchParams.get('redirectTo');
 		if (!redirectTo) {
-			return setError(form, '', 'Invalid redirect URL.');
+			return setError(form, 'email', 'Invalid redirect URL.');
 		}
 
 		const { error } = await supabase.auth.resetPasswordForEmail(email, {
@@ -34,7 +34,7 @@ export const actions: Actions = {
 		if (error) {
 			return setError(
 				form,
-				'',
+				'email',
 				'An error occured while sending the reset email. Please try again later.',
 			);
 		}

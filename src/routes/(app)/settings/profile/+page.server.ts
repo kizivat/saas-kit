@@ -67,7 +67,7 @@ export const actions = {
 
 		if (error) {
 			console.error(error);
-			return setError(form, '', 'Could not sign up. Please try again.');
+			return setError(form, '', error.message);
 		}
 
 		return message(form, {

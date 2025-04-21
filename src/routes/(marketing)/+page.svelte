@@ -7,7 +7,7 @@
 	import Pricing from './components/sections/pricing.svelte';
 	import Testimonials from './components/sections/testimonials.svelte';
 
-	export let data;
+	let { data } = $props();
 
 	const { prices } = data;
 </script>

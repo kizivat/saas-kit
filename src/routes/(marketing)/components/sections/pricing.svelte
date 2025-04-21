@@ -7,7 +7,11 @@
 	type Price = Stripe.Price & {
 		product: Stripe.Product;
 	};
-	export let prices: readonly [Price, Price, Price];
+	interface Props {
+		prices: readonly [Price, Price, Price];
+	}
+
+	let { prices }: Props = $props();
 </script>
 
 <Pricing.Root>

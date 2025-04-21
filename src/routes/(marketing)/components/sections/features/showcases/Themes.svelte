@@ -3,7 +3,7 @@
 
 	const _themes = ['neutral', 'rose', 'yellow', 'green', 'orange'];
 
-	let theme: (typeof _themes)[number] = 'neutral';
+	let theme: (typeof _themes)[number] = $state('neutral');
 
 	function reset() {
 		document.documentElement.classList.remove('neutral');
@@ -31,7 +31,7 @@
 			theme === 'neutral' &&
 				'ring-2 ring-neutral-500 ring-offset-2 ring-offset-background',
 		)}
-		on:click={() => {
+		onclick={() => {
 			import(`./themes/neutral.css`);
 			setTheme('neutral');
 		}}
@@ -44,7 +44,7 @@
 			theme === 'yellow' &&
 				'ring-2 ring-primary ring-offset-2 ring-offset-background',
 		)}
-		on:click={() => {
+		onclick={() => {
 			import('./themes/yellow.css');
 			setTheme('yellow');
 		}}
@@ -58,7 +58,7 @@
 			theme === 'rose' &&
 				'ring-2 ring-primary ring-offset-2 ring-offset-background',
 		)}
-		on:click={() => {
+		onclick={() => {
 			import('./themes/rose.css');
 			setTheme('rose');
 		}}
@@ -71,7 +71,7 @@
 			theme === 'blue' &&
 				'ring-2 ring-primary ring-offset-2 ring-offset-background',
 		)}
-		on:click={() => {
+		onclick={() => {
 			import('./themes/blue.css');
 			setTheme('blue');
 		}}
@@ -84,7 +84,7 @@
 			theme === 'green' &&
 				'ring-2 ring-primary ring-offset-2 ring-offset-background',
 		)}
-		on:click={() => {
+		onclick={() => {
 			import('./themes/green.css');
 			setTheme('green');
 		}}
@@ -97,7 +97,7 @@
 			theme === 'orange' &&
 				'ring-2 ring-primary ring-offset-2 ring-offset-background',
 		)}
-		on:click={() => {
+		onclick={() => {
 			import('./themes/orange.css');
 			setTheme('orange');
 		}}

@@ -8,7 +8,7 @@
 	import SocialsAuth from '../components/socials-auth.svelte';
 	import LoginForm from './login-form.svelte';
 
-	export let data;
+	let { data } = $props();
 	// export let form;
 
 	let { supabase } = data;
@@ -51,7 +51,7 @@
 {/if}
 <Card.Root class="mx-auto max-w-sm">
 	<Card.Header>
-		<Card.Title tag="h1" class="text-2xl">
+		<Card.Title class="text-2xl">
 			Log in <span class="sr-only">to {WebsiteName}</span>
 		</Card.Title>
 	</Card.Header>

@@ -11,7 +11,11 @@
 	import LoaderCircle from '~icons/lucide/loader-circle';
 	import { formSchema, type FormSchema } from './schema';
 
-	export let data: SuperValidated<Infer<FormSchema>>;
+	interface Props {
+		data: SuperValidated<Infer<FormSchema>>;
+	}
+
+	let { data }: Props = $props();
 
 	const form = superForm(data, {
 		validators: zodClient(formSchema),
@@ -24,57 +28,64 @@
 	{#if $message?.success}
 		<p class="text-sm text-green-700">{$message.success}</p>
 	{:else}
-		<Form.Errors {form} />
 		<div class="flex flex-wrap gap-2">
 			<Form.Field class="flex-1" {form} name="name">
-				<Form.Control let:attrs>
-					<Form.Label>Name</Form.Label>
-					<Input
-						{...attrs}
-						type="text"
-						placeholder="John Doe"
-						required
-						bind:value={$formData.name}
-					/>
+				<Form.Control>
+					{#snippet children({ props })}
+						<Form.Label>Name</Form.Label>
+						<Input
+							{...props}
+							type="text"
+							placeholder="John Doe"
+							required
+							bind:value={$formData.name}
+						/>
+					{/snippet}
 				</Form.Control>
 				<Form.FieldErrors />
 			</Form.Field>
 			<Form.Field class="flex-1" {form} name="email">
-				<Form.Control let:attrs>
-					<Form.Label class="mb-2">Email</Form.Label>
-					<Input
-						{...attrs}
-						type="email"
-						placeholder="name@example.com"
-						required
-						bind:value={$formData.email}
-					/>
+				<Form.Control>
+					{#snippet children({ props })}
+						<Form.Label class="mb-2">Email</Form.Label>
+						<Input
+							{...props}
+							type="email"
+							placeholder="name@example.com"
+							required
+							bind:value={$formData.email}
+						/>
+					{/snippet}
 				</Form.Control>
 				<Form.FieldErrors />
 			</Form.Field>
 		</div>
 		<Form.Field class="flex-1" {form} name="subject">
-			<Form.Control let:attrs>
-				<Form.Label class="mb-2">Subject</Form.Label>
-				<Input
-					{...attrs}
-					type="text"
-					placeholder="Collaboration request"
-					required
-					bind:value={$formData.subject}
-				/>
+			<Form.Control>
+				{#snippet children({ props })}
+					<Form.Label class="mb-2">Subject</Form.Label>
+					<Input
+						{...props}
+						type="text"
+						placeholder="Collaboration request"
+						required
+						bind:value={$formData.subject}
+					/>
+				{/snippet}
 			</Form.Control>
 			<Form.FieldErrors />
 		</Form.Field>
 		<Form.Field {form} name="body">
-			<Form.Control let:attrs>
-				<Form.Label class="mb-2">Message</Form.Label>
-				<Textarea
-					rows={10}
-					{...attrs}
-					placeholder="Type your message here."
-					bind:value={$formData.body}
-				/>
+			<Form.Control>
+				{#snippet children({ props })}
+					<Form.Label class="mb-2">Message</Form.Label>
+					<Textarea
+						rows={10}
+						{...props}
+						placeholder="Type your message here."
+						bind:value={$formData.body}
+					/>
+				{/snippet}
 			</Form.Control>
 			<Form.FieldErrors />
 		</Form.Field>

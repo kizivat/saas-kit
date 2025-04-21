@@ -3,7 +3,7 @@
 	import * as Card from '$lib/components/ui/card';
 	import UserProducts from './components/sections/user-products.svelte';
 
-	export let data;
+	let { data } = $props();
 
 	let {
 		products,
@@ -14,14 +14,16 @@
 	// <!-- TODO: uncomment once other payment models are correctly supported -->
 	// let showOtherPrices = false;
 
-	$: withDefaultPrices = products.map((product) => {
-		return {
-			...product,
-			prices: product.prices.filter(
-				(price) => price.id === product.default_price.id,
-			),
-		};
-	});
+	let withDefaultPrices = $derived(
+		products.map((product) => {
+			return {
+				...product,
+				prices: product.prices.filter(
+					(price) => price.id === product.default_price.id,
+				),
+			};
+		}),
+	);
 
 	// <!-- TODO: uncomment once other payment models are correctly supported -->
 	// $: withOtherPrices = products.map((product) => {
@@ -33,13 +35,15 @@
 	// 	};
 	// });
 
-	$: currentSubscriptionsPrices = currentSubscriptions
-		? currentSubscriptions
-				.map((subscription) => {
-					return subscription.items.data.map(({ price }) => price);
-				})
-				.flat(1)
-		: [];
+	let currentSubscriptionsPrices = $derived(
+		currentSubscriptions
+			? currentSubscriptions
+					.map((subscription) => {
+						return subscription.items.data.map(({ price }) => price);
+					})
+					.flat(1)
+			: [],
+	);
 </script>
 
 <svelte:head>
@@ -56,8 +60,8 @@
 <section class="flex flex-col gap-3">
 	<h3 class="text-lg font-semibold">Default Prices</h3>
 	<ol class="grid gap-4 lg:grid-cols-3">
-		{#each withDefaultPrices as product}
-			{#each product.prices as price}
+		{#each withDefaultPrices as product (product.id)}
+			{#each product.prices as price (price.id)}
 				{@const isFree = price.unit_amount === 0}
 				{@const isCurrent =
 					currentSubscriptionsPrices.findIndex((p) => p.id === price.id) > -1 ||
@@ -71,7 +75,7 @@
 							<Price.Badges {price} />
 						</div>
 						<Card.Header>
-							<Card.Title tag="h4">{product.name}</Card.Title>
+							<Card.Title level={4}>{product.name}</Card.Title>
 							<Card.Description>
 								{product.description}
 							</Card.Description>

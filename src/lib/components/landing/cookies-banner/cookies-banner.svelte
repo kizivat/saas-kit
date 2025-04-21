@@ -5,7 +5,7 @@
 	import { fly } from 'svelte/transition';
 	import LucideCookie from '~icons/lucide/cookie';
 
-	let show = false;
+	let show = $state(false);
 
 	let isEurope = false;
 	try {
@@ -50,7 +50,7 @@
 						</p>
 					</div>
 					<div class="flex justify-end gap-3">
-						<Button variant="outline" on:click={handleAccept}>OK</Button>
+						<Button variant="outline" onclick={handleAccept}>OK</Button>
 					</div>
 				</div>
 			</Card.Content>

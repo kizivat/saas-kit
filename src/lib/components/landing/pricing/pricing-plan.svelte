@@ -1,7 +1,12 @@
 <script lang="ts">
 	import { cn } from '$lib/utils';
 
-	export let emphasized = false;
+	interface Props {
+		emphasized?: boolean;
+		children?: import('svelte').Snippet;
+	}
+
+	let { emphasized = false, children }: Props = $props();
 </script>
 
 <div
@@ -12,5 +17,5 @@
 		emphasized && '[&>*]:border-none [&>*]:shadow-none',
 	)}
 >
-	<slot />
+	{@render children?.()}
 </div>

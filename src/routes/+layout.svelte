@@ -1,38 +1,33 @@
+<!-- @migration-task Error while migrating Svelte code: Can't migrate code with afterUpdate. Please migrate by hand. -->
 <script lang="ts">
 	import { goto, invalidate } from '$app/navigation';
-	import { navigating, page } from '$app/stores';
+	import { page } from '$app/state';
 	import CookiesBanner from '$lib/components/landing/cookies-banner/cookies-banner.svelte';
 	import * as AlertDialog from '$lib/components/ui/alert-dialog';
+	import { TooltipProvider } from '$lib/components/ui/tooltip';
 	import { ModeWatcher } from 'mode-watcher';
-	import { afterUpdate, onMount } from 'svelte';
-	import { expoOut } from 'svelte/easing';
-	import { slide } from 'svelte/transition';
+	import { onMount } from 'svelte';
 	import '../app.css';
 	import MetaTags from './(marketing)/meta-tags.svelte';
 
-	export let data;
-
-	let { supabase, session } = data;
-	$: ({ supabase, session } = data);
+	let { data, children } = $props();
 
 	onMount(() => {
-		const { data } = supabase.auth.onAuthStateChange((event, _session) => {
-			if (_session?.expires_at !== session?.expires_at) {
-				invalidate('supabase:auth');
-			}
-		});
+		const { data: callback } = data.supabase.auth.onAuthStateChange(
+			(event, _session) => {
+				if (_session?.expires_at !== data.session?.expires_at) {
+					invalidate('supabase:auth');
+				}
+			},
+		);
 
-		return () => data.subscription.unsubscribe();
+		return () => callback.subscription.unsubscribe();
 	});
 
-	let hasAlertDialog = false;
-
-	afterUpdate(() => {
-		hasAlertDialog = $page.url.searchParams.has('alertDialog');
-	});
+	let hasAlertDialog = $derived(page.url.searchParams.has('alertDialog'));
 
 	async function loadAlertDialog() {
-		const alertDialog = $page.url.searchParams.get('alertDialog');
+		const alertDialog = page.url.searchParams.get('alertDialog');
 		// need to look into dynamic path imports; for now - switch
 		switch (alertDialog) {
 			case 'account-deletion':
@@ -49,7 +44,7 @@
 <AlertDialog.Root bind:open={hasAlertDialog}>
 	<AlertDialog.Content>
 		{#await loadAlertDialog() then Dialog}
-			<Dialog on:click={() => goto('?')} />
+			<Dialog onclick={() => goto('?')} />
 		{:catch _}
 			<AlertDialog.Header>
 				<AlertDialog.Title>Action successful</AlertDialog.Title>
@@ -59,7 +54,7 @@
 				</AlertDialog.Description>
 			</AlertDialog.Header>
 			<AlertDialog.Footer>
-				<AlertDialog.Action on:click={() => goto('?')}>
+				<AlertDialog.Action onclick={() => goto('?')}>
 					Dismiss
 				</AlertDialog.Action>
 			</AlertDialog.Footer>
@@ -71,17 +66,20 @@
 <ModeWatcher />
 <CookiesBanner />
 
-{#if $navigating}
-	<!-- 
+<!-- {#if !navigating.complete}
+	
 	Loading animation for next page since svelte doesn't show any indicator. 
 	- delay 100ms because most page loads are instant, and we don't want to flash 
 	- long 12s duration because we don't actually know how long it will take
 	- exponential easing so fast loads (>100ms and <1s) still see enough progress,
 	while slow networks see it moving for a full 12 seconds
--->
+
 	<div
 		class="fixed left-0 right-0 top-0 z-50 h-1 w-full bg-primary"
 		in:slide={{ delay: 100, duration: 12000, axis: 'x', easing: expoOut }}
 	></div>
-{/if}
-<slot />
+{/if} -->
+
+<TooltipProvider>
+	{@render children()}
+</TooltipProvider>

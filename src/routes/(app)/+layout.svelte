@@ -11,7 +11,7 @@
 	import Breadcrumbs from './components/breadcrumbs.svelte';
 	import NavLink from './components/nav-link.svelte';
 
-	export let data;
+	let { data, children } = $props();
 </script>
 
 <div class="flex min-h-screen w-full flex-col bg-muted/40">
@@ -27,32 +27,36 @@
 				<span class="sr-only">SaaS Kit</span>
 			</a>
 			<Tooltip.Root>
-				<Tooltip.Trigger asChild let:builder>
-					<NavLink
-						href="/dashboard"
-						class="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
-						activeClass="bg-accent text-accent-foreground"
-						{builder}
-					>
-						<Home class="h-5 w-5" />
-						<span class="sr-only">Dashboard</span>
-					</NavLink>
+				<Tooltip.Trigger>
+					{#snippet child({ props })}
+						<NavLink
+							href="/dashboard"
+							class="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
+							activeClass="bg-accent text-accent-foreground"
+							{...props}
+						>
+							<Home class="h-5 w-5" />
+							<span class="sr-only">Dashboard</span>
+						</NavLink>
+					{/snippet}
 				</Tooltip.Trigger>
 				<Tooltip.Content side="right">Dashboard</Tooltip.Content>
 			</Tooltip.Root>
 		</nav>
 		<nav class="mt-auto flex flex-col items-center gap-4 px-2 sm:py-5">
 			<Tooltip.Root>
-				<Tooltip.Trigger asChild let:builder>
-					<NavLink
-						href="/settings"
-						class="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
-						activeClass="bg-accent text-accent-foreground"
-						{builder}
-					>
-						<Settings class="h-5 w-5" />
-						<span class="sr-only">Settings</span>
-					</NavLink>
+				<Tooltip.Trigger>
+					{#snippet child({ props })}
+						<NavLink
+							href="/settings"
+							class="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
+							activeClass="bg-accent text-accent-foreground"
+							{...props}
+						>
+							<Settings class="h-5 w-5" />
+							<span class="sr-only">Settings</span>
+						</NavLink>
+					{/snippet}
 				</Tooltip.Trigger>
 				<Tooltip.Content side="right">Settings</Tooltip.Content>
 			</Tooltip.Root>
@@ -63,16 +67,13 @@
 			class="sticky top-0 z-30 flex h-14 items-center justify-between gap-4 border-b bg-background px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6"
 		>
 			<Sheet.Root>
-				<Sheet.Trigger asChild let:builder>
-					<Button
-						builders={[builder]}
-						size="icon"
-						variant="outline"
-						class="sm:hidden"
-					>
-						<PanelLeft class="h-5 w-5" />
-						<span class="sr-only">Toggle Menu</span>
-					</Button>
+				<Sheet.Trigger>
+					{#snippet child({ props })}
+						<Button size="icon" variant="outline" class="sm:hidden" {...props}>
+							<PanelLeft class="h-5 w-5" />
+							<span class="sr-only">Toggle Menu</span>
+						</Button>
+					{/snippet}
 				</Sheet.Trigger>
 				<Sheet.Content side="left" class="sm:max-w-xs">
 					<nav class="grid gap-6 text-lg font-medium">
@@ -107,7 +108,7 @@
 			<PersonalMenu user={data.user} />
 		</header>
 		<main class="flex flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8">
-			<slot />
+			{@render children?.()}
 		</main>
 	</div>
 </div>

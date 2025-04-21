@@ -68,7 +68,7 @@ export const actions = {
 		// at this point the validation would have failed if password was set
 		// and the old password was not provided but just in case we check again
 		if (!recoveryAmr && passwordSet && !('old_password' in form.data)) {
-			return setError(form, '', 'Old password is required');
+			return setError(form, 'confirm_password', 'Old password is required');
 		}
 
 		if ('old_password' in form.data) {
@@ -76,7 +76,7 @@ export const actions = {
 				console.error(new Error('Old password was not a string'));
 				throw setError(
 					form,
-					'',
+					'confirm_password',
 					'Could not update password. Please try again.',
 				);
 			}
@@ -98,7 +98,11 @@ export const actions = {
 
 		if (error) {
 			console.error(error);
-			return setError(form, '', 'Could not update password. Please try again.');
+			return setError(
+				form,
+				'confirm_password',
+				'Could not update password. Please try again.',
+			);
 		}
 
 		if (recoveryAmr) {
