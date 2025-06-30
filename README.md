@@ -241,5 +241,5 @@ After the steps above, you’ll have a working version like the demo page. Howev
   - [ ] Update the favicon in the `/static/` directory
 - [ ] Functionality
   - [ ] Add actual SaaS functionality!
-  - [ ] Replace the admin dashboard with real content (`/src/routes/(app)/dasboard/+page.svelte`).
+  - [ ] Replace the admin dashboard with real content (`/src/routes/(app)/dashboard/+page.svelte`).
   - [ ] Add API endpoints and database tables as needed to deliver your SaaS product.
