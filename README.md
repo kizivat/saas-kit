@@ -166,6 +166,8 @@ As a next step, you'll apply the initial database migration to your local Supaba
 npx supabase db reset
 ```
 
+Before running `supabase db push`, you can review permission changes in the migration pull request. [RattleCheck](.github/workflows/rattlecheck.yml) compares the SQL with the base branch and points to new high or critical findings, without connecting to your database.
+
 #### Going to Production
 
 To start you'll need at least a free [Supabase account](https://app.supabase.io/) and a Supabase project created for your app.
