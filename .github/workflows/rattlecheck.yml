@@ -3,9 +3,9 @@ name: Review Supabase migrations
 on:
   pull_request:
     paths:
-      - "supabase/migrations/*.sql"
-      - "supabase/config.toml"
-      - "rattlecheck.config.json"
+      - 'supabase/migrations/*.sql'
+      - 'supabase/config.toml'
+      - 'rattlecheck.config.json'
 
 permissions:
   contents: read
